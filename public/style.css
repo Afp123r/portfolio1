@@ -11,8 +11,15 @@ body {
   font-family: 'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   line-height: 1.6;
   font-weight: 400;
-  background: #fafbfc;
-  color: #1a1d23;
+  background: var(--neutral-50);
+  color: var(--neutral-900);
+  transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body.dark-mode {
+  background: var(--dark-bg-primary);
+  color: var(--dark-text-primary);
 }
 
 /* Professional typography scale */
@@ -55,6 +62,34 @@ p { font-size: clamp(1rem, 2vw, 1.125rem); line-height: 1.7; font-weight: 400; }
   --radius-md: 0.5rem;
   --radius-lg: 0.75rem;
   --radius-xl: 1rem;
+}
+
+/* Enhanced dark mode color palette */
+body.dark-mode {
+  --dark-bg-primary: #0f0f1e;
+  --dark-bg-secondary: #1a1a2e;
+  --dark-bg-tertiary: #252542;
+  --dark-surface: #2d2d4a;
+  --dark-surface-elevated: #353552;
+  --dark-border: #40407a;
+  --dark-border-subtle: #3a3a6a;
+  --dark-text-primary: #ffffff;
+  --dark-text-secondary: #e2e8f0;
+  --dark-text-tertiary: #94a3b8;
+  --dark-text-muted: #64748b;
+  --dark-primary: #818cf8;
+  --dark-primary-hover: #a5b4fc;
+  --dark-secondary: #c084fc;
+  --dark-accent: #f472b6;
+  --dark-gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --dark-gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  --dark-gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  --dark-gradient-4: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+  --dark-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+  --dark-shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.4);
+  --dark-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.5), 0 4px 6px -4px rgb(0 0 0 / 0.5);
+  --dark-shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.6), 0 8px 10px -6px rgb(0 0 0 / 0.6);
+  --dark-shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.8);
 }
 
 /* Modern professional background */
@@ -315,101 +350,291 @@ body.dark-mode .contact-form textarea::placeholder {
   color: #cccccc;
 }
 
-/* Dark mode styles for hero section */
 body.dark-mode .hero {
-  background: linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 100%);
+  background: var(--dark-gradient-1);
+  position: relative;
+  overflow: hidden;
+}
+
+body.dark-mode .hero::before {
+  background: 
+    radial-gradient(circle at 30% 80%, rgba(129, 140, 248, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 70% 20%, rgba(192, 132, 252, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(244, 114, 182, 0.08) 0%, transparent 50%);
 }
 
 body.dark-mode .hero-container h1,
 body.dark-mode .hero-container .up,
 body.dark-mode .hero-container .down {
-  color: #ffffff;
+  color: var(--dark-text-primary);
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
 body.dark-mode .hero-container h1 .auto-type {
-  color: #8bb4ff;
+  background: linear-gradient(45deg, var(--dark-primary), var(--dark-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: relative;
 }
 
 body.dark-mode .hero-container .botton a {
-  color: #8bb4ff;
+  background: rgba(129, 140, 248, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--dark-border);
+  color: var(--dark-primary);
+}
+
+body.dark-mode .hero-container .botton a::before {
+  background: var(--dark-primary);
+}
+
+body.dark-mode .hero-container .botton a:hover {
+  background: rgba(129, 140, 248, 0.2);
+  border-color: var(--dark-primary);
+  box-shadow: var(--dark-shadow-lg);
+}
+
+body.dark-mode .hero-container .botton img {
+  filter: brightness(0) invert(1) sepia(1) hue-rotate(200deg) saturate(3);
 }
 
 /* Dark mode styles for skills section */
 body.dark-mode .Skills {
-  background: linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 100%);
+  background: var(--dark-bg-secondary);
 }
 
-body.dark-mode .skillh1 {
-  color: #ffffff;
+body.dark-mode .Skills::before {
+  background: 
+    radial-gradient(circle at 30% 70%, rgba(129, 140, 248, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 70% 30%, rgba(192, 132, 252, 0.06) 0%, transparent 50%);
+}
+
+body.dark-mode .Skills .container .heading h1 {
+  color: var(--dark-text-primary);
 }
 
 body.dark-mode .Skills .container .mainSkill .front,
 body.dark-mode .Skills .container .mainSkill .back,
 body.dark-mode .Skills .container .mainSkill .datasci,
 body.dark-mode .Skills .container .mainSkill .tools {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: var(--dark-surface);
+  border: 1px solid var(--dark-border);
+  box-shadow: var(--dark-shadow-md);
+}
+
+body.dark-mode .Skills .container .mainSkill .front:hover,
+body.dark-mode .Skills .container .mainSkill .back:hover,
+body.dark-mode .Skills .container .mainSkill .datasci:hover,
+body.dark-mode .Skills .container .mainSkill .tools:hover {
+  background: var(--dark-surface-elevated);
+  box-shadow: var(--dark-shadow-xl);
+}
+
+body.dark-mode .Skills .container .mainSkill .front h2,
+body.dark-mode .Skills .container .mainSkill .back h2,
+body.dark-mode .Skills .container .mainSkill .datasci h2,
+body.dark-mode .Skills .container .mainSkill .tools h2 {
+  color: var(--dark-text-primary);
 }
 
 body.dark-mode .Skills .container .mainSkill .front .frontSkill,
 body.dark-mode .Skills .container .mainSkill .back .backSkill,
 body.dark-mode .Skills .container .mainSkill .datasci .datasciSkill,
 body.dark-mode .Skills .container .mainSkill .tools .toolsSkill {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: #ffffff;
+  background: var(--dark-bg-tertiary);
+  border: 1px solid var(--dark-border-subtle);
+  color: var(--dark-text-secondary);
+}
+
+body.dark-mode .Skills .container .mainSkill .front .frontSkill:hover,
+body.dark-mode .Skills .container .mainSkill .back .backSkill:hover,
+body.dark-mode .Skills .container .mainSkill .datasci .datasciSkill:hover,
+body.dark-mode .Skills .container .mainSkill .tools .toolsSkill:hover {
+  background: var(--dark-surface);
+  border-color: var(--dark-primary);
+  color: var(--dark-text-primary);
+}
+
+body.dark-mode .Skills .container .mainSkill .front .frontSkill span,
+body.dark-mode .Skills .container .mainSkill .back .backSkill span,
+body.dark-mode .Skills .container .mainSkill .datasci .datasciSkill span,
+body.dark-mode .Skills .container .mainSkill .tools .toolsSkill span {
+  color: var(--dark-text-secondary);
+}
+
+body.dark-mode .Skills .container .mainSkill .front .frontSkill:hover span,
+body.dark-mode .Skills .container .mainSkill .back .backSkill:hover span,
+body.dark-mode .Skills .container .mainSkill .datasci .datasciSkill:hover span,
+body.dark-mode .Skills .container .mainSkill .tools .toolsSkill:hover span {
+  color: var(--dark-primary);
 }
 
 /* Dark mode styles for experience section */
 body.dark-mode .expirience {
-  background: linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 100%);
+  background: var(--dark-bg-secondary);
 }
 
-body.dark-mode .expirience .skillh1 {
-  color: #ffffff;
+body.dark-mode .expirience h1 {
+  color: var(--dark-text-primary);
+}
+
+body.dark-mode .expirience h1::after {
+  background: var(--dark-gradient-1);
 }
 
 body.dark-mode .timeline-content {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: #ffffff;
+  background: var(--dark-surface);
+  border: 1px solid var(--dark-border);
+  color: var(--dark-text-secondary);
+  box-shadow: var(--dark-shadow-md);
+}
+
+body.dark-mode .timeline-content:hover {
+  background: var(--dark-surface-elevated);
+  box-shadow: var(--dark-shadow-lg);
 }
 
 body.dark-mode .timeline-content h3 {
-  color: #ffffff;
+  color: var(--dark-text-primary);
 }
 
 body.dark-mode .timeline-content span {
-  color: #cccccc;
+  color: var(--dark-text-tertiary);
+}
+
+body.dark-mode .timeline-content p {
+  color: var(--dark-text-muted);
+}
+
+body.dark-mode .container-ex:before {
+  background: var(--dark-border);
+}
+
+body.dark-mode .marker {
+  background: var(--dark-primary);
+  border: 2px solid var(--dark-border);
 }
 
 /* Dark mode styles for projects section */
 body.dark-mode .project {
-  background: linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 100%);
+  background: var(--dark-bg-secondary);
 }
 
 body.dark-mode .project .main h1 {
-  color: #ffffff;
+  color: var(--dark-text-primary);
+}
+
+body.dark-mode .project .main h1::after {
+  background: var(--dark-gradient-1);
+}
+
+body.dark-mode .project .container .project-card {
+  background: var(--dark-surface);
+  border: 1px solid var(--dark-border);
+  box-shadow: var(--dark-shadow-md);
+}
+
+body.dark-mode .project .container .project-card:hover {
+  background: var(--dark-surface-elevated);
+  box-shadow: var(--dark-shadow-xl);
+  transform: translateY(-5px);
+}
+
+body.dark-mode .project .container .project-card .project-info h3 {
+  color: var(--dark-text-primary);
+}
+
+body.dark-mode .project .container .project-card .project-info p {
+  color: var(--dark-text-muted);
+}
+
+body.dark-mode .project .container .project-card .project-info .project-links a {
+  color: var(--dark-primary);
+}
+
+body.dark-mode .project .container .project-card .project-info .project-links a:hover {
+  color: var(--dark-primary-hover);
 }
 
 /* Dark mode styles for contact section */
 body.dark-mode .contact {
-  background: linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 100%);
+  background: var(--dark-bg-secondary);
 }
 
 body.dark-mode .contact .main h1 {
-  color: #ffffff;
+  color: var(--dark-text-primary);
+}
+
+body.dark-mode .contact .main h1::after {
+  background: var(--dark-gradient-1);
+}
+
+body.dark-mode .contact-info {
+  background: var(--dark-surface);
+  border: 1px solid var(--dark-border);
+  box-shadow: var(--dark-shadow-md);
 }
 
 body.dark-mode .contact-info h2 {
-  color: #ffffff;
+  color: var(--dark-text-primary);
 }
 
 body.dark-mode .contact-info p {
-  color: #cccccc;
+  color: var(--dark-text-muted);
 }
 
 body.dark-mode .contact-info a {
+  color: var(--dark-primary);
+}
+
+body.dark-mode .contact-info a:hover {
+  color: var(--dark-primary-hover);
+}
+
+body.dark-mode .contact-form input,
+body.dark-mode .contact-form textarea {
+  background: var(--dark-surface);
+  border: 1px solid var(--dark-border);
+  color: var(--dark-text-primary);
+  box-shadow: var(--dark-shadow-sm);
+}
+
+body.dark-mode .contact-form input:focus,
+body.dark-mode .contact-form textarea:focus {
+  border-color: var(--dark-primary);
+  box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.1);
+}
+
+body.dark-mode .contact-form input::placeholder,
+body.dark-mode .contact-form textarea::placeholder {
+  color: var(--dark-text-muted);
+}
+
+body.dark-mode .contact-form label {
+  color: var(--dark-text-secondary);
+}
+
+body.dark-mode .contact-form button {
+  background: var(--dark-primary);
+  color: var(--dark-text-primary);
+  border: none;
+  box-shadow: var(--dark-shadow-md);
+}
+
+body.dark-mode .contact-form button:hover {
+  background: var(--dark-primary-hover);
+  box-shadow: var(--dark-shadow-lg);
+}
+
+body.dark-mode .contact-form button:disabled {
+  background: var(--dark-border);
+  color: var(--dark-text-muted);
+  cursor: not-allowed;
+}
+
+body.dark-mode .p1 {
   color: #8bb4ff;
 }
 
@@ -424,9 +649,6 @@ body.dark-mode .about-container .text p {
   color: #cccccc;
 }
 
-body.dark-mode .p1 {
-  color: #8bb4ff;
-}
 
 /* Dark mode for scroll progress */
 body.dark-mode .scroll-progress {
@@ -698,6 +920,20 @@ header.header-scrolled {
   -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+body.dark-mode header {
+  background-color: transparent;
+  padding: 10px 0;
+  transition: all 0.3s ease;
+}
+
+body.dark-mode header.header-scrolled {
+  background: rgba(15, 15, 30, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--dark-border-subtle);
+  box-shadow: var(--dark-shadow-lg);
 }
 
 .navBar {
