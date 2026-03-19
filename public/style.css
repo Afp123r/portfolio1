@@ -2537,7 +2537,7 @@ h1 span {
 }
 
 .project .container {
-  width: calc(min(76.5rem, 90%));
+  width: min(76.5rem, 90%);
   margin-top: 0;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
@@ -2875,6 +2875,7 @@ body {
   font-family: 'Leckerli One', sans-serif;
   margin-bottom: 20px;
   font-size: 2rem;
+  color: var(--dark-text-primary);
 }
 
 .contact-info p {
@@ -3073,8 +3074,7 @@ body {
 
 .Skills .container .heading h1,
 .expirience h1,
-.project .main h1,
-.contact .main h1 {
+.project .main h1 {
   font-size: 20px;
   text-align: center;
   font-family: Leckerli One, sans-serif;
@@ -3087,8 +3087,7 @@ body {
 
 .Skills .container .heading h1::after,
 .expirience h1::after,
-.project .main h1::after,
-.contact .main h1::after {
+.project .main h1::after {
   content: '';
   position: absolute;
   bottom: -10px;
@@ -3167,8 +3166,7 @@ body {
 /* 标题字体 */
 .Skills .container .heading h1,
 .expirience h1,
-.project .main h1,
-.contact .main h1 {
+.project .main h1 {
   font-family: 'Quicksand', sans-serif !important;
   font-size: 2.5rem;
   color: #000;
@@ -3177,8 +3175,7 @@ body {
 
 .Skills .container .heading h1::after,
 .expirience h1::after,
-.project .main h1::after,
-.contact .main h1::after {
+.project .main h1::after {
   content: '';
   position: absolute;
   bottom: -10px;
@@ -3244,8 +3241,7 @@ p, span, div, h1, h2, h3, h4, h5, h6 {
 .about .text h2,
 .Skills .container .heading h1,
 .expirience h1,
-.project .main h1,
-.contact .main h1 {
+.project .main h1 {
   font-size: 20px;
   text-align: center;
   font-family: Leckerli One, sans-serif;
@@ -3259,8 +3255,7 @@ p, span, div, h1, h2, h3, h4, h5, h6 {
 .about .text h2::after,
 .Skills .container .heading h1::after,
 .expirience h1::after,
-.project .main h1::after,
-.contact .main h1::after {
+.project .main h1::after {
   content: '';
   position: absolute;
   bottom: -10px;
@@ -3466,10 +3461,7 @@ p, span, div, h1, h2, h3, h4, h5, h6 {
   color: white;
 }
 
-.contact-info h2 {
-  font-family: 'Leckerli One', sans-serif;
-  margin-bottom: 20px;
-}
+/* Cleaned up duplicate contact-info h2 rules */
 
 .contact-info p {
   margin: 10px 0;
