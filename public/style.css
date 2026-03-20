@@ -2538,7 +2538,7 @@ h1 span {
 
 .project .container {
   width: min(76.5rem, 90%);
-  margin-top: 0;
+  margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
   gap: 2rem;
@@ -2875,7 +2875,7 @@ body {
   font-family: 'Leckerli One', sans-serif;
   margin-bottom: 20px;
   font-size: 2rem;
-  color: var(--dark-text-primary);
+  color: white;
 }
 
 .contact-info p {
