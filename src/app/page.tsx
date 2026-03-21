@@ -60,13 +60,43 @@ export default function Home() {
       }
     };
 
+
     // 处理菜单点击
     const handleMenuClick = () => {
       const menu = document.querySelector('.menu');
+      const menuToggle = document.querySelector('.menu-toggle');
+      const menuOverlay = document.querySelector('.menu-overlay');
+      
       menu?.classList.toggle('active');
+      menuToggle?.classList.toggle('active');
+      menuOverlay?.classList.toggle('active');
     };
 
-    // 处理平滑滚动
+    // 处理点击外部关闭菜单
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+      const menu = document.querySelector('.menu');
+      const menuToggle = document.querySelector('.menu-toggle');
+      const menuOverlay = document.querySelector('.menu-overlay');
+      const navBar = document.querySelector('.navBar');
+      
+      if (!menuToggle?.contains(target) && !menu?.contains(target) && !navBar?.contains(target)) {
+        menu?.classList.remove('active');
+        menuToggle?.classList.remove('active');
+        menuOverlay?.classList.remove('active');
+      }
+    };
+
+    // 处理覆盖层点击关闭菜单
+    const handleOverlayClick = () => {
+      const menu = document.querySelector('.menu');
+      const menuToggle = document.querySelector('.menu-toggle');
+      const menuOverlay = document.querySelector('.menu-overlay');
+      
+      menu?.classList.remove('active');
+      menuToggle?.classList.remove('active');
+      menuOverlay?.classList.remove('active');
+    };
     const handleSmoothScroll = (e: Event) => {
       const target = e.target as HTMLElement;
       if (target.tagName === 'A' && target.getAttribute('href')?.startsWith('#')) {
@@ -80,15 +110,17 @@ export default function Home() {
     // 处理主题切换
     const handleThemeToggle = () => {
       const body = document.body;
-      const currentTheme = body.classList.contains('dark-mode') ? 'dark' : 'light';
-      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      const themeIcon = document.querySelector('.theme-icon');
       
-      body.classList.remove('dark-mode');
-      if (newTheme === 'dark') {
+      if (body.classList.contains('dark-mode')) {
+        body.classList.remove('dark-mode');
+        localStorage.setItem('theme', 'light');
+        themeIcon!.textContent = '🌙'; // Show moon icon in light mode
+      } else {
         body.classList.add('dark-mode');
+        localStorage.setItem('theme', 'dark');
+        themeIcon!.textContent = '☀️'; // Show sun icon in dark mode
       }
-      
-      localStorage.setItem('theme', newTheme);
     };
 
     // 处理滚动进度
@@ -296,11 +328,21 @@ export default function Home() {
     // 初始化返回顶部按钮
     initBackToTop();
 
-    // 从localStorage加载主题
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark') {
-      document.body.classList.add('dark-mode');
-    }
+    // 初始化主题
+    const initTheme = () => {
+      const savedTheme = localStorage.getItem('theme');
+      const themeIcon = document.querySelector('.theme-icon');
+      
+      if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.body.classList.add('dark-mode');
+        if (themeIcon) themeIcon.textContent = '☀️'; // Show sun icon in dark mode
+      } else {
+        if (themeIcon) themeIcon.textContent = '🌙'; // Show moon icon in light mode
+      }
+    };
+
+    // 初始化主题
+    initTheme();
 
     // 添加事件监听器
     window.addEventListener('scroll', () => {
@@ -308,6 +350,8 @@ export default function Home() {
       updateScrollProgress();
     });
     document.querySelector('.menu-toggle')?.addEventListener('click', handleMenuClick);
+    document.addEventListener('click', handleClickOutside);
+    document.querySelector('.menu-overlay')?.addEventListener('click', handleOverlayClick);
     document.querySelector('.menu')?.addEventListener('click', handleSmoothScroll);
     document.getElementById('themeToggle')?.addEventListener('click', handleThemeToggle);
 
@@ -315,6 +359,8 @@ export default function Home() {
     return () => {
       window.removeEventListener('scroll', handleScroll);
       document.querySelector('.menu-toggle')?.removeEventListener('click', handleMenuClick);
+      document.removeEventListener('click', handleClickOutside);
+      document.querySelector('.menu-overlay')?.removeEventListener('click', handleOverlayClick);
       document.querySelector('.menu')?.removeEventListener('click', handleSmoothScroll);
       document.getElementById('themeToggle')?.removeEventListener('click', handleThemeToggle);
     };
@@ -322,6 +368,9 @@ export default function Home() {
 
   return (
     <>
+      {/* Menu Overlay */}
+      <div className="menu-overlay" id="menuOverlay"></div>
+
       {/* Scroll Progress Indicator */}
       <div className="scroll-progress" id="scrollProgress"></div>
 
@@ -340,9 +389,11 @@ export default function Home() {
             <h1>{content.nav.name}</h1>
           </div>
           <div className="menu-toggle" id="menuToggle">
-            <span className="bar"></span>
-            <span className="bar"></span>
-            <span className="bar"></span>
+            <div className="hamburger">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
           </div>
           <div className="menu" id="menu">
             <ul>
@@ -351,8 +402,7 @@ export default function Home() {
               ))}
               <li>
                 <button className="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-                  <span className="sun-icon">☀️</span>
-                  <span className="moon-icon">🌙</span>
+                  <span className="theme-icon">🌙</span>
                 </button>
               </li>
             </ul>

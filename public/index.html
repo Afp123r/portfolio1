@@ -16,14 +16,9 @@
     <header>
         <nav id="navBar" class="navBar">
             <div class="name">
-                <h1>Henry</h1>
+                <h1 class="henry-text">Henry</h1>
             </div>
-            <div class="menu-toggle" id="menuToggle">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
-            <div class="menu" id="menu">
+                        <div class="menu" id="menu">
                 <ul>
                     <li><a href="#home">Home</a></li>
                     <li><a href="#about">About</a></li>
@@ -425,35 +420,16 @@
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        
-        document.addEventListener('DOMContentLoaded', function() {
-            const menuToggle = document.getElementById('menuToggle');
-            const menu = document.getElementById('menu');
-            const header = document.querySelector('header');
-            const navBar = document.querySelector('.navBar');
+        // Get DOM elements
+        const header = document.querySelector('header');
 
-            menuToggle.addEventListener('click', function() {
-                menu.classList.toggle('active');
-            });
-
-            window.addEventListener('scroll', function() {
-                if (window.scrollY > 50) {
-                    header.classList.add('header-scrolled');
-                } else {
-                    header.classList.remove('header-scrolled');
-                }
-            });
-
-            document.addEventListener('click', function(event) {
-                const target = event.target;
-                const isMenuToggle = target.closest('#menuToggle');
-                const isMenu = target.closest('#menu');
-                const isNavBar = target.closest('.navBar');
-
-                if (!isMenuToggle && !isMenu && !isNavBar) {
-                    menu.classList.remove('active');
-                }
-            });
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 50) {
+                header.classList.add('header-scrolled');
+            } else {
+                header.classList.remove('header-scrolled');
+            }
         });
 
         const typed = new Typed('.auto-type', {
