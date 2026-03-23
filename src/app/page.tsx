@@ -576,7 +576,7 @@ export default function Home() {
               </div>
               <div className="info-details">
                 <h4>Location</h4>
-                <p>Malaysia</p>
+                <p>Georgetown, Penang, Malaysia</p>
               </div>
             </div>
             
