@@ -1,51 +1,10 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect } from 'react';
 import content from '../config/content.json';
-import emailjs from '@emailjs/browser';
 import ViewCounter from "./ViewCounter";
 
 export default function Home() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const form = e.currentTarget;
-    const formData = new FormData(form);
-    
-    try {
-      await emailjs.send(
-        content.contact.emailjs.service_id,
-        content.contact.emailjs.template_id,
-        {
-          from_name: formData.get('name'),
-          from_email: formData.get('email'),
-          message: formData.get('message'),
-          to_email: content.contact.emailjs.to_email,
-        },
-        content.contact.emailjs.public_key
-      );
-      alert('Message sent successfully!');
-      form.reset();
-    } catch (error) {
-      console.error('EmailJS error:', error);
-      alert('Failed to send message. Please try again.');
-    }
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
 
   useEffect(() => {
     // 处理滚动事件
@@ -634,39 +593,7 @@ export default function Home() {
             </div>
           </div>
           
-          <div className="contact-form-modern">
-            <form onSubmit={handleSubmit}>
-              <div className="form-group-modern">
-                <input type="text" name="name" placeholder="Your Name" required />
-                <label htmlFor="name">Name</label>
-              </div>
-              
-              <div className="form-group-modern">
-                <input type="email" name="email" placeholder="your.email@example.com" required />
-                <label htmlFor="email">Email</label>
-              </div>
-              
-              <div className="form-group-modern">
-                <textarea name="message" placeholder="Tell me about your project..." rows={5} required></textarea>
-                <label htmlFor="message">Message</label>
-              </div>
-              
-              <button type="submit" className="submit-btn-modern" disabled={isSubmitting}>
-                {isSubmitting ? (
-                  <span>Sending...</span>
-                ) : (
-                  <>
-                    <span>Send Message</span>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <line x1="22" y1="2" x2="11" y2="13"/>
-                      <polygon points="22,2 15,22 11,13 2,9 22,2"/>
-                    </svg>
-                  </>
-                )}
-              </button>
-            </form>
-          </div>
-        </div>
+                  </div>
       </section>
 
       <ViewCounter />
