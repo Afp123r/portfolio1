@@ -139,15 +139,7 @@
             window.top.location = window.location;
           }
           
-          // Clear clipboard periodically
-          setInterval(function() {
-            if (document.hasFocus() && navigator.clipboard && navigator.clipboard.writeText) {
-              navigator.clipboard.writeText('').catch(function() {
-                // Silently fail if clipboard access is denied
-              });
-            }
-          }, 5000);
-        })();
+          })();
     </script>
     
     <style>
@@ -163,7 +155,6 @@
             -khtml-user-drag: none;
             -moz-user-drag: none;
             -o-user-drag: none;
-            user-drag: none;
             pointer-events: none;
         }
     </style>
