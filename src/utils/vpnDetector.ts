@@ -1,4 +1,5 @@
 import EdgeOneKVStorage from './edgeOneKV';
+import IPTracker from './ipTracker';
 
 interface VPNInfo {
   isVPN: boolean;
@@ -30,9 +31,11 @@ export class VPNDetector {
   private checkInterval: NodeJS.Timeout | null = null;
   private readonly CHECK_INTERVAL_MS = 5 * 60 * 1000; // Check every 5 minutes
   private kvStorage: EdgeOneKVStorage;
+  private ipTracker: IPTracker;
 
   private constructor() {
     this.kvStorage = new EdgeOneKVStorage();
+    this.ipTracker = IPTracker.getInstance();
   }
 
   static getInstance(): VPNDetector {
@@ -87,6 +90,16 @@ export class VPNDetector {
         ip: publicIP,
         country: this.vpnInfo.country,
         provider: this.vpnInfo.provider
+      });
+
+      // Record IP address in IP tracking
+      const ipLocation = await this.ipTracker.getIPLocation(publicIP);
+      await this.ipTracker.recordIP({
+        ip: publicIP,
+        isVPN,
+        provider: this.vpnInfo.provider,
+        country: this.vpnInfo.country,
+        city: ipLocation.city
       });
 
       return this.vpnInfo;
@@ -404,6 +417,26 @@ export class VPNDetector {
 
   async getLatestStoredVPNData(): Promise<any> {
     return await this.kvStorage.getLatestVPNData();
+  }
+
+  async getIPAnalytics(): Promise<{
+    total: number;
+    uniqueIPs: number;
+    vpnIPs: number;
+    regularIPs: number;
+    topCountries: Array<{ country: string; count: number }>;
+    topCities: Array<{ city: string; count: number }>;
+    recentIPs: Array<{ ip: string; timestamp: string; isVPN: boolean }>;
+  }> {
+    return await this.ipTracker.getIPAnalytics();
+  }
+
+  async getLatestIPRecord(): Promise<any> {
+    return await this.ipTracker.getLatestIPRecord();
+  }
+
+  async getIPHistory(limit: number = 50): Promise<any[]> {
+    return await this.ipTracker.getIPHistory(limit);
   }
 }
 
