@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-// EdgeOne KV retrieval endpoint
+// EdgeOne KV retrieval endpoint using Pages KV binding
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
@@ -15,39 +15,61 @@ export async function GET(request: NextRequest) {
       }, { status: 400 });
     }
 
-    // Here you would implement actual EdgeOne KV retrieval
-    // For now, we'll simulate retrieval with console logging
-    console.log('EdgeOne KV Get:', {
+    // EdgeOne Pages KV binding - use the bound KV namespace
+    // The KV namespace should be bound in your EdgeOne Pages configuration
+    const vpnKV = (globalThis as any).VPN; // VPN should be your bound KV namespace name
+    
+    if (!vpnKV) {
+      console.warn('VPN KV namespace not bound, using simulation mode');
+      // Fallback to simulation for development
+      console.log('EdgeOne KV Get (Simulation):', {
+        namespace,
+        namespaceId,
+        key,
+        timestamp: new Date().toISOString()
+      });
+      
+      return NextResponse.json({ 
+        value: null,
+        message: 'Data not found (simulation mode)',
+        mode: 'simulation'
+      });
+    }
+
+    // Retrieve data from EdgeOne KV
+    const value = await vpnKV.get(key);
+    
+    console.log('EdgeOne KV Get Success:', {
       namespace,
       namespaceId,
       key,
+      value,
       timestamp: new Date().toISOString()
     });
 
-    // TODO: Replace with actual EdgeOne KV API call
-    // Example:
-    // const edgeOneResponse = await fetch(`https://edgeone.tencent.com/api/v1/kv/${namespaceId}/${key}`, {
-    //   method: 'GET',
-    //   headers: {
-    //     'Authorization': `Bearer ${process.env.EDGEONE_API_KEY}`
-    //   }
-    // });
-    // 
-    // if (edgeOneResponse.ok) {
-    //   const data = await edgeOneResponse.json();
-    //   return NextResponse.json({ value: JSON.parse(data.value) });
-    // }
+    // Parse JSON if value exists
+    let parsedValue = null;
+    if (value) {
+      try {
+        parsedValue = JSON.parse(value);
+      } catch (parseError) {
+        parsedValue = value; // Return as string if JSON parsing fails
+      }
+    }
 
-    // Simulate retrieval (return null for now)
     return NextResponse.json({ 
-      value: null,
-      message: 'Data not found or simulated response'
+      value: parsedValue,
+      message: parsedValue ? 'Data retrieved successfully' : 'Data not found',
+      namespace,
+      namespaceId,
+      key
     });
 
   } catch (error) {
     console.error('EdgeOne KV retrieval error:', error);
     return NextResponse.json({ 
-      error: 'Failed to retrieve data from EdgeOne KV' 
+      error: 'Failed to retrieve data from EdgeOne KV',
+      details: error instanceof Error ? error.message : 'Unknown error'
     }, { status: 500 });
   }
 }

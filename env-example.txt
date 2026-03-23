@@ -1,0 +1,19 @@
+# EdgeOne KV Configuration
+# Copy this to .env.local and fill in your actual credentials
+
+# EdgeOne API Credentials (from Tencent Cloud Console)
+EDGEONE_SECRET_ID=your_secret_id_here
+EDGEONE_SECRET_KEY=your_secret_key_here
+
+# EdgeOne Region (optional, defaults to ap-guangzhou)
+EDGEONE_REGION=ap-guangzhou
+
+# Your VPN Namespace Details (already configured in code)
+NAMESPACE_NAME=vpn
+NAMESPACE_ID=ns-QrCNnpxdZcmU
+
+# How to get your credentials:
+# 1. Go to Tencent Cloud Console: https://console.cloud.tencent.com/
+# 2. Navigate to EdgeOne -> Zone Management
+# 3. Find your EdgeOne zone and get API credentials
+# 4. Make sure the credentials have KV storage permissions
