@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-// EdgeOne KV storage endpoint for IP tracking
+// EdgeOne IP KV storage endpoint using Pages KV binding
 export async function POST(request: NextRequest) {
   try {
     const { namespace, namespaceId, key, value } = await request.json();
@@ -12,8 +12,8 @@ export async function POST(request: NextRequest) {
       }, { status: 400 });
     }
 
-    // EdgeOne Pages KV binding - use the bound KV namespace
-    const ipKV = (globalThis as any).IP; // IP should be your bound KV namespace name
+    // EdgeOne Pages KV binding - use the bound IP KV namespace
+    const ipKV = (globalThis as any).ip; // ip should be your bound KV namespace name
     
     if (!ipKV) {
       console.warn('IP KV namespace not bound, using simulation mode');
@@ -36,7 +36,7 @@ export async function POST(request: NextRequest) {
       });
     }
 
-    // Store data in EdgeOne KV
+    // Store data in EdgeOne IP KV
     await ipKV.put(key, JSON.stringify(value));
     
     console.log('EdgeOne IP KV Store Success:', {

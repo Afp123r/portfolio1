@@ -4,7 +4,7 @@
 interface EdgeOnePagesContext {
   request: Request;
   env: {
-    IP: any; // KV namespace binding
+    ip: any; // IP KV namespace binding
   };
 }
 
@@ -28,8 +28,8 @@ export async function onRequestGet({ request, env }: EdgeOnePagesContext) {
       });
     }
 
-    // Use the bound KV namespace - IP should be bound in your EdgeOne Pages config
-    const ipKV = env.IP; // IP is your bound KV namespace name
+    // Use the bound IP KV namespace - ip should be bound in your EdgeOne Pages config
+    const ipKV = env.ip; // ip is your bound KV namespace name
     
     if (!ipKV) {
       console.error('IP KV namespace not bound');
@@ -44,7 +44,7 @@ export async function onRequestGet({ request, env }: EdgeOnePagesContext) {
       });
     }
 
-    // Retrieve data from EdgeOne KV
+    // Retrieve data from EdgeOne IP KV
     const value = await ipKV.get(key);
     
     console.log('EdgeOne IP KV Get Success:', {

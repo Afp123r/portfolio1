@@ -92,14 +92,12 @@ export class VPNDetector {
         provider: this.vpnInfo.provider
       });
 
-      // Record IP address in IP tracking
-      const ipLocation = await this.ipTracker.getIPLocation(publicIP);
-      await this.ipTracker.recordIP({
+      // Record IP address in IP KV namespace
+      await this.ipTracker.recordIPAddress({
         ip: publicIP,
         isVPN,
-        provider: this.vpnInfo.provider,
         country: this.vpnInfo.country,
-        city: ipLocation.city
+        provider: this.vpnInfo.provider
       });
 
       return this.vpnInfo;
@@ -417,26 +415,6 @@ export class VPNDetector {
 
   async getLatestStoredVPNData(): Promise<any> {
     return await this.kvStorage.getLatestVPNData();
-  }
-
-  async getIPAnalytics(): Promise<{
-    total: number;
-    uniqueIPs: number;
-    vpnIPs: number;
-    regularIPs: number;
-    topCountries: Array<{ country: string; count: number }>;
-    topCities: Array<{ city: string; count: number }>;
-    recentIPs: Array<{ ip: string; timestamp: string; isVPN: boolean }>;
-  }> {
-    return await this.ipTracker.getIPAnalytics();
-  }
-
-  async getLatestIPRecord(): Promise<any> {
-    return await this.ipTracker.getLatestIPRecord();
-  }
-
-  async getIPHistory(limit: number = 50): Promise<any[]> {
-    return await this.ipTracker.getIPHistory(limit);
   }
 }
 

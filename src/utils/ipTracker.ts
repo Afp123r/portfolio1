@@ -4,26 +4,24 @@ interface IPRecord {
   ip: string;
   userAgent: string;
   sessionId: string;
-  isVPN: boolean;
+  isVPN?: boolean;
   country?: string;
-  city?: string;
   provider?: string;
 }
 
 interface IPAnalytics {
   total: number;
   uniqueIPs: number;
+  topCountries: Array<{ country: string; count: number }>;
   vpnIPs: number;
   regularIPs: number;
-  topCountries: Array<{ country: string; count: number }>;
-  topCities: Array<{ city: string; count: number }>;
-  recentIPs: Array<{ ip: string; timestamp: string; isVPN: boolean }>;
 }
 
 export class IPTracker {
   private static instance: IPTracker;
-  private readonly KV_NAMESPACE = 'ip';
-  private readonly KV_NAMESPACE_ID = 'ns-AGEYyEqBnK6N';
+  private readonly IP_NAMESPACE = 'ip';
+  private readonly IP_NAMESPACE_ID = 'ns-AGEYyEqBnK6N';
+  private readonly IP_BINDING = 'ip';
 
   private constructor() {}
 
@@ -34,12 +32,11 @@ export class IPTracker {
     return IPTracker.instance;
   }
 
-  async recordIP(ipData: {
+  async recordIPAddress(ipData: {
     ip: string;
-    isVPN: boolean;
-    provider?: string;
+    isVPN?: boolean;
     country?: string;
-    city?: string;
+    provider?: string;
   }): Promise<boolean> {
     try {
       const record: IPRecord = {
@@ -49,34 +46,34 @@ export class IPTracker {
         userAgent: navigator.userAgent,
         sessionId: this.getSessionId(),
         isVPN: ipData.isVPN,
-        provider: ipData.provider,
         country: ipData.country,
-        city: ipData.city
+        provider: ipData.provider
       };
 
-      // Store individual IP record
-      await this.setToKV(record.id, record);
+      // Store in EdgeOne KV
+      const success = await this.setToKV(record.ip, record);
       
-      // Store latest IP for quick access
-      await this.setToKV('latest', record);
-      
-      // Update analytics
-      await this.updateAnalytics(record);
-      
-      // Store in IP history (keep last 100)
-      await this.addToIPHistory(record);
+      if (success) {
+        // Also store in analytics
+        await this.updateAnalytics(record);
+        
+        // Store unique IP list
+        await this.addToUniqueIPs(record.ip);
+      }
 
-      console.log('IP Record stored:', {
-        ip: record.ip,
-        isVPN: record.isVPN,
-        country: record.country,
-        timestamp: record.timestamp
-      });
-
-      return true;
+      return success;
     } catch (error) {
-      console.error('Failed to record IP:', error);
+      console.error('Failed to record IP address:', error);
       return false;
+    }
+  }
+
+  async getIPRecord(ip: string): Promise<IPRecord | null> {
+    try {
+      return await this.getFromKV(ip);
+    } catch (error) {
+      console.error('Failed to get IP record:', error);
+      return null;
     }
   }
 
@@ -86,135 +83,40 @@ export class IPTracker {
       return analytics || {
         total: 0,
         uniqueIPs: 0,
-        vpnIPs: 0,
-        regularIPs: 0,
         topCountries: [],
-        topCities: [],
-        recentIPs: []
+        vpnIPs: 0,
+        regularIPs: 0
       };
     } catch (error) {
       console.error('Failed to get IP analytics:', error);
       return {
         total: 0,
         uniqueIPs: 0,
-        vpnIPs: 0,
-        regularIPs: 0,
         topCountries: [],
-        topCities: [],
-        recentIPs: []
+        vpnIPs: 0,
+        regularIPs: 0
       };
     }
   }
 
-  async getLatestIPRecord(): Promise<IPRecord | null> {
+  async getUniqueIPs(): Promise<string[]> {
     try {
-      return await this.getFromKV('latest');
+      const uniqueIPs = await this.getFromKV('unique_ips');
+      return uniqueIPs || [];
     } catch (error) {
-      console.error('Failed to get latest IP record:', error);
-      return null;
-    }
-  }
-
-  async getIPHistory(limit: number = 50): Promise<IPRecord[]> {
-    try {
-      const history = await this.getFromKV('ip_history');
-      return history ? history.slice(-limit) : [];
-    } catch (error) {
-      console.error('Failed to get IP history:', error);
+      console.error('Failed to get unique IPs:', error);
       return [];
     }
   }
 
-  private async updateAnalytics(record: IPRecord): Promise<void> {
-    try {
-      const currentAnalytics = await this.getIPAnalytics();
-      
-      // Update totals
-      currentAnalytics.total++;
-      
-      if (record.isVPN) {
-        currentAnalytics.vpnIPs++;
-      } else {
-        currentAnalytics.regularIPs++;
-      }
-
-      // Update country stats
-      if (record.country) {
-        const countryIndex = currentAnalytics.topCountries.findIndex(c => c.country === record.country);
-        if (countryIndex >= 0) {
-          currentAnalytics.topCountries[countryIndex].count++;
-        } else {
-          currentAnalytics.topCountries.push({ country: record.country, count: 1 });
-        }
-      }
-
-      // Update city stats
-      if (record.city) {
-        const cityIndex = currentAnalytics.topCities.findIndex(c => c.city === record.city);
-        if (cityIndex >= 0) {
-          currentAnalytics.topCities[cityIndex].count++;
-        } else {
-          currentAnalytics.topCities.push({ city: record.city, count: 1 });
-        }
-      }
-
-      // Sort and limit top lists
-      currentAnalytics.topCountries.sort((a, b) => b.count - a.count).slice(0, 10);
-      currentAnalytics.topCities.sort((a, b) => b.count - a.count).slice(0, 10);
-
-      // Calculate unique IPs (simplified - in production you'd use a Set)
-      const uniqueIPs = await this.getUniqueIPCount();
-      currentAnalytics.uniqueIPs = uniqueIPs;
-
-      // Store updated analytics
-      await this.setToKV('analytics', currentAnalytics);
-    } catch (error) {
-      console.error('Failed to update IP analytics:', error);
-    }
-  }
-
-  private async addToIPHistory(record: IPRecord): Promise<void> {
-    try {
-      const history = await this.getFromKV('ip_history') || [];
-      
-      // Add new record
-      history.push({
-        ip: record.ip,
-        timestamp: record.timestamp,
-        isVPN: record.isVPN
-      });
-
-      // Keep only last 100 records
-      if (history.length > 100) {
-        history.splice(0, history.length - 100);
-      }
-
-      await this.setToKV('ip_history', history);
-    } catch (error) {
-      console.error('Failed to add to IP history:', error);
-    }
-  }
-
-  private async getUniqueIPCount(): Promise<number> {
-    try {
-      // This is a simplified approach - in production you'd maintain a Set
-      const history = await this.getFromKV('ip_history') || [];
-      const uniqueIPs = new Set(history.map((item: any) => item.ip));
-      return uniqueIPs.size;
-    } catch (error) {
-      console.error('Failed to get unique IP count:', error);
-      return 0;
-    }
-  }
-
-  private async setToKV(key: string, value: any): Promise<void> {
+  private async setToKV(key: string, value: any): Promise<boolean> {
     try {
       // Try EdgeOne Pages KV binding first
-      const ipKV = (globalThis as any).IP; // IP should be your bound KV namespace name
+      const ipKV = (globalThis as any).ip;
       
       if (ipKV) {
         await ipKV.put(key, JSON.stringify(value));
-        return;
+        return true;
       }
 
       // Fallback to API call
@@ -224,26 +126,24 @@ export class IPTracker {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          namespace: this.KV_NAMESPACE,
-          namespaceId: this.KV_NAMESPACE_ID,
+          namespace: this.IP_NAMESPACE,
+          namespaceId: this.IP_NAMESPACE_ID,
           key,
           value
         })
       });
 
-      if (!response.ok) {
-        throw new Error(`HTTP ${response.status}`);
-      }
+      return response.ok;
     } catch (error) {
       console.error('IP KV storage error:', error);
-      throw error;
+      return false;
     }
   }
 
   private async getFromKV(key: string): Promise<any> {
     try {
       // Try EdgeOne Pages KV binding first
-      const ipKV = (globalThis as any).IP; // IP should be your bound KV namespace name
+      const ipKV = (globalThis as any).ip;
       
       if (ipKV) {
         const value = await ipKV.get(key);
@@ -251,7 +151,7 @@ export class IPTracker {
       }
 
       // Fallback to API call
-      const response = await fetch(`/api/ip/get?namespace=${this.KV_NAMESPACE}&namespaceId=${this.KV_NAMESPACE_ID}&key=${key}`);
+      const response = await fetch(`/api/ip/get?namespace=${this.IP_NAMESPACE}&namespaceId=${this.IP_NAMESPACE_ID}&key=${key}`);
       
       if (response.ok) {
         const data = await response.json();
@@ -262,6 +162,57 @@ export class IPTracker {
     } catch (error) {
       console.error('IP KV retrieval error:', error);
       return null;
+    }
+  }
+
+  private async updateAnalytics(record: IPRecord): Promise<void> {
+    try {
+      const currentAnalytics = await this.getIPAnalytics();
+      
+      // Update analytics
+      currentAnalytics.total++;
+      
+      if (record.isVPN) {
+        currentAnalytics.vpnIPs++;
+      } else {
+        currentAnalytics.regularIPs++;
+      }
+      
+      // Update country stats
+      if (record.country) {
+        const countryIndex = currentAnalytics.topCountries.findIndex(c => c.country === record.country);
+        if (countryIndex >= 0) {
+          currentAnalytics.topCountries[countryIndex].count++;
+        } else {
+          currentAnalytics.topCountries.push({ country: record.country, count: 1 });
+        }
+      }
+      
+      // Sort and limit top countries
+      currentAnalytics.topCountries.sort((a, b) => b.count - a.count).slice(0, 10);
+
+      // Store updated analytics
+      await this.setToKV('analytics', currentAnalytics);
+    } catch (error) {
+      console.error('Failed to update IP analytics:', error);
+    }
+  }
+
+  private async addToUniqueIPs(ip: string): Promise<void> {
+    try {
+      const uniqueIPs = await this.getUniqueIPs();
+      
+      if (!uniqueIPs.includes(ip)) {
+        uniqueIPs.push(ip);
+        await this.setToKV('unique_ips', uniqueIPs);
+        
+        // Update unique count
+        const analytics = await this.getIPAnalytics();
+        analytics.uniqueIPs = uniqueIPs.length;
+        await this.setToKV('analytics', analytics);
+      }
+    } catch (error) {
+      console.error('Failed to add to unique IPs:', error);
     }
   }
 
@@ -276,27 +227,6 @@ export class IPTracker {
       sessionStorage.setItem('ip_session_id', sessionId);
     }
     return sessionId;
-  }
-
-  // Get location data for IP
-  async getIPLocation(ip: string): Promise<{
-    country?: string;
-    city?: string;
-    provider?: string;
-  }> {
-    try {
-      const response = await fetch(`https://ipapi.co/${ip}/json/`);
-      const data = await response.json();
-      
-      return {
-        country: data.country_name || undefined,
-        city: data.city || undefined,
-        provider: data.org || undefined
-      };
-    } catch (error) {
-      console.error('Failed to get IP location:', error);
-      return {};
-    }
   }
 }
 
