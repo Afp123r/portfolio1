@@ -1103,7 +1103,7 @@ body.dark-mode .moon-icon {
 
 body.dark-mode .about-container,
 body.dark-mode .Skills .container,
-body.dark-mode .expirience .container-ex,
+body.dark-mode .experience .container-ex,
 body.dark-mode .project .container,
 body.dark-mode .contact-container {
   background: rgba(255, 255, 255, 0.05);
@@ -1277,15 +1277,15 @@ color: var(--dark-text-primary);
 }
 
 /* Dark mode styles for experience section */
-body.dark-mode .expirience {
+body.dark-mode .experience {
 background: var(--dark-bg-secondary);
 }
 
-body.dark-mode .expirience h1 {
+body.dark-mode .experience h1 {
   color: var(--dark-text-primary);
 }
 
-body.dark-mode .expirience h1::after {
+body.dark-mode .experience h1::after {
   background: var(--dark-gradient-1);
 }
 
@@ -3709,7 +3709,7 @@ body.dark-mode header.header-scrolled {
 /* skills section CSS ends here  */
 /* ------------------------------------------------------------------------------- */
 /* experience section CSS starts here  */
-.expirience {
+.experience {
   margin: 0;
   padding: 30px 0;
   font-family: 'Roboto', sans-serif;
@@ -3719,7 +3719,7 @@ body.dark-mode header.header-scrolled {
   outline: none;
 }
 
-.expirience h1 {
+.experience h1 {
   font-size: 20px;
   text-align: center;
   font-family: Leckerli One, sans-serif;
@@ -3730,7 +3730,7 @@ body.dark-mode header.header-scrolled {
   position: relative;
 }
 
-.expirience h1::after {
+.experience h1::after {
   content: '';
   position: absolute;
   bottom: -10px;
@@ -3830,11 +3830,11 @@ h1 span {
 
 
 @media screen and (max-width: 768px) {
-  .expirience {
+  .experience {
     padding: 3rem 0;
   }
 
-  .expirience h1 {
+  .experience h1 {
     font-size: 1.75rem;
     margin-bottom: 2rem;
   }
@@ -3893,11 +3893,11 @@ h1 span {
 }
 
 @media screen and (max-width: 480px) {
-  .expirience {
+  .experience {
     padding: 2.5rem 0;
   }
 
-  .expirience h1 {
+  .experience h1 {
     font-size: 1.5rem;
     margin-bottom: 1.5rem;
   }
@@ -3941,7 +3941,7 @@ h1 span {
 }
 
 @media screen and (max-width: 360px) {
-  .expirience {
+  .experience {
     padding: 2rem 0;
   }
 
