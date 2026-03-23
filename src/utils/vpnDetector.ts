@@ -1,5 +1,6 @@
 import EdgeOneKVStorage from './edgeOneKV';
 import IPTracker from './ipTracker';
+import IPGeolocation from './ipGeolocation';
 
 interface VPNInfo {
   isVPN: boolean;
@@ -32,10 +33,12 @@ export class VPNDetector {
   private readonly CHECK_INTERVAL_MS = 5 * 60 * 1000; // Check every 5 minutes
   private kvStorage: EdgeOneKVStorage;
   private ipTracker: IPTracker;
+  private ipGeolocation: IPGeolocation;
 
   private constructor() {
     this.kvStorage = new EdgeOneKVStorage();
     this.ipTracker = IPTracker.getInstance();
+    this.ipGeolocation = IPGeolocation.getInstance();
   }
 
   static getInstance(): VPNDetector {
@@ -333,10 +336,9 @@ export class VPNDetector {
 
   private async getCountryFromIP(ip: string): Promise<string> {
     try {
-      const response = await fetch(`https://ipapi.co/${ip}/json/`);
-      const data = await response.json();
-      return data.country_name || 'Unknown';
-    } catch {
+      return await this.ipGeolocation.getCountryFromIP(ip);
+    } catch (error) {
+      console.error('Failed to get country from IP:', error);
       return 'Unknown';
     }
   }
