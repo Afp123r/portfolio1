@@ -39,6 +39,8 @@ export class IPTracker {
     provider?: string;
   }): Promise<boolean> {
     try {
+      console.log('IP Tracker: Starting IP recording process');
+      
       const record: IPRecord = {
         id: this.generateId(),
         timestamp: new Date().toISOString(),
@@ -50,20 +52,27 @@ export class IPTracker {
         provider: ipData.provider
       };
 
+      console.log('IP Tracker: Created IP record:', record);
+
       // Store in EdgeOne KV
       const success = await this.setToKV(record.ip, record);
       
       if (success) {
+        console.log('IP Tracker: Successfully stored IP record, updating analytics');
         // Also store in analytics
         await this.updateAnalytics(record);
         
         // Store unique IP list
         await this.addToUniqueIPs(record.ip);
+        console.log('IP Tracker: Analytics updated successfully');
+      } else {
+        console.error('IP Tracker: Failed to store IP record');
       }
 
       return success;
     } catch (error) {
-      console.error('Failed to record IP address:', error);
+      console.error('IP Tracker: Failed to record IP address:', error);
+      console.error('IP Tracker: Error details:', error instanceof Error ? error.message : 'Unknown error');
       return false;
     }
   }
@@ -111,15 +120,20 @@ export class IPTracker {
 
   private async setToKV(key: string, value: any): Promise<boolean> {
     try {
+      console.log('IP Tracker: Attempting to store KV data:', { key, value });
+      
       // Try EdgeOne Pages KV binding first
       const ipKV = (globalThis as any).ip;
       
       if (ipKV) {
+        console.log('IP Tracker: Using EdgeOne Pages KV binding');
         await ipKV.put(key, JSON.stringify(value));
+        console.log('IP Tracker: Successfully stored via KV binding');
         return true;
       }
 
       // Fallback to API call
+      console.log('IP Tracker: KV binding not available, using API fallback');
       const response = await fetch('/api/ip/store', {
         method: 'POST',
         headers: {
@@ -133,9 +147,15 @@ export class IPTracker {
         })
       });
 
-      return response.ok;
+      if (response.ok) {
+        console.log('IP Tracker: Successfully stored via API');
+        return true;
+      } else {
+        console.error('IP Tracker: API storage failed:', response.status, response.statusText);
+        return false;
+      }
     } catch (error) {
-      console.error('IP KV storage error:', error);
+      console.error('IP Tracker: KV storage error:', error);
       return false;
     }
   }

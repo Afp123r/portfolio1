@@ -77,6 +77,8 @@ export default function IPDisplay() {
         // Store IP in KV storage
         try {
           const ipTracker = IPTracker.getInstance();
+          console.log('Attempting to store IP:', ip, 'Country:', detectedCountry);
+          
           const success = await ipTracker.recordIPAddress({
             ip: ip,
             isVPN: false, // We'll detect VPN separately if needed
@@ -86,12 +88,15 @@ export default function IPDisplay() {
           
           if (success) {
             setStored(true);
-            console.log('IP stored successfully in KV storage');
+            console.log('✅ IP stored successfully in KV storage');
           } else {
-            console.warn('Failed to store IP in KV storage');
+            setStored(false);
+            console.warn('❌ Failed to store IP in KV storage');
           }
         } catch (err) {
-          console.error('Error storing IP in KV:', err);
+          setStored(false);
+          console.error('❌ Error storing IP in KV:', err);
+          console.error('Error details:', err instanceof Error ? err.message : 'Unknown error');
         }
 
       } catch (err) {
