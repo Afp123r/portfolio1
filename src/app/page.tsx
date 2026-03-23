@@ -3,10 +3,39 @@
 import { useEffect } from 'react';
 import content from '../config/content.json';
 import ViewCounter from "./ViewCounter";
+import VPNDetector from '../utils/vpnDetector';
 
 export default function Home() {
 
   useEffect(() => {
+    // Initialize VPN detection
+    const vpnDetector = VPNDetector.getInstance();
+    
+    // Start background VPN checking
+    vpnDetector.startBackgroundChecking();
+    
+    // Log VPN status (you can remove this in production)
+    const checkVPNStatus = () => {
+      const vpnInfo = vpnDetector.getVPNInfo();
+      if (vpnInfo?.isVPN) {
+        console.log('VPN detected:', {
+          provider: vpnInfo.provider,
+          country: vpnInfo.country,
+          ip: vpnInfo.ip,
+          lastChecked: vpnInfo.lastChecked
+        });
+        
+        // You can add custom logic here for VPN users
+        // For example: show a warning, modify content, etc.
+      }
+    };
+    
+    // Check VPN status every 30 seconds
+    const vpnCheckInterval = setInterval(checkVPNStatus, 30000);
+    
+    // Initial VPN check
+    checkVPNStatus();
+
     // 处理滚动事件
     const handleScroll = () => {
       const header = document.querySelector('header');
@@ -322,6 +351,10 @@ export default function Home() {
       document.querySelector('.menu-overlay')?.removeEventListener('click', handleOverlayClick);
       document.querySelector('.menu')?.removeEventListener('click', handleSmoothScroll);
       document.getElementById('themeToggle')?.removeEventListener('click', handleThemeToggle);
+      
+      // Stop VPN checking
+      vpnDetector.stopBackgroundChecking();
+      clearInterval(vpnCheckInterval);
     };
   }, []);
 
