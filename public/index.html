@@ -109,24 +109,7 @@
             }
           });
           
-          // Block copy with enhanced prevention
-          document.addEventListener('copy', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            e.stopImmediatePropagation();
-            return false;
-          }, true);
-          
-          // Block cut and paste
-          document.addEventListener('cut', function(e) {
-            e.preventDefault();
-            return false;
-          });
-          
-          document.addEventListener('paste', function(e) {
-            e.preventDefault();
-            return false;
-          });
+                    
           
           // Block drag operations
           document.addEventListener('dragstart', function(e) {
