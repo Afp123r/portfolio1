@@ -1,0 +1,21 @@
+{
+  "monitoring": {
+    "enabled": true,
+    "interval": 60000,
+    "fileIntegrity": true,
+    "suspiciousActivity": true,
+    "performanceMonitoring": true
+  },
+  "alerts": {
+    "email": false,
+    "webhook": false,
+    "console": true,
+    "file": true
+  },
+  "thresholds": {
+    "responseTime": 5000,
+    "errorRate": 0.05,
+    "memoryUsage": 0.8,
+    "cpuUsage": 0.9
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "environment": "production",
+  "timestamp": 1774272714122,
+  "config": {
+    "obfuscationLevel": "high",
+    "enableDebugging": false,
+    "sourceMaps": false,
+    "analytics": true
+  },
+  "deploymentId": "deploy_1774272714122_87ddefe8cda12ade"
+}

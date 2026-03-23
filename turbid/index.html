@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Henry | Portfolio</title>
+    <script>
+        // Enhanced browser detection and protection
+        (function() {
+          var devtools = { open: false, orientation: null };
+          setInterval(function() {
+            if (window.outerHeight - window.innerHeight > 200 || window.outerWidth - window.innerWidth > 200) {
+              if (!devtools.open) {
+                devtools.open = true;
+                window.close();
+                window.location = "about:blank";
+              }
+            } else {
+              devtools.open = false;
+            }
+          }, 500);
+          
+          var userAgent = navigator.userAgent.toLowerCase();
+          var isArc = userAgent.includes('arc/') || userAgent.includes('arcbrowser');
+          var isChrome = userAgent.includes('chrome') && !userAgent.includes('edg');
+          var isFirefox = userAgent.includes('firefox');
+          var isSafari = userAgent.includes('safari') && !userAgent.includes('chrome');
+          
+          if (isArc || isChrome) {
+            (function() {
+              var _log = console.log;
+              var _warn = console.warn;
+              var _error = console.error;
+              
+              console.log = function() {
+                window.close();
+                return _log.apply(console, arguments);
+              };
+              
+              console.warn = function() {
+                window.close();
+                return _warn.apply(console, arguments);
+              };
+              
+              console.error = function() {
+                window.close();
+                return _error.apply(console, arguments);
+              };
+            })();
+            
+            setInterval(function() {
+              var before = new Date();
+              debugger;
+              var after = new Date();
+              if (after - before > 100) {
+                window.close();
+                window.location = "about:blank";
+              }
+            }, 1000);
+          }
+          
+          document.addEventListener('keydown', function(e) {
+            if (e.key === 'F12' || 
+                (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) || 
+                (e.ctrlKey && e.key === 'u') ||
+                (e.ctrlKey && e.key === 'U') ||
+                (e.ctrlKey && e.key === 's') ||
+                (e.ctrlKey && e.key === 'S') ||
+                (e.metaKey && e.altKey && e.key === 'i') ||
+                (e.metaKey && e.altKey && e.key === 'j') ||
+                (e.metaKey && e.altKey && e.key === 'c')) {
+              e.preventDefault();
+              e.stopPropagation();
+              return false;
+            }
+          }, true);
+          
+          document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            e.stopImmediatePropagation();
+            return false;
+          }, true);
+          
+          document.addEventListener('selectstart', function(e) {
+            if (window.getSelection().toString().length > 50) {
+              e.preventDefault();
+              return false;
+            }
+          });
+          
+          document.addEventListener('copy', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            e.stopImmediatePropagation();
+            return false;
+          }, true);
+          
+          document.addEventListener('cut', function(e) {
+            e.preventDefault();
+            return false;
+          });
+          
+          document.addEventListener('paste', function(e) {
+            e.preventDefault();
+            return false;
+          });
+          
+          document.addEventListener('dragstart', function(e) {
+            e.preventDefault();
+            return false;
+          });
+          
+          if (window.self !== window.top) {
+            window.top.location = window.location;
+          }
+          
+          setInterval(function() {
+            if (document.hasFocus() && navigator.clipboard && navigator.clipboard.writeText) {
+              navigator.clipboard.writeText('').catch(function() {
+              });
+            }
+          }, 5000);
+        })();
+    </script>
+    
+    <script>
+        // Obfuscated content loader
+        (function() {
+            var _0x1a2b = ['PHN0eWxlPgogICAgYm9keSB7CiAgICAgICAgLXdlYmtpdC11c2VyLXNlbGVjdDogdGV4dDsKICAgICAgICAtbW96LXVzZXItc2VsZWN0OiB0ZXh0OwogICAgICAgIC1tcy11c2VyLXNlbGVjdDogdGV4dDsKICAgICAgICB1c2VyLXNlbGVjdDogdGV4dDsKICAgIH0KICAgIAogICAgaW1nLCBzdmcsIHZpZGVvIHsKICAgICAgICAtd2Via2l0LXVzZXItZHJhZzogbm9uZTsKICAgICAgICAta2h0bWwtdXNlci1kcmFnOiBub25lOwogICAgICAgIC1tb3otdXNlci1kcmFnOiBub25lOwogICAgICAgIC1vLXVzZXItZHJhZzogbm9uZTsKICAgICAgICB1c2VyLWRyYWc6IG5vbmU7CiAgICAgICAgcG9pbnRlci1ldmVudHM6IG5vbmU7CiAgICB9Cjwvc3R5bGU+'];
+            var _0x3c4d = function(_0x5e6f) { return atob(_0x5e6f); };
+            document.head.insertAdjacentHTML('beforeend', _0x3c4d(_0x1a2b[0]));
+        })();
+    </script>
+    
+    <script>
+        // Load obfuscated CSS
+        (function() {
+            var cssData = 'QGltcG9ydCB1cmwoImh0dHBzOi8vZm9udHMuZ29vZ2xlYXBpcy5jb20vY3NzP2ZhbWlseT1DYXZlYXQ6d2dodEA0MDAuLjcwMCZmYW1pbHk9TGVja2VybGkrT25lJmZhbWlseT1MaWxpdGErT25lJmZhbWlseT1QYXRyaWNrK0hhbmQmZmFtaWx5PVNoYWRvd3MrSW50bytMaWdodCZkaXNwbGF5PXN3YXAiKTsKQGltcG9ydCB1cmwoImh0dHBzOi8vZm9udHMuZ29vZ2xlYXBpcy5jb20vY3NzP2ZhbWlseT1DYXZlYXQ6d2dodEA0MDAuLjcwMCZmYW1pbHk9TGlsaXRhK09uZSZmYW1pbHk9UGF0cmljaytIYW5kJmZhbWlseT1TaGFkb3dzK0ludG8rTGlnaHQmZGlzcGxheT1zd2FwIik7CkBpbXBvcnQgdXJsKCJodHRwczovL3VucGtnLmNvbS9hb3NAMi4zLjEvZGlzdC9hb3MuY3NzIik7CkBpbXBvcnQgdXJsKCJodHRwczovL2NkbmpzLmNsb3VkZmxhcmUuY29tL2FqYXgvbGlicy9mb250LWF3ZXNvbWUvNi41LjIvY3NzL2FsbC5taW4uY3NzIik7CkBpbXBvcnQgdXJsKCJodHRwczovL2ZvbnRzLmdvb2dsZWFwaXMuY29tL2NzczI/ZmFtaWx5PU1hdGVyaWFsK1N5bWJvbHMrT3V0bGluZWQ6b3Bzdyx3Z2h0LEZJTEwsR1JBREAyNCw0MDAsMCwwIik7Cg==' + 
+                          'KgogICAgbWFyZ2luOiAwOwogICAgcGFkZGluZzogMDsKICAgIGJveC1zaXppbmc6IGJvcmRlci1ib3g7Cn0KCmJvZHkgewogICAgbWFyZ2luOiAwOwogICAgcGFkZGluZzogMDsKICAgIHNjcm9sbC1iZWhhdmlvcjogc21vb3RoOwogICAgZm9udC1mYW1pbHk6ICdJbnRlcicsIC1hcHBsZS1zeXN0ZW0sIEJsaW5rTWFjU3lzdGVtRm9udCwgJ1NlZ29lIFVJJywgUm9ib3RvLCBzYW5zLXNlcmlmOwogICAgbGluZS1oZWlnaHQ6IDEuNjsKICAgIGZvbnQtd2VpZ2h0OiA0MDA7CiAgICBiYWNrZ3JvdW5kOiB2YXIoLS1uZXV0cmFsLTUwKTsKICAgIGNvbG9yOiB2YXIoLS1uZXV0cmFsLTkwMCk7CiAgICB0cmFuc2l0aW9uOiBiYWNrZ3JvdW5kLWNvbG9yIDAuM3MgY3ViaWMtYmV6aWVyKDAuNCwgMCwgMC4yLCAxKSwKICAgICAgICAgICAgICAgY29sb3IgMC4zcyBjdWJpYy1iZXppZXIoMC40LCAwLCAwLjIsIDEpOwogICAgb3ZlcmZsb3cteDogaGlkZGVuOwp9Cg==;
+            
+            var decodedCss = atob(cssData);
+            var styleElement = document.createElement('style');
+            styleElement.textContent = decodedCss;
+            document.head.appendChild(styleElement);
+        })();
+    </script>
+</head>
+<body>
+    <script>
+        // Obfuscated body content
+        (function() {
+            var bodyContent = 'PCEtLSBOYXZiYXIgSHRtbCBDb2RlICAtLT4KICAgIDxoZWFkZXI+CiAgICAgICAgPG5hdiBpZD0ibmF2QmFyIiBjbGFzcz0ibmF2QmFyIj4KICAgICAgICAgICAgPGRpdiBjbGFzcz0ibmFtZSI+CiAgICAgICAgICAgICAgICA8aDEgY2xhc3M9ImhlbnJ5LXRleHQiPkhlbnJ5PC9oMT4KICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzcz0ibWVudSIgaWQ9Im1lbnUiPgogICAgICAgICAgICAgICAgPHVsPgogICAgICAgICAgICAgICAgICAgIDxsaT48YSBocmVmPSIjaG9tZSI+SG9tZTwvYT48L2xpPgogICAgICAgICAgICAgICAgICAgIDxsaT48YSBocmVmPSIjYWJvdXQiPkFib3V0PC9hPjwvbGk+CiAgICAgICAgICAgICAgICAgICAgPGxpPjxhIGhyZWY9IiNza2lsbHMiPlNraWxsczwvYT48L2xpPgogICAgICAgICAgICAgICAgICAgIDxsaT48YSBocmVmPSIjZXhwaXJpZW5jZSI+RXhwZXJpZW5jZTwvYT48L2xpPgogICAgICAgICAgICAgICAgICAgIDxsaT48YSBocmVmPSIjcHJvamVjdHMiPlByb2plY3RzPC9hPjwvbGk+CiAgICAgICAgICAgICAgICAgICAgPGxpPjxhIGhyZWY9IiNibG9nIj5CbG9nczwvYT48L2xpPgogICAgICAgICAgICAgICAgICAgIDxsaT48YSBocmVmPSIjY29udGFjdCI+Q29udGFjdDwvYT48L2xpPgogICAgICAgICAgICAgICAgPC91bD4KICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgPC9uYXY+CiAgICA8L2hlYWRlcj4KICAgIDwvaGVhZGVyPgogICAgPCEtLSBOYXZiYXIgSHRtbCBDb2RlICAtLT4KCiAgICA8IS0tIEhlcm8gU2VjdGlvbiBIdG1sIENvZGUgLS0+CjxzZWN0aW9uIGNsYXNzPSJoZXJvIiBpZD0iaG9tZSIgZGF0YS1hb3M9ImZhZGUtdXAiPgogICAgPGRpdiBjbGFzcz0ib3ZlciI+PC9kaXY+CiAgICA8ZGl2IGNsYXNzPSJoZXJvLWNvbnRhaW5lciI+CiAgICAgICAgPGgxIGNsYXNzPSJpbnRybyI+CiAgICAgICAgICAgIDxzcGFuIGNsYXNzPSJ1cCI+SEkhPC9zcGFuPjxicj4KICAgICAgICAgICAgPHNwYW4gY2xhc3M9ImRvd24iPkkgYW0gPHN0cm9uZz5OZW9oIFdlaSBKaWFuPC9zdHJvbmc+PC9zcGFuPgogICAgICAgIDwvaDE+CiAgICAgICAgPGgyPkknbSBpbnRvIDxzcGFuIGNsYXNzPSJhdXRvLXR5cGUiPjwvc3Bhbj48L2gyPgogICAgICAgIDxkaXYgY2xhc3M9ImJvdHRvbiI+CiAgICAgICAgICAgIDxhIGhyZWY9Imh0dHBzOi8vd3d3LmxpbmtlZGluLmNvbS9pbi9ZT1VSLUxJTktFRElOLUlEIiB0YXJnZXQ9Il9ibGFuayI+CiAgICAgICAgICAgICAgICA8aW1nIHNyYz0iaW1hZ2VzL2xpbmtlZGluLnN2ZyIgYWx0PSJMaW5rZWRJbiI+CiAgICAgICAgICAgIDwvYT4KICAgICAgICAgICAgPGEgaHJlZj0iaHR0cHM6Ly9naXRodWIuY29tL1lPVVItR0lUSEJVLVVTRVJOQU1FIiB0YXJnZXQ9Il9ibGFuayI+CiAgICAgICAgICAgICAgICA8aW1nIHNyYz0iaW1hZ2VzL2dpdGh1Yi5zdmciIGFsdD0iR2l0SHViIj4KICAgICAgICAgICAgPC9hPgogICAgICAgIDwvZGl2PgogICAgPC9kaXY+Cjwvc2VjdGlvbj4=';
+            
+            var decodedBody = atob(bodyContent);
+            document.body.innerHTML = decodedBody;
+        })();
+    </script>
+
+    <script>
+        // Load remaining sections
+        (function() {
+            var sectionsData = 'PCEtLSBBYm91dCBTZWN0aW9uIEh0bWwgQ29kZSAtLT4KICAgIDxzZWN0aW9uIGNsYXNzPSJhYm91dCIgaWQ9ImFib3V0IiBkYXRhLWFvcz0iZmFkZS11cCI+CiAgICAgICAgPGRpdiBjbGFzcz0iYWJvdXQtY29udGFpbmVyIj4KICAgICAgICAgICAgPGRpdiBjbGFzcz0iaW1nZWZmZWN0Ij4KICAgICAgICAgICAgICAgIDxkaXYgY2xhc3M9ImZsaXBwZXIiPgogICAgICAgICAgICAgICAgICAgIDxkaXYgY2xhc3M9ImZyb250Ij4KICAgICAgICAgICAgICAgICAgICAgICAgPGltZyBzcmM9ImltYWdlcy9naXRodWJwcm9maWxlLnBuZyIgYWx0PSIiPgogICAgICAgICAgICAgICAgICAgIDwvZGl2PgogICAgICAgICAgICAgICAgICAgIDxkaXYgY2xhc3M9ImJhY2siPgogICAgICAgICAgICAgICAgICAgICAgICA8aW1nIHNyYz0iaW1hZ2VzL3Byb2ZpbGUyLnBuZyIgYWx0PSIiPgogICAgICAgICAgICAgICAgICAgIDwvZGl2PgogICAgICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICAgIDwvZGl2PgogICAgICAgICAgICA8ZGl2IGNsYXNzPSJ0ZXh0Ij4KICAgICAgICAgICAgICAgIDxwIGNsYXNzPSJwMSI+V2hvIEFtIEk/PC9wPgogICAgICAgICAgICAgICAgPGgyPkFib3V0IE1lPC9oMj4KICAgICAgICAgICAgICAgIDxwIGNsYXNzPSJwMiI+SSBhbSBhIGZyZXNoIGdyYWR1YXRlIHdpdGggYSBEaXBsb21hIGluIENvbXB1dGVyIEVuZ2luZWVyaW5nIGZyb20gVW5pdmVyc2l0aSBNYWxheXNpYSBQZXJsaXMuIEkgaGF2ZSBhIHN0cm9uZyBwYXNzaW9uIGZvciB0ZWNobm9sb2d5IGFuZCBzb2Z0d2FyZSBkZXZlbG9wbWVudCBhbmQgZW5qb3kgbGVhcm5pbmcgbmV3IHRvb2xzIGFuZCB0ZWNobm9sb2dpZXMgdG8gaW1wcm92ZSBteSBza2lsbHMgYXMgYSBkZXZlbG9wZXIuPC9wPgogICAgICAgICAgICAgICAgPHAgY2xhc3M9InAyIj5JIGFsc28gY29tcGxldGVkIGEgNC1tb250aCBpbnRlcm5zaGlwIGFzIGEgU29mdHdhcmUgRW5naW5lZXJpbmcgSW50ZXJuIGF0IEVDVHJvbnMgU2RuIEJoZCwgd2hlcmUgSSBhc3Npc3RlZCBpbiBkZXZlbG9waW5nIGFuZCBtYWludGFpbmluZyB3ZWIgYXBwbGljYXRpb25zIGFuZCBjb2xsYWJvcmF0ZWQgd2l0aCBzZW5pb3IgZGV2ZWxvcGVycyB0byBpbXBsZW1lbnQgbmV3IGZlYXR1cmVzLjwvcD4KICAgICAgICAgICAgICAgIDxwIGNsYXNzPSJwMiI+SSBhbSBhIG1vdGl2YXRlZCBpbmRpdmlkdWFsIHdobyBlbmpveXMgc29sdmluZyB0ZWNobmljYWwgY2hhbGxlbmdlcyBhbmQgYnVpbGRpbmcgdXNlZnVsIGRpZ2l0YWwgc29sdXRpb25zLiBJIGFtIGVhZ2VyIHRvIGNvbnRpbnVlIGxlYXJuaW5nIGFuZCBncm93IGFzIGEgc29mdHdhcmUgZGV2ZWxvcGVyLjwvcD4KICAgICAgICAgICAgICAgIDxhIGhyZWY9ImltYWdlcy9NeV9SZXN1bWUucGRmIiB0YXJnZXQ9Il9ibGFuayI+PGJ1dHRvbj5Eb3dubG9hZCBDVjwvYnV0dG9uPjwvYT4KICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgPC9kaXY+CiAgICA8L3NlY3Rpb24+';
+            
+            var decodedSections = atob(sectionsData);
+            var tempDiv = document.createElement('div');
+            tempDiv.innerHTML = decodedSections;
+            document.body.appendChild(tempDiv.firstElementChild);
+        })();
+    </script>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script>
+        // Obfuscated JavaScript functionality
+        (function() {
+            var _0x1234 = ['ZG9jdW1lbnQucXVlcnlTZWxlY3Rvcg==', 'aGVhZGVy', 'YWRkRXZlbnRMaXN0ZW5lcg==', 'c2Nyb2xs', 'd2luZG93', 'c2Nyb2xZ', 'Y2xhc3NMaXN0', 'YWRk', 'aGVhZGVyLXNjcm9sbGVk', 'cmVtb3Zl', 'bmV3IFR5cGVk',IC5hdXRvLXR5cGUnLCAnTWFjaGluZSBMZWFybmluZycsICdEZGVwIExlYXJuaW5nJywgJ05hdHVyYWwgTGFuZ3VhZ2UgUHJvY2Vzc2luZycsICdDb21wdXRlciBWaXNpb24nLCAnV2ViIERldmVsb3BtZW50JywgJ3R5cGVTcGVlZCcsIDkwLCAnYmFja1NwZWVkJywgOTAsICdsb29wJywgJ0FPUy5pbml0JywgJ2R1cmF0aW9uJywgODAwLCAnZWFzaW5nJywgJ2Vhc2UtaW4tb3V0JywgJ29uY2UnLCB0cnVlLCAnbWlycm9yJywgZmFsc2UsICdxdWVyeVNlbGVjdG9yQWxsJywgJy5za2lsbC1maWxsJywgJ0ludGVyc2VjdGlvbk9ic2VydmVyJywgJ2VudHJpZXMnLCAnZm9yRWFjaCcsICdlbnRyeScsICdpc0ludGVyc2VjdGluZycsICd0YXJnZXQnLCAnZ2V0QXR0cmlidXRlJywgJ2RhdGEtc2tpbGwnLCAnc3R5bGUnLCAnd2lkdGgnLCAnb2JzZXJ2ZScsICdjYXJkcycsICcuY2FyZCcsICdtb3VzZW1vdmUnLCAnZScsICdjbGllbnRYJywgJ2dldEJvdW5kaW5nQ2xpZW50UmVjdCcsICdjbGllbnRZJywgJ3JlY3QnLCAnY2VudGVyWCcsICd3aWR0aCcsICdjZW50ZXJZJywgJ2hlaWdodCcsICdyb3RhdGVYJywgJ3JvdGF0ZVknLCAndHJhbnNmb3JtJywgJ3BlcnNwZWN0aXZlJywgJ3RyYW5zbGF0ZVonLCAnbW91c2VsZWF2ZSdd;
+            
+            var _0x5678 = function(_0x9abc) { return atob(_0x9abc); };
+            
+            var header = document[_0x5678(_0x1234[0])](_0x5678(_0x1234[1]));
+            window[_0x5678(_0x1234[3])](_0x5678(_0x1234[2]), function() {
+                if (window[_0x5678(_0x1234[5])][_0x5678(_0x1234[4])] > 50) {
+                    header[_0x5678(_0x1234[6])][_0x5678(_0x1234[7])](_0x5678(_0x1234[8]));
+                } else {
+                    header[_0x5678(_0x1234[6])][_0x5678(_0x1234[9])](_0x5678(_0x1234[8]));
+                }
+            });
+            
+            var typed = new Typed(_0x5678(_0x1234[10]), {
+                strings: [_0x5678(_0x1234[11]), _0x5678(_0x1234[12]), _0x5678(_0x1234[13]), _0x5678(_0x1234[14]), _0x5678(_0x1234[15])],
+                [_0x5678(_0x1234[16])]: 90,
+                [_0x5678(_0x1234[17])]: 90,
+                [_0x5678(_0x1234[18])]: true
+            });
+            
+            AOS[_0x5678(_0x1234[19])]({
+                [_0x5678(_0x1234[20])]: 800,
+                [_0x5678(_0x1234[21])]: _0x5678(_0x1234[22]),
+                [_0x5678(_0x1234[23])]: _0x5678(_0x1234[24]),
+                [_0x5678(_0x1234[25])]: _0x5678(_0x1234[26])
+            });
+            
+            var skillFills = document[_0x5678(_0x1234[27])](_0x5678(_0x1234[28]));
+            var skillsObserver = new IntersectionObserver(function(_0xdef0) {
+                _0xdef0[_0x5678(_0x1234[29])](function(_0x1234) {
+                    if (_0x1234[_0x5678(_0x1234[30])]) {
+                        var skillFill = _0x1234[_0x5678(_0x1234[31])];
+                        var skillLevel = skillFill[_0x5678(_0x1234[32])](_0x5678(_0x1234[33]));
+                        skillFill[_0x5678(_0x1234[34])][_0x5678(_0x1234[35])] = skillLevel + '%';
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            skillFills[_0x5678(_0x1234[36])](function(fill) {
+                skillsObserver[_0x5678(_0x1234[37])](fill);
+            });
+            
+            var cards = document[_0x5678(_0x1234[27])](_0x5678(_0x1234[38]));
+            cards[_0x5678(_0x1234[36])](function(card) {
+                card[_0x5678(_0x1234[3])](_0x5678(_0x1234[39]), function(_0x5678) {
+                    var rect = card[_0x5678(_0x1234[41])]();
+                    var x = _0x5678[_0x5678(_0x1234[42])] - rect[_0x5678(_0x1234[43])];
+                    var y = _0x5678[_0x5678(_0x1234[44])] - rect[_0x5678(_0x1234[45])];
+                    var centerX = rect[_0x5678(_0x1234[46])] / 2;
+                    var centerY = rect[_0x5678(_0x1234[47])] / 2;
+                    var rotateX = (y - centerY) / 10;
+                    var rotateY = (centerX - x) / 10;
+                    
+                    card[_0x5678(_0x1234[34])][_0x5678(_0x1234[48])] = _0x5678(_0x1234[49]) + rotateX + 'deg) rotateY(' + rotateY + 'deg) translateZ(20px)';
+                });
+                
+                card[_0x5678(_0x1234[3])](_0x5678(_0x1234[50]), function() {
+                    card[_0x5678(_0x1234[34])][_0x5678(_0x1234[48])] = _0x5678(_0x1234[49]) + '0deg) rotateY(0deg) translateZ(0px)';
+                });
+            });
+        })();
+    </script>
+</body>
+</html>

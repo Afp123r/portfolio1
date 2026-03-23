@@ -1,0 +1,385 @@
+{
+  "timestamp": 1774272718249,
+  "files": {
+    "src\\app\\layout.tsx": {
+      "hash": "4d9c0f5bea6234430ae61ef1d44b58aec72840edc69f1311d7a28f3cfb59093d",
+      "size": 8295,
+      "modified": 1774271696279
+    },
+    "src\\app\\page.tsx": {
+      "hash": "b3329e6dece9819392e2166ba345e1d4198de72ae593aa80c309543c451a3d0d",
+      "size": 23732,
+      "modified": 1774271695998
+    },
+    "src\\app\\ViewCounter.tsx": {
+      "hash": "9b5db5056d45334b1cd7d667b3e7260a7c06d54b16b0475ec9d660865c4c1964",
+      "size": 347,
+      "modified": 1773669204841
+    },
+    "src\\config\\content.json": {
+      "hash": "3ec6d6648a1139997bdb9357241fa96acfdd62ae553e49f394c199473c0ed00e",
+      "size": 9629,
+      "modified": 1773991825120
+    },
+    "public\\css\\all.min.css": {
+      "hash": "b18396e713b243f9113534922681f3aeea9c5026c440a4afb7202e1c8adc574c",
+      "size": 103017,
+      "modified": 1773669204762
+    },
+    "public\\css\\fonts.css": {
+      "hash": "23c61aad65d4589725c670342134fea499c13ec5c8ff718a40746a638a224b3b",
+      "size": 2031,
+      "modified": 1773669204763
+    },
+    "public\\css\\material-symbols.css": {
+      "hash": "cefe165665b2d272913afa5c1f6d84f7afff496cc6e90a2db11e14194ba24691",
+      "size": 622,
+      "modified": 1773669204763
+    },
+    "public\\file.svg": {
+      "hash": "2b67812c325c199a02536cdbeea0c593a72f707d323b72ee3e08dbab06753bd4",
+      "size": 391,
+      "modified": 1773669204763
+    },
+    "public\\globe.svg": {
+      "hash": "b614b9bf183925957661ac851498fe1d8029fd43a62fbfed86f9e2624a57e7cf",
+      "size": 1035,
+      "modified": 1773669204764
+    },
+    "public\\images\\arrow.svg": {
+      "hash": "f41bc3a85b62b042fcbe4bed2e1fb7e60abb4b18348ed7bd4afd21c4eac36957",
+      "size": 266,
+      "modified": 1773669204777
+    },
+    "public\\images\\avatar.png": {
+      "hash": "44dd5cadf0f3e30524794d21231a34106e9884f1aff752c746c98de22c6ff4a1",
+      "size": 49927,
+      "modified": 1773669204778
+    },
+    "public\\images\\bootstrap.jpg": {
+      "hash": "02b03ddf919eae3cf25a97286e57d82ae2761ebecce0ff081f94852e467fb0e0",
+      "size": 6372,
+      "modified": 1773669204779
+    },
+    "public\\images\\canva.jpg": {
+      "hash": "be9356187e05bf232845fc44484aee52cc082b36d2775660ab0c10e79737941e",
+      "size": 9626,
+      "modified": 1773669204779
+    },
+    "public\\images\\Css.png": {
+      "hash": "f85e4704aeb50ee6950a1a6347586812e0d576d1c2099333bb886dd7cd13e837",
+      "size": 4230,
+      "modified": 1773669204765
+    },
+    "public\\images\\deep.png": {
+      "hash": "ccdbc349810b9a67e7128e32a7d30b8b92d342f0b7ab35e2301e6bbc7c5364af",
+      "size": 6065,
+      "modified": 1773669204779
+    },
+    "public\\images\\Elon_Musk_Royal_Society.jpg": {
+      "hash": "c899afa1c0f2fd61f7a3f20636c78eff34f735fc3f74b9b01a009229a4cffdba",
+      "size": 116173,
+      "modified": 1773669204766
+    },
+    "public\\images\\express-js.png": {
+      "hash": "0cafd3ebed8e7ed348e7d1052e603bcf9576c953976d02d598ea7e984ef4a00c",
+      "size": 2838,
+      "modified": 1773669204781
+    },
+    "public\\images\\figma.png": {
+      "hash": "6f2a7b97f0c2cbde99af6cd34673223ee0dfc56bb686ffbbed570e133e6b17a6",
+      "size": 3192,
+      "modified": 1773669204781
+    },
+    "public\\images\\git.png": {
+      "hash": "773492fe5eb39a4da11ea7290af3b5dd25e01a84ea616b8dd5fba59eb0f7012a",
+      "size": 6887,
+      "modified": 1773669204781
+    },
+    "public\\images\\github.png": {
+      "hash": "b653e83dd5f986f98757a659062d9a8d982e1699cd35a1cc2d7664acc5c6d944",
+      "size": 8777,
+      "modified": 1773669204781
+    },
+    "public\\images\\github.svg": {
+      "hash": "e377a306625fb65b5b7b3789b587fcaa232594e0c67e696abcf5361f2a6bfbf2",
+      "size": 1545,
+      "modified": 1773669204782
+    },
+    "public\\images\\githubprofile.png": {
+      "hash": "2b33c9dcd32705d896bb582190101981c8419db5d50bcee64495be028dda6e97",
+      "size": 2064767,
+      "modified": 1773669204797
+    },
+    "public\\images\\html.png": {
+      "hash": "ea4627119ac3645b543d9bad825e8e859904b1b8bf66920ef2f3a639e93aa039",
+      "size": 2249,
+      "modified": 1773669204799
+    },
+    "public\\images\\instagram.svg": {
+      "hash": "7d5326b745db5bf459d1e3ec8b7265c94ad681c19bc0ae7daa7b99962419e43a",
+      "size": 1548,
+      "modified": 1773669204799
+    },
+    "public\\images\\js.png": {
+      "hash": "2d5462be91b1584ed4e392a9e5fabbfa3aef1d781cab0ad312813e2866693bb3",
+      "size": 2498,
+      "modified": 1773669204800
+    },
+    "public\\images\\jupyter.png": {
+      "hash": "890b0b7b596a5eb184a82d4d45ab154abfc568e01455215d067c674bd99bd1d5",
+      "size": 4521,
+      "modified": 1773669204800
+    },
+    "public\\images\\linkedin.svg": {
+      "hash": "429d99ce2c1d7facb787ea4027b27dbfc078234ab8d6f23e9e5ec3d93d7b8548",
+      "size": 655,
+      "modified": 1773669204801
+    },
+    "public\\images\\machine.png": {
+      "hash": "4344ea40345fb97bbfa26257d54f3a1be0178deead3b8619d04f15b2635116c2",
+      "size": 6175,
+      "modified": 1773669204802
+    },
+    "public\\images\\matplot.png": {
+      "hash": "37fad1e3d7b043534f639d310fec41612071e59e0421233dfc603612f4ae4324",
+      "size": 8011,
+      "modified": 1773669204803
+    },
+    "public\\images\\medium.svg": {
+      "hash": "cfeff811fc2f5c96a59b3862e7e75322f83ea61e8fb0ab6839c84b440020bb97",
+      "size": 565,
+      "modified": 1773669204806
+    },
+    "public\\images\\mongo.png": {
+      "hash": "675c79c43ae0f7048a3a4571d5621c5052681a29cc2a3a96cc7d322a316e0142",
+      "size": 6766,
+      "modified": 1773669204809
+    },
+    "public\\images\\mysql.png": {
+      "hash": "de6216d004497d27879c93a5afb52664855d36a9641c875f9deb039551ca75e8",
+      "size": 4519,
+      "modified": 1773669204811
+    },
+    "public\\images\\My_Resume.pdf": {
+      "hash": "e50d0572c5437b7f62574e979bd47ee3a46aa1d62dfda53933ffa9b0a45a0588",
+      "size": 141696,
+      "modified": 1773669204767
+    },
+    "public\\images\\nodejs.png": {
+      "hash": "3098c5f903a4ebcd710f77ec2fbb6156a7eb4f18a8b5a9916a11faa1aea796e5",
+      "size": 6947,
+      "modified": 1773669204812
+    },
+    "public\\images\\numpy.png": {
+      "hash": "439efe78d30ee549fdbeb247ea9f5a1565229353a42572f327ce08bb1c886954",
+      "size": 5845,
+      "modified": 1773669204812
+    },
+    "public\\images\\pandas.png": {
+      "hash": "101ad0b28a2b26252d1e94a1ed987e4f0970b42e325f201699ce32a48b36487f",
+      "size": 809,
+      "modified": 1773669204812
+    },
+    "public\\images\\pic2.jpg": {
+      "hash": "c0caa0d6c49652ab6249ea6b1baa2d529d8933cf23f0c8e10b9e0503e8ed73cf",
+      "size": 1528815,
+      "modified": 1773669204826
+    },
+    "public\\images\\post.png": {
+      "hash": "26574f04a5d08ccc54f4f6fee69fed74b6b6e41821ac3829427f60da687bb8c8",
+      "size": 6530,
+      "modified": 1773669204826
+    },
+    "public\\images\\profile.jpg": {
+      "hash": "a12505dea17b85af452969c571a1b452153930c55c2a1cccea1188337e472561",
+      "size": 9468,
+      "modified": 1773669204828
+    },
+    "public\\images\\profile2.png": {
+      "hash": "02e0107c9576e838af6df2e76e729dd3e9956d5dde9e0e05d42d719dd80feb7c",
+      "size": 476997,
+      "modified": 1773759888726
+    },
+    "public\\images\\profileimage.png": {
+      "hash": "26ce569979e29ee1e94c7ae9b313de820e43db74cb5406a27bf077d19d3f059f",
+      "size": 182532,
+      "modified": 1773669204828
+    },
+    "public\\images\\project-2-cover.jpg": {
+      "hash": "d5ee97cffe39f146d3041353549532a1b6ce9579e58fd8f2925fe34536e021ac",
+      "size": 111728,
+      "modified": 1773669204830
+    },
+    "public\\images\\project-3-cover.png": {
+      "hash": "8acf4cf08a33267bd19cfeb0b3387b4199227a6288f977bb30317b649ce0d605",
+      "size": 21648,
+      "modified": 1773669204830
+    },
+    "public\\images\\project-4-cover.jpg": {
+      "hash": "6950995e7d74a47afb6db82298e300aa62739c3ea434fd3b422407e39b457c71",
+      "size": 114141,
+      "modified": 1773669204833
+    },
+    "public\\images\\python.png": {
+      "hash": "3704b8ee460c8050d191cf8533febdb94d9be455656b476f7b1eacfcfaf2e4d9",
+      "size": 5993,
+      "modified": 1773669204834
+    },
+    "public\\images\\react.png": {
+      "hash": "8da5110cb61607507538dc3d0928b8c68403491352a4876c0b4fb91a4a2407bf",
+      "size": 8218,
+      "modified": 1773669204834
+    },
+    "public\\images\\Resume (1).pdf": {
+      "hash": "344a3b2f338a6ac41eb283f5586619ca77c57a2587c697bd426ef2e421ac7067",
+      "size": 422755,
+      "modified": 1773669204769
+    },
+    "public\\images\\Resume(2)_NEOH_WEI_JIAN.pdf": {
+      "hash": "57ee3bce4a8a3cff339357a9ddba04977b69c36003f39eb0e87fe1e728a365b1",
+      "size": 439977,
+      "modified": 1773669204771
+    },
+    "public\\images\\Resume(3).pdf": {
+      "hash": "f2fd36b4aafc17380b502922e7aead5944b1b7765ec9394812a3059da74c0a98",
+      "size": 421450,
+      "modified": 1773669204774
+    },
+    "public\\images\\Resume(5).pdf": {
+      "hash": "0490e93923c9d1485a69418e3d6f7b1ff0f846329fad74d07eacda0a07d5672c",
+      "size": 420475,
+      "modified": 1773669204776
+    },
+    "public\\images\\scikit.png": {
+      "hash": "96642054e1b4abc4ca3448b1627beb8d72718c55384611cbad7bfd2b808dc23d",
+      "size": 4057,
+      "modified": 1773669204835
+    },
+    "public\\images\\seaborn.png": {
+      "hash": "9b86a601c5012792d0c33430a9e338d856db3fc41c8d4d9161646b2b4c62754c",
+      "size": 7993,
+      "modified": 1773669204835
+    },
+    "public\\images\\technology-1283624_640.jpg": {
+      "hash": "0178d664aed444d5d4936b4a74f590bf50788de6c72e9f4692978e173b8b8161",
+      "size": 67694,
+      "modified": 1773669204835
+    },
+    "public\\images\\tensor.png": {
+      "hash": "c086cc0e4001c0119b66841c835fbd3add2c622c70c335faedac6f4c25221c8f",
+      "size": 2850,
+      "modified": 1773669204836
+    },
+    "public\\images\\vscode.jpg": {
+      "hash": "d8c52df9a4000b37c25b607514e3718cf83f4f73f9a405f7302b7a508998af61",
+      "size": 8395,
+      "modified": 1773669204836
+    },
+    "public\\index.html": {
+      "hash": "99a59136a19175322b3bfcb441f34b44a34e43f3a282849ba50bdab4b5af4798",
+      "size": 28555,
+      "modified": 1774263357123
+    },
+    "public\\next.svg": {
+      "hash": "55995dfad6ecb4945a1e856ddca03c5e16aa5bf13fd21b4df6a74ae79357bcfc",
+      "size": 1375,
+      "modified": 1773669204838
+    },
+    "public\\script.js": {
+      "hash": "a12505dea17b85af452969c571a1b452153930c55c2a1cccea1188337e472561",
+      "size": 9468,
+      "modified": 1773669204838
+    },
+    "public\\style-clean.css": {
+      "hash": "b0ab1ddf854e4e0a9fc0313d03130c8bd07aefbdb74636146ccfc27b29c29bdd",
+      "size": 13345,
+      "modified": 1773942841045
+    },
+    "public\\style.css": {
+      "hash": "d92b182f0d4e7000c0f83acf1c7d9b98361e77e8da0964c93030a0131e0569fd",
+      "size": 105681,
+      "modified": 1774253802759
+    },
+    "public\\vercel.svg": {
+      "hash": "f081337b2fee635b455b63275406a3e7f39d6a014e25ad90dab5a67e62a12ac4",
+      "size": 128,
+      "modified": 1773669204839
+    },
+    "public\\window.svg": {
+      "hash": "644768c4aaeb4767bce293344eeb0c125fb804a94d801440424072202d85e3a1",
+      "size": 385,
+      "modified": 1773669204840
+    },
+    "scripts\\advanced-obfuscator.js": {
+      "hash": "e161c67fff11a6df7cb2ba3d4520465078d73d24d1756b3aaededd9ec2cd59a6",
+      "size": 26566,
+      "modified": 1774272494940
+    },
+    "scripts\\build-obfuscated.js": {
+      "hash": "420b3b6c3d2b94c5b166b83cbf8f260283d428dec256cc948b711ef54d409324",
+      "size": 10735,
+      "modified": 1774272392692
+    },
+    "scripts\\css-obfuscator.js": {
+      "hash": "f1fe55df30f3f67b020dd9e1dc2f4e1dcbbf6ddf014ec3736f2eab2d075da600",
+      "size": 4302,
+      "modified": 1774272327262
+    },
+    "scripts\\deployment-manager.js": {
+      "hash": "066981f617d10f3dc0145d396535fcf2e52c9612eae2f0609f14ed6f3ae08418",
+      "size": 18018,
+      "modified": 1774272541382
+    },
+    "scripts\\html-obfuscator.js": {
+      "hash": "a4d8abc6ab04ad9106905757f70f4b7fd8092b54a5f045d79cbad2a93b1af778",
+      "size": 9214,
+      "modified": 1774272361219
+    },
+    "scripts\\obfuscate.js": {
+      "hash": "ec69ad9f2eef0d1558796e917c32e7075ae078f31861e82fe73e621fd09761bb",
+      "size": 15491,
+      "modified": 1774272176750
+    },
+    "scripts\\security-monitor.js": {
+      "hash": "cd0db8a1201b56b0ca1773f08e7d466058e65bf08753d1fec272d4539738250e",
+      "size": 15980,
+      "modified": 1774272590239
+    }
+  },
+  "dependencies": {
+    "packageJson": "d052c53363446b5f0845d8b94887da9c002ca55f396168f3c0148f75e9c66cfb",
+    "packageLock": "b11d8ee5bccbc1eee42945c720920896db8cbed543f23bfc6cc0fc2c4bb6e1ed"
+  },
+  "environment": {
+    "nodeVersion": "v24.11.0",
+    "platform": "win32",
+    "arch": "x64",
+    "env": {}
+  },
+  "network": {
+    "allowedOrigins": [
+      "localhost",
+      "127.0.0.1"
+    ],
+    "blockedOrigins": [],
+    "apiEndpoints": [
+      "/api/analytics",
+      "/api/fingerprint"
+    ]
+  },
+  "performance": {
+    "memoryUsage": {
+      "rss": 50024448,
+      "heapTotal": 7659520,
+      "heapUsed": 5347704,
+      "external": 6819516,
+      "arrayBuffers": 4983283
+    },
+    "cpuUsage": {
+      "user": 31000,
+      "system": 31000
+    },
+    "uptime": 0.0758421
+  }
+}

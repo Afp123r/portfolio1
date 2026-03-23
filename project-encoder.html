@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔐 Universal Project Encoder</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #fff, #f0f0f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.9);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .drop-zone {
+            background: rgba(255,255,255,0.95);
+            border: 3px dashed #667eea;
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .drop-zone:hover {
+            border-color: #764ba2;
+            background: rgba(255,255,255,1);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .drop-zone.dragover {
+            border-color: #00ff88;
+            background: rgba(0,255,136,0.1);
+            transform: scale(1.02);
+        }
+
+        .drop-zone-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            animation: bounce 2s infinite;
+        }
+
+        .drop-zone h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+
+        .drop-zone p {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        .browse-btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .browse-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(102,126,234,0.3);
+        }
+
+        .progress-section {
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            display: none;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .progress-section.active {
+            display: block;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: #f0f0f0;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 10px;
+            transition: width 0.3s ease;
+            width: 0%;
+        }
+
+        .progress-text {
+            text-align: center;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .results-section {
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
+            padding: 2rem;
+            display: none;
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        .results-section.active {
+            display: block;
+        }
+
+        .results-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .results-header h3 {
+            color: #667eea;
+            font-size: 1.5rem;
+        }
+
+        .download-btn {
+            background: linear-gradient(45deg, #00ff88, #00ccff);
+            color: #000;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0,255,136,0.3);
+        }
+
+        .file-list {
+            max-height: 400px;
+            overflow-y: auto;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 1rem;
+        }
+
+        .file-item {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem;
+            border-bottom: 1px solid #f0f0f0;
+            transition: background 0.3s ease;
+        }
+
+        .file-item:last-child {
+            border-bottom: none;
+        }
+
+        .file-item:hover {
+            background: rgba(102,126,234,0.05);
+        }
+
+        .file-icon {
+            width: 30px;
+            height: 30px;
+            margin-right: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .file-info {
+            flex: 1;
+        }
+
+        .file-name {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .file-meta {
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        .file-size {
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        #fileInput {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔐 Universal Project Encoder</h1>
+            <p>Encode entire projects, folders, and files without any npm packages. Everything is self-contained and works offline.</p>
+        </div>
+
+        <div class="main-content">
+            <div class="drop-zone" id="dropZone">
+                <div class="drop-zone-icon">📁</div>
+                <h3>Drop Files & Folders Here</h3>
+                <p>Drag and drop your entire project or select files manually</p>
+                <button class="browse-btn" onclick="document.getElementById('fileInput').click()">
+                    Browse Files
+                </button>
+                <input type="file" id="fileInput" multiple webkitdirectory directory>
+            </div>
+
+            <div class="drop-zone" id="dropZoneFiles">
+                <div class="drop-zone-icon">📄</div>
+                <h3>Drop Individual Files</h3>
+                <p>Or drop individual files to encode them</p>
+                <button class="browse-btn" onclick="document.getElementById('fileInputFiles').click()">
+                    Browse Files
+                </button>
+                <input type="file" id="fileInputFiles" multiple>
+            </div>
+        </div>
+
+        <div class="progress-section" id="progressSection">
+            <h3 style="margin-bottom: 1rem; color: #667eea;">Encoding Progress</h3>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="progress-text" id="progressText">Starting...</div>
+        </div>
+
+        <div class="results-section" id="resultsSection">
+            <div class="results-header">
+                <h3>Encoding Complete!</h3>
+                <button class="download-btn" onclick="downloadEncodedProject()">
+                    📥 Download Encoded Project
+                </button>
+            </div>
+
+            <div class="stats-grid" id="statsGrid">
+                <!-- Stats will be populated here -->
+            </div>
+
+            <h4 style="margin-bottom: 1rem; color: #667eea;">Encoded Files</h4>
+            <div class="file-list" id="fileList">
+                <!-- File list will be populated here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="universal-encoder.js"></script>
+    <script>
+        // Initialize encoder
+        const encoder = new UniversalProjectEncoder();
+        let encodedProject = null;
+        let totalFiles = 0;
+        let processedFiles = 0;
+
+        // Setup drag and drop
+        setupDragAndDrop();
+
+        // File input handlers
+        document.getElementById('fileInput').addEventListener('change', handleFileInput);
+        document.getElementById('fileInputFiles').addEventListener('change', handleFileInput);
+
+        // Enhanced drag and drop setup
+        function setupDragAndDrop() {
+            const dropZone = document.getElementById('dropZone');
+            const dropZoneFiles = document.getElementById('dropZoneFiles');
+
+            [dropZone, dropZoneFiles].forEach(zone => {
+                zone.addEventListener('dragover', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    zone.classList.add('dragover');
+                });
+
+                zone.addEventListener('dragleave', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    zone.classList.remove('dragover');
+                });
+
+                zone.addEventListener('drop', async (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    zone.classList.remove('dragover');
+
+                    const items = e.dataTransfer.items;
+                    if (items) {
+                        await processItems(items, zone === dropZoneFiles);
+                    }
+                });
+            });
+        }
+
+        // Handle file input
+        async function handleFileInput(e) {
+            const files = e.target.files;
+            const isDirectoryInput = e.target.id === 'fileInput';
+            
+            await processFileList(files, !isDirectoryInput);
+        }
+
+        // Process items from drag and drop
+        async function processItems(items, filesOnly = false) {
+            showProgress();
+            
+            const entries = [];
+            for (let i = 0; i < items.length; i++) {
+                const item = items[i];
+                if (filesOnly && item.kind === 'file') {
+                    entries.push(item.webkitGetAsEntry());
+                } else if (!filesOnly && item.kind === 'file') {
+                    entries.push(item.webkitGetAsEntry());
+                }
+            }
+
+            await processEntries(entries.filter(e => e !== null));
+        }
+
+        // Process file list
+        async function processFileList(files, individualFiles = false) {
+            showProgress();
+            
+            if (individualFiles) {
+                // Process individual files
+                for (const file of files) {
+                    await encoder.encodeFile(file);
+                    updateProgress();
+                }
+            } else {
+                // Process as directory structure
+                for (const file of files) {
+                    const relativePath = file.webkitRelativePath || file.name;
+                    await encoder.encodeFile(file, relativePath.replace(/\/[^\/]*$/, ''));
+                    updateProgress();
+                }
+            }
+            
+            completeEncoding();
+        }
+
+        // Process directory entries
+        async function processEntries(entries) {
+            totalFiles = countFiles(entries);
+            processedFiles = 0;
+
+            for (const entry of entries) {
+                await processEntry(entry, '');
+            }
+            
+            completeEncoding();
+        }
+
+        // Count total files
+        function countFiles(entries) {
+            let count = 0;
+            for (const entry of entries) {
+                if (entry.isFile) {
+                    count++;
+                } else if (entry.isDirectory) {
+                    const reader = entry.createReader();
+                    // Note: This is simplified - in production you'd need to handle multiple readEntries calls
+                    count += 10; // Estimate
+                }
+            }
+            return count;
+        }
+
+        // Process single entry
+        async function processEntry(entry, basePath) {
+            if (entry.isFile) {
+                const file = await getFileFromEntry(entry);
+                const relativePath = basePath ? `${basePath}/${entry.name}` : entry.name;
+                await encoder.encodeFile(file, basePath);
+                updateProgress();
+            } else if (entry.isDirectory) {
+                const reader = entry.createReader();
+                const entries = await readAllDirectoryEntries(reader);
+                const newBasePath = basePath ? `${basePath}/${entry.name}` : entry.name;
+                
+                for (const subEntry of entries) {
+                    await processEntry(subEntry, newBasePath);
+                }
+            }
+        }
+
+        // Get file from entry
+        function getFileFromEntry(entry) {
+            return new Promise((resolve, reject) => {
+                entry.file(resolve, reject);
+            });
+        }
+
+        // Read all directory entries
+        async function readAllDirectoryEntries(reader) {
+            const entries = [];
+            let readEntries = await readEntriesPromise(reader);
+            
+            while (readEntries.length > 0) {
+                entries.push(...readEntries);
+                readEntries = await readEntriesPromise(reader);
+            }
+            
+            return entries;
+        }
+
+        function readEntriesPromise(reader) {
+            return new Promise((resolve, reject) => {
+                reader.readEntries(resolve, reject);
+            });
+        }
+
+        // Show progress section
+        function showProgress() {
+            document.getElementById('progressSection').classList.add('active');
+            document.getElementById('resultsSection').classList.remove('active');
+            processedFiles = 0;
+        }
+
+        // Update progress
+        function updateProgress() {
+            processedFiles++;
+            const progress = totalFiles > 0 ? (processedFiles / totalFiles) * 100 : 0;
+            document.getElementById('progressFill').style.width = progress + '%';
+            document.getElementById('progressText').textContent = 
+                `Processing ${processedFiles} of ${totalFiles} files (${Math.round(progress)}%)`;
+        }
+
+        // Complete encoding
+        function completeEncoding() {
+            encodedProject = encoder.exportProject();
+            
+            // Show results
+            displayResults();
+            
+            // Hide progress, show results
+            document.getElementById('progressSection').classList.remove('active');
+            document.getElementById('resultsSection').classList.add('active');
+        }
+
+        // Display results
+        function displayResults() {
+            const project = encodedProject.project;
+            const files = Object.entries(project.files);
+            
+            // Update stats
+            const totalSize = Object.values(project.files).reduce((sum, file) => sum + file.size, 0);
+            const imageCount = Object.values(project.files).filter(f => f.type === 'image').length;
+            const textCount = Object.values(project.files).filter(f => f.type === 'text').length;
+            
+            document.getElementById('statsGrid').innerHTML = `
+                <div class="stat-card">
+                    <div class="stat-number">${files.length}</div>
+                    <div class="stat-label">Total Files</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">${formatFileSize(totalSize)}</div>
+                    <div class="stat-label">Total Size</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">${imageCount}</div>
+                    <div class="stat-label">Images</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">${textCount}</div>
+                    <div class="stat-label">Text Files</div>
+                </div>
+            `;
+            
+            // Update file list
+            const fileListHTML = files.map(([path, file]) => {
+                const icon = getFileIcon(file.type);
+                return `
+                    <div class="file-item">
+                        <div class="file-icon">${icon}</div>
+                        <div class="file-info">
+                            <div class="file-name">${path}</div>
+                            <div class="file-meta">${file.mimeType} • Modified: ${new Date(file.lastModified).toLocaleDateString()}</div>
+                        </div>
+                        <div class="file-size">${formatFileSize(file.size)}</div>
+                    </div>
+                `;
+            }).join('');
+            
+            document.getElementById('fileList').innerHTML = fileListHTML;
+        }
+
+        // Get file icon
+        function getFileIcon(type) {
+            const icons = {
+                'image': '🖼️',
+                'text': '📄',
+                'binary': '💾',
+                'unknown': '📁'
+            };
+            return icons[type] || icons.unknown;
+        }
+
+        // Format file size
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+
+        // Download encoded project
+        function downloadEncodedProject() {
+            if (!encodedProject) return;
+            
+            const blob = new Blob([encodedProject.html], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `encoded-project-${new Date().toISOString().slice(0,10)}.html`;
+            link.click();
+            
+            URL.revokeObjectURL(url);
+        }
+
+        // Console message
+        console.log('🔐 Universal Project Encoder Ready!');
+        console.log('📁 Drag and drop files or folders to encode them');
+        console.log('💾 No npm packages required - everything is self-contained');
+    </script>
+</body>
+</html>

@@ -1,7 +1,152 @@
 2:I[7831,[],""]
-3:I[3504,["931","static/chunks/app/page-37ec57064253b383.js"],""]
-4:I[5613,[],""]
-5:I[1778,[],""]
-0:["KNiN0AIS_35gTNiOU1JDO",[[["",{"children":["__PAGE__",{}]},"$undefined","$undefined",true],["",{"children":["__PAGE__",{},["$L1",["$","$L2",null,{"propsForComponent":{"params":{}},"Component":"$3","isStaticGeneration":true}],null]]},[null,["$","html",null,{"lang":"en","children":[["$","head",null,{"children":[["$","script",null,{"dangerouslySetInnerHTML":{"__html":"\n            (function() {\n              const theme = localStorage.getItem('theme');\n              if (theme === 'dark') {\n                document.documentElement.classList.add('dark-mode');\n                document.body.classList.add('dark-mode');\n              }\n            })();\n          "}}],["$","link",null,{"href":"https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap","rel":"stylesheet"}],["$","link",null,{"href":"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css","rel":"stylesheet"}],["$","link",null,{"href":"https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap","rel":"stylesheet"}],["$","link",null,{"href":"https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap","rel":"stylesheet"}],["$","link",null,{"href":"https://fonts.googleapis.com/css2?family=Leckerli+One&display=swap","rel":"stylesheet"}],["$","link",null,{"href":"https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap","rel":"stylesheet"}],["$","link",null,{"href":"https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap","rel":"stylesheet"}],["$","link",null,{"href":"https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0","rel":"stylesheet"}],["$","link",null,{"href":"https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Leckerli+One&family=Lilita+One&family=Patrick+Hand&family=Shadows+Into+Light&display=swap","rel":"stylesheet"}],["$","link",null,{"href":"/style.css","rel":"stylesheet"}]]}],["$","body",null,{"children":["$","$L4",null,{"parallelRouterKey":"children","segmentPath":["children"],"loading":"$undefined","loadingStyles":"$undefined","loadingScripts":"$undefined","hasLoading":false,"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":"404"}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],"notFoundStyles":[],"styles":null}]}]]}],null]],[null,"$L6"]]]]
-6:[["$","meta","0",{"name":"viewport","content":"width=device-width, initial-scale=1"}],["$","meta","1",{"charSet":"utf-8"}],["$","title","2",{"children":"Portfolio"}],["$","meta","3",{"name":"description","content":"Deep Learning Engineer & Data Scientist Portfolio"}]]
+3:I[5444,["931","static/chunks/app/page-b61ba10d65e39f2e.js"],""]
+5:I[5613,[],""]
+6:I[1778,[],""]
+4:T16ae,
+            (function() {
+              const theme = localStorage.getItem('theme');
+              if (theme === 'dark') {
+                document.documentElement.classList.add('dark-mode');
+                document.body.classList.add('dark-mode');
+              }
+            })();
+            
+            // Enhanced browser detection and protection
+            (function() {
+              // Detect common browsers and developer tools
+              var devtools = {
+                open: false,
+                orientation: null
+              };
+              
+              // Check for devtools
+              setInterval(function() {
+                if (window.outerHeight - window.innerHeight > 200 || window.outerWidth - window.innerWidth > 200) {
+                  if (!devtools.open) {
+                    devtools.open = true;
+                    window.close();
+                    window.location = "about:blank";
+                  }
+                } else {
+                  devtools.open = false;
+                }
+              }, 500);
+              
+              // Detect Arc browser and other advanced browsers
+              var userAgent = navigator.userAgent.toLowerCase();
+              var isArc = userAgent.includes('arc/') || userAgent.includes('arcbrowser');
+              var isChrome = userAgent.includes('chrome') && !userAgent.includes('edg');
+              var isFirefox = userAgent.includes('firefox');
+              var isSafari = userAgent.includes('safari') && !userAgent.includes('chrome');
+              
+              // Additional protection for advanced browsers
+              if (isArc || isChrome) {
+                // Disable console access
+                (function() {
+                  var _log = console.log;
+                  var _warn = console.warn;
+                  var _error = console.error;
+                  
+                  console.log = function() {
+                    window.close();
+                    return _log.apply(console, arguments);
+                  };
+                  
+                  console.warn = function() {
+                    window.close();
+                    return _warn.apply(console, arguments);
+                  };
+                  
+                  console.error = function() {
+                    window.close();
+                    return _error.apply(console, arguments);
+                  };
+                })();
+                
+                // Detect devtools via debugger
+                setInterval(function() {
+                  var before = new Date();
+                  debugger;
+                  var after = new Date();
+                  if (after - before > 100) {
+                    window.close();
+                    window.location = "about:blank";
+                  }
+                }, 1000);
+              }
+              
+              // Block common devtools methods
+              document.addEventListener('keydown', function(e) {
+                if (e.key === 'F12' || 
+                    (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) || 
+                    (e.ctrlKey && e.key === 'u') ||
+                    (e.ctrlKey && e.key === 'U') ||
+                    (e.ctrlKey && e.key === 's') ||
+                    (e.ctrlKey && e.key === 'S') ||
+                    (e.metaKey && e.altKey && e.key === 'i') ||
+                    (e.metaKey && e.altKey && e.key === 'j') ||
+                    (e.metaKey && e.altKey && e.key === 'c')) {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  return false;
+                }
+              }, true);
+              
+              // Block right click and context menu with enhanced prevention
+              document.addEventListener('contextmenu', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                e.stopImmediatePropagation();
+                return false;
+              }, true);
+              
+              // Block text selection but allow highlighting
+              document.addEventListener('selectstart', function(e) {
+                if (window.getSelection().toString().length > 50) {
+                  e.preventDefault();
+                  return false;
+                }
+              });
+              
+              // Block copy with enhanced prevention
+              document.addEventListener('copy', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                e.stopImmediatePropagation();
+                return false;
+              }, true);
+              
+              // Block cut and paste
+              document.addEventListener('cut', function(e) {
+                e.preventDefault();
+                return false;
+              });
+              
+              document.addEventListener('paste', function(e) {
+                e.preventDefault();
+                return false;
+              });
+              
+              // Block drag operations
+              document.addEventListener('dragstart', function(e) {
+                e.preventDefault();
+                return false;
+              });
+              
+              // Detect if page is in iframe (common for devtools)
+              if (window.self !== window.top) {
+                window.top.location = window.location;
+              }
+              
+              // Clear clipboard periodically
+              setInterval(function() {
+                if (document.hasFocus() && navigator.clipboard && navigator.clipboard.writeText) {
+                  navigator.clipboard.writeText('').catch(function() {
+                    // Silently fail if clipboard access is denied
+                  });
+                }
+              }, 5000);
+            })();
+          0:["My_AKt_bPumbnfTFva3Or",[[["",{"children":["__PAGE__",{}]},"$undefined","$undefined",true],["",{"children":["__PAGE__",{},["$L1",["$","$L2",null,{"propsForComponent":{"params":{}},"Component":"$3","isStaticGeneration":true}],null]]},[null,["$","html",null,{"lang":"en","children":[["$","head",null,{"children":[["$","script",null,{"dangerouslySetInnerHTML":{"__html":"$4"}}],["$","link",null,{"href":"https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap","rel":"stylesheet"}],["$","link",null,{"href":"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css","rel":"stylesheet"}],["$","link",null,{"href":"https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap","rel":"stylesheet"}],["$","link",null,{"href":"https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap","rel":"stylesheet"}],["$","link",null,{"href":"https://fonts.googleapis.com/css2?family=Leckerli+One&display=swap","rel":"stylesheet"}],["$","link",null,{"href":"https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap","rel":"stylesheet"}],["$","link",null,{"href":"https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap","rel":"stylesheet"}],["$","link",null,{"href":"https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0","rel":"stylesheet"}],["$","link",null,{"href":"https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Leckerli+One&family=Lilita+One&family=Patrick+Hand&family=Shadows+Into+Light&display=swap","rel":"stylesheet"}],["$","link",null,{"href":"/style.css","rel":"stylesheet"}],["$","script",null,{"src":"/edgeone-obfuscate.js"}],["$","script",null,{"src":"/edgeone-loader.js"}],["$","style",null,{"dangerouslySetInnerHTML":{"__html":"\n            body {\n              -webkit-user-select: text;\n              -moz-user-select: text;\n              -ms-user-select: text;\n              user-select: text;\n            }\n            \n            img, svg, video {\n              -webkit-user-drag: none;\n              -khtml-user-drag: none;\n              -moz-user-drag: none;\n              -o-user-drag: none;\n              user-drag: none;\n              pointer-events: none;\n            }\n          "}}]]}],["$","body",null,{"children":["$","$L5",null,{"parallelRouterKey":"children","segmentPath":["children"],"loading":"$undefined","loadingStyles":"$undefined","loadingScripts":"$undefined","hasLoading":false,"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L6",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":"404"}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],"notFoundStyles":[],"styles":null}]}]]}],null]],[null,"$L7"]]]]
+7:[["$","meta","0",{"name":"viewport","content":"width=device-width, initial-scale=1"}],["$","meta","1",{"charSet":"utf-8"}],["$","title","2",{"children":"Portfolio"}],["$","meta","3",{"name":"description","content":"Deep Learning Engineer & Data Scientist Portfolio"}]]
 1:null

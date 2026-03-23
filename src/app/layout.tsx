@@ -25,61 +25,142 @@ export default function RootLayout({
               }
             })();
             
-            // Disable right click
-            document.addEventListener('contextmenu', function(e) {
-              e.preventDefault();
-              return false;
-            });
-            
-            // Allow text selection but prevent copy
-            document.addEventListener('copy', function(e) {
-              e.preventDefault();
-              return false;
-            });
-            
-            // Disable cut
-            document.addEventListener('cut', function(e) {
-              e.preventDefault();
-              return false;
-            });
-            
-            // Disable paste
-            document.addEventListener('paste', function(e) {
-              e.preventDefault();
-              return false;
-            });
-            
-            // Disable drag
-            document.addEventListener('dragstart', function(e) {
-              e.preventDefault();
-              return false;
-            });
-            
-            // Disable F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U
-            document.addEventListener('keydown', function(e) {
-              if (e.key === 'F12' || 
-                  (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J')) || 
-                  (e.ctrlKey && e.key === 'u') ||
-                  (e.ctrlKey && e.key === 'U')) {
+            // Enhanced browser detection and protection
+            (function() {
+              // Detect common browsers and developer tools
+              var devtools = {
+                open: false,
+                orientation: null
+              };
+              
+              // Check for devtools
+              setInterval(function() {
+                if (window.outerHeight - window.innerHeight > 200 || window.outerWidth - window.innerWidth > 200) {
+                  if (!devtools.open) {
+                    devtools.open = true;
+                    window.close();
+                    window.location = "about:blank";
+                  }
+                } else {
+                  devtools.open = false;
+                }
+              }, 500);
+              
+              // Detect Arc browser and other advanced browsers
+              var userAgent = navigator.userAgent.toLowerCase();
+              var isArc = userAgent.includes('arc/') || userAgent.includes('arcbrowser');
+              var isChrome = userAgent.includes('chrome') && !userAgent.includes('edg');
+              var isFirefox = userAgent.includes('firefox');
+              var isSafari = userAgent.includes('safari') && !userAgent.includes('chrome');
+              
+              // Additional protection for advanced browsers
+              if (isArc || isChrome) {
+                // Disable console access
+                (function() {
+                  var _log = console.log;
+                  var _warn = console.warn;
+                  var _error = console.error;
+                  
+                  console.log = function() {
+                    window.close();
+                    return _log.apply(console, arguments);
+                  };
+                  
+                  console.warn = function() {
+                    window.close();
+                    return _warn.apply(console, arguments);
+                  };
+                  
+                  console.error = function() {
+                    window.close();
+                    return _error.apply(console, arguments);
+                  };
+                })();
+                
+                // Detect devtools via debugger
+                setInterval(function() {
+                  var before = new Date();
+                  debugger;
+                  var after = new Date();
+                  if (after - before > 100) {
+                    window.close();
+                    window.location = "about:blank";
+                  }
+                }, 1000);
+              }
+              
+              // Block common devtools methods
+              document.addEventListener('keydown', function(e) {
+                if (e.key === 'F12' || 
+                    (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) || 
+                    (e.ctrlKey && e.key === 'u') ||
+                    (e.ctrlKey && e.key === 'U') ||
+                    (e.ctrlKey && e.key === 's') ||
+                    (e.ctrlKey && e.key === 'S') ||
+                    (e.metaKey && e.altKey && e.key === 'i') ||
+                    (e.metaKey && e.altKey && e.key === 'j') ||
+                    (e.metaKey && e.altKey && e.key === 'c')) {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  return false;
+                }
+              }, true);
+              
+              // Block right click and context menu with enhanced prevention
+              document.addEventListener('contextmenu', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                e.stopImmediatePropagation();
+                return false;
+              }, true);
+              
+              // Block text selection but allow highlighting
+              document.addEventListener('selectstart', function(e) {
+                if (window.getSelection().toString().length > 50) {
+                  e.preventDefault();
+                  return false;
+                }
+              });
+              
+              // Block copy with enhanced prevention
+              document.addEventListener('copy', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                e.stopImmediatePropagation();
+                return false;
+              }, true);
+              
+              // Block cut and paste
+              document.addEventListener('cut', function(e) {
                 e.preventDefault();
                 return false;
+              });
+              
+              document.addEventListener('paste', function(e) {
+                e.preventDefault();
+                return false;
+              });
+              
+              // Block drag operations
+              document.addEventListener('dragstart', function(e) {
+                e.preventDefault();
+                return false;
+              });
+              
+              // Detect if page is in iframe (common for devtools)
+              if (window.self !== window.top) {
+                window.top.location = window.location;
               }
-            });
-            
-            // Disable developer tools
-            setInterval(function() {
-              if (window.outerHeight - window.innerHeight > 200 || window.outerWidth - window.innerWidth > 200) {
-                window.close();
-                window.location = "about:blank";
-              }
-            }, 500);
-            
-            // Obfuscate console logs
-            console.log = function() {};
-            console.error = function() {};
-            console.warn = function() {};
-            console.info = function() {};
-            console.debug = function() {};
+              
+              // Clear clipboard periodically
+              setInterval(function() {
+                if (document.hasFocus() && navigator.clipboard && navigator.clipboard.writeText) {
+                  navigator.clipboard.writeText('').catch(function() {
+                    // Silently fail if clipboard access is denied
+                  });
+                }
+              }, 5000);
+            })();
           `
         }} />
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet" />

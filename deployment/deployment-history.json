@@ -1,0 +1,10 @@
+[
+  {
+    "id": "deploy_1774272714684_671de6a48d19cce7",
+    "environment": "production",
+    "timestamp": 1774272714684,
+    "packagePath": "C:\\Users\\User\\minimalist-portfolio\\deployment\\deploy_1774272714124_26098882330af11c.tar.gz",
+    "status": "success",
+    "checksum": "464ee6adf07b283cdec36d3b9beaca0b5a65e0513d66e03c8b288273c56ddb48"
+  }
+]
