@@ -1,10 +1,44 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import content from '../config/content.json';
 import ViewCounter from "./ViewCounter";
 
 export default function Home() {
+  const [showPasswordModal, setShowPasswordModal] = useState(false);
+  const [password, setPassword] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+  const [isPasswordVerified, setIsPasswordVerified] = useState(false);
+  
+  // You can change this password to whatever you want
+  const CORRECT_PASSWORD = 'cv123';
+
+  const handleCVDownload = () => {
+    setShowPasswordModal(true);
+    setPasswordError('');
+    setPassword('');
+  };
+
+  const verifyPassword = (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (password === CORRECT_PASSWORD) {
+      setIsPasswordVerified(true);
+      setShowPasswordModal(false);
+      // Download the CV
+      window.open(content.hero.resume, '_blank');
+      setPassword('');
+    } else {
+      setPasswordError('Incorrect password. Please try again.');
+      setPassword('');
+    }
+  };
+
+  const closeModal = () => {
+    setShowPasswordModal(false);
+    setPassword('');
+    setPasswordError('');
+  };
 
   useEffect(() => {
     // 处理滚动事件
@@ -405,7 +439,7 @@ export default function Home() {
             {content.about.description.map((para, index) => (
               <p key={index} className="p2">{para}</p>
             ))}
-            <a href={content.hero.resume} target="_blank"><button>{content.about.button}</button></a>
+            <button onClick={handleCVDownload}>{content.about.button}</button>
           </div>
         </div>
       </section>
@@ -597,6 +631,42 @@ export default function Home() {
       </section>
 
       <ViewCounter />
+      
+      {/* Password Modal */}
+      {showPasswordModal && (
+        <div className="password-modal-overlay" onClick={closeModal}>
+          <div className="password-modal" onClick={(e) => e.stopPropagation()}>
+            <div className="password-modal-header">
+              <h3>Enter Password</h3>
+              <button className="close-modal" onClick={closeModal}>&times;</button>
+            </div>
+            <div className="password-modal-body">
+              <p>Please enter the password to download the CV:</p>
+              <form onSubmit={verifyPassword}>
+                <input
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Enter password"
+                  className="password-input"
+                  autoFocus
+                />
+                {passwordError && (
+                  <div className="password-error">{passwordError}</div>
+                )}
+                <div className="password-modal-actions">
+                  <button type="button" onClick={closeModal} className="cancel-btn">
+                    Cancel
+                  </button>
+                  <button type="submit" className="submit-btn">
+                    Download CV
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }
