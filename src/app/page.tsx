@@ -656,6 +656,7 @@ export default function Home() {
               <button className="close-modal" onClick={closeModal}>&times;</button>
             </div>
             <div className="password-modal-body">
+              <p>Due to personal information security and privacy please contact this email <a href="mailto:henryneoh22@gmail.com" style={{fontWeight: 'bold', color: '#6366f1', textDecoration: 'underline'}}>henryneoh22@gmail.com</a> to get the password.</p>
               <p>Please enter the password to download the CV:</p>
               <form onSubmit={verifyPassword}>
                 <input
