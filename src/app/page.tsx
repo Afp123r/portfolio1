@@ -19,32 +19,20 @@ export default function Home() {
     setPassword('');
   };
 
-  const verifyPassword = async (e: React.FormEvent) => {
+  const verifyPassword = (e: React.FormEvent) => {
     e.preventDefault();
     
-    try {
-      const response = await fetch('/api/verify-cv', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ password }),
-      });
-      
-      const data = await response.json();
-      
-      if (data.success) {
-        setIsPasswordVerified(true);
-        setShowPasswordModal(false);
-        // Download the CV from secure server response
-        window.open(data.resumeUrl, '_blank');
-        setPassword('');
-      } else {
-        setPasswordError(data.error || 'Incorrect password. Please try again.');
-        setPassword('');
-      }
-    } catch (error) {
-      setPasswordError('Network error. Please try again.');
+    // Temporary client-side verification for production
+    const CORRECT_PASSWORD = 'cv123'; // Change this to your desired password
+    
+    if (password === CORRECT_PASSWORD) {
+      setIsPasswordVerified(true);
+      setShowPasswordModal(false);
+      // Download the CV
+      window.open(content.hero.resume, '_blank');
+      setPassword('');
+    } else {
+      setPasswordError('Incorrect password. Please try again.');
       setPassword('');
     }
   };
