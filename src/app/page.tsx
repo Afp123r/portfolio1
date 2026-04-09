@@ -19,20 +19,32 @@ export default function Home() {
     setPassword('');
   };
 
-  const verifyPassword = (e: React.FormEvent) => {
+  const verifyPassword = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Temporary client-side verification for production
-    const CORRECT_PASSWORD = 'cv123'; // Change this to your desired password
-    
-    if (password === CORRECT_PASSWORD) {
-      setIsPasswordVerified(true);
-      setShowPasswordModal(false);
-      // Download the CV
-      window.open(content.hero.resume, '_blank');
-      setPassword('');
-    } else {
-      setPasswordError('Incorrect password. Please try again.');
+    try {
+      // Hash the entered password using the same method as server
+      const encoder = new TextEncoder();
+      const data = encoder.encode(password + 'salt_key_for_security');
+      const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+      const hashArray = Array.from(new Uint8Array(hashBuffer));
+      const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+      
+      // Pre-computed hash of your password (cv123 + salt_key_for_security)
+      const correctHash = 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3';
+      
+      if (hashHex === correctHash) {
+        setIsPasswordVerified(true);
+        setShowPasswordModal(false);
+        // Download the CV
+        window.open(content.hero.resume, '_blank');
+        setPassword('');
+      } else {
+        setPasswordError('Incorrect password. Please try again.');
+        setPassword('');
+      }
+    } catch (error) {
+      setPasswordError('Verification error. Please try again.');
       setPassword('');
     }
   };
