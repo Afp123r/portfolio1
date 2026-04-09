@@ -10,8 +10,8 @@ export default function Home() {
   const [passwordError, setPasswordError] = useState('');
   const [isPasswordVerified, setIsPasswordVerified] = useState(false);
   
-  // You can change this password to whatever you want
-  const CORRECT_PASSWORD = 'cv123';
+  // Password stored in environment variable for better security
+  const CORRECT_PASSWORD = process.env.NEXT_PUBLIC_CV_PASSWORD || 'cv123';
 
   const handleCVDownload = () => {
     setShowPasswordModal(true);
@@ -19,17 +19,32 @@ export default function Home() {
     setPassword('');
   };
 
-  const verifyPassword = (e: React.FormEvent) => {
+  const verifyPassword = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (password === CORRECT_PASSWORD) {
-      setIsPasswordVerified(true);
-      setShowPasswordModal(false);
-      // Download the CV
-      window.open(content.hero.resume, '_blank');
-      setPassword('');
-    } else {
-      setPasswordError('Incorrect password. Please try again.');
+    try {
+      const response = await fetch('/api/verify-cv', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ password }),
+      });
+      
+      const data = await response.json();
+      
+      if (data.success) {
+        setIsPasswordVerified(true);
+        setShowPasswordModal(false);
+        // Download the CV from secure server response
+        window.open(data.resumeUrl, '_blank');
+        setPassword('');
+      } else {
+        setPasswordError(data.error || 'Incorrect password. Please try again.');
+        setPassword('');
+      }
+    } catch (error) {
+      setPasswordError('Network error. Please try again.');
       setPassword('');
     }
   };
