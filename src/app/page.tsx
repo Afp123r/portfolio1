@@ -23,15 +23,15 @@ export default function Home() {
     e.preventDefault();
     
     try {
-      // Hash the entered password using the same method as server
+      // Test without salt first to isolate the issue
       const encoder = new TextEncoder();
-      const data = encoder.encode(password + 'salt_key_for_security');
+      const data = encoder.encode(password);
       const hashBuffer = await crypto.subtle.digest('SHA-256', data);
       const hashArray = Array.from(new Uint8Array(hashBuffer));
       const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
       
-      // Pre-computed hash of your password (cv123 + salt_key_for_security)
-      const correctHash = 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3';
+      // Hash of "cv123" without salt
+      const correctHash = '50b060a8934ac7387d8249110b90d91de101e488ff252fe880c4a48bacc003e5';
       
       if (hashHex === correctHash) {
         setIsPasswordVerified(true);

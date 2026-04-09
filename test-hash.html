@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hash Test</title>
+</head>
+<body>
+    <h1>SHA-256 Hash Test</h1>
+    <input type="text" id="password" placeholder="Enter password">
+    <button onclick="generateHash()">Generate Hash</button>
+    <div id="result"></div>
+
+    <script>
+        async function generateHash() {
+            const password = document.getElementById('password').value;
+            const encoder = new TextEncoder();
+            const data = encoder.encode(password);
+            const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+            
+            document.getElementById('result').innerHTML = `
+                <p><strong>Password:</strong> ${password}</p>
+                <p><strong>Hash:</strong> ${hashHex}</p>
+                <p><strong>Expected:</strong> a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3</p>
+                <p><strong>Match:</strong> ${hashHex === 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3' ? 'YES' : 'NO'}</p>
+            `;
+        }
+    </script>
+</body>
+</html>
