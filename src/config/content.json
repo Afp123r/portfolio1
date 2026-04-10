@@ -190,7 +190,7 @@
         "description": "The Camera Photo Booth is a fun and interactive web application that allows users to take photos using their device's camera and apply real-time filters and animations. Users can choose from a variety of visual effects, overlays, and frame styles to customize their snapshots. The app also supports saving and downloading photos directly from the browser. Built using JavaScript, HTML5, and CSS3, it leverages WebRTC for camera access and Canvas API for image processing.",
         "technologies": ["JavaScript", "HTML5", "CSS3", "WebRTC", "Canvas API"],
         "github": "https://github.com/HenryNeoh",
-        "site": "https://camera-app-bpo.pages.dev",
+        "site": "",
         "image": "https://i.ibb.co/yFsDGMNm/Generated-Image-June-23-2025-11-08-PM.jpg"
       },
       {
@@ -198,7 +198,7 @@
         "description": "This Face Recognition Web App uses real-time camera input to detect and recognize faces through a web interface. Once a face is successfully detected, the system automatically sends a notification to a specified Telegram chat using the Telegram Bot API. The application is ideal for monitoring, attendance, or security use cases. It was developed using Python with OpenCV for facial recognition, integrated with a Flask web backend and JavaScript for frontend interactions.",
         "technologies": ["Python", "OpenCV", "Flask", "React", "JavaScript", "HTML", "CSS", "Telegram Bot API"],
         "github": "https://github.com/HenryNeoh",
-        "site": "https://helper-gemini-1.deno.dev",
+        "site": "",
         "site_note": "Alternative: https://webf.meho.dpdns.org",
         "image": "https://i.ibb.co/rKTYHbKK/Generated-Image-June-23-2025-11-13-PM.jpg"
       }
