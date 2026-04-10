@@ -9,11 +9,22 @@ export default function Home() {
   const [password, setPassword] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [isPasswordVerified, setIsPasswordVerified] = useState(false);
+  const [accessType, setAccessType] = useState<'cv' | 'project'>('cv');
+  const [projectUrl, setProjectUrl] = useState('');
   
   // Password stored in environment variable for better security
   const CORRECT_PASSWORD = process.env.NEXT_PUBLIC_CV_PASSWORD || 'cv123';
 
   const handleCVDownload = () => {
+    setAccessType('cv');
+    setShowPasswordModal(true);
+    setPasswordError('');
+    setPassword('');
+  };
+
+  const handleProjectAccess = (projectUrl: string) => {
+    setAccessType('project');
+    setProjectUrl(projectUrl);
     setShowPasswordModal(true);
     setPasswordError('');
     setPassword('');
@@ -36,9 +47,17 @@ export default function Home() {
       if (hashHex === correctHash) {
         setIsPasswordVerified(true);
         setShowPasswordModal(false);
-        // Download the CV
-        window.open(content.hero.resume, '_blank');
+        
+        if (accessType === 'cv') {
+          // Download the CV
+          window.open(content.hero.resume, '_blank');
+        } else if (accessType === 'project') {
+          // Open the project
+          window.open(projectUrl, '_blank');
+        }
+        
         setPassword('');
+        setProjectUrl('');
       } else {
         setPasswordError('Incorrect password. Please try again.');
         setPassword('');
@@ -551,14 +570,14 @@ export default function Home() {
                         </svg>
                         Code
                       </a>
-                      <a href={project.site} target="_blank" rel="noopener noreferrer" className="action-btn secondary">
+                      <button onClick={() => handleProjectAccess(project.site)} className="action-btn secondary">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                           <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
                           <polyline points="15,3 21,3 21,9"/>
                           <line x1="10" y1="14" x2="21" y2="3"/>
                         </svg>
                         Live
-                      </a>
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -652,12 +671,12 @@ export default function Home() {
         <div className="password-modal-overlay" onClick={closeModal}>
           <div className="password-modal" onClick={(e) => e.stopPropagation()}>
             <div className="password-modal-header">
-              <h3>Enter Password</h3>
+              <h3>{accessType === 'cv' ? 'Enter Password' : 'Enter Password for Project Access'}</h3>
               <button className="close-modal" onClick={closeModal}>&times;</button>
             </div>
             <div className="password-modal-body">
               <p>Due to personal information security and privacy please contact this email <a href="mailto:henryneoh22@gmail.com" style={{fontWeight: 'bold', color: '#6366f1', textDecoration: 'underline'}}>henryneoh22@gmail.com</a> to get the password.</p>
-              <p>Please enter the password to download the CV:</p>
+              <p>{accessType === 'cv' ? 'Please enter the password to download the CV:' : 'Please enter the password to view the project:'}</p>
               <form onSubmit={verifyPassword}>
                 <input
                   type="password"
@@ -675,7 +694,7 @@ export default function Home() {
                     Cancel
                   </button>
                   <button type="submit" className="submit-btn">
-                    Download CV
+                    {accessType === 'cv' ? 'Download CV' : 'Access Project'}
                   </button>
                 </div>
               </form>
