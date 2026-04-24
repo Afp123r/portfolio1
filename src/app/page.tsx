@@ -532,19 +532,55 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="expirience" id="experience">
-        <h1 className="skillh1">{content.experience.title}</h1>
-        <div className="container-ex">
-          {content.experience.timeline.map((item, index) => (
-            <div key={index} className={`timeline-block timeline-block-${index % 2 === 0 ? 'right' : 'left'}`}>
-              <div className="marker"></div>
-              <div className="timeline-content">
-                <h3>{item.title}</h3>
-                <span>{item.company} | {item.period}</span>
-                <p>{item.description}</p>
+      <section className="experience-modern" id="experience">
+        <div className="experience-header">
+          <div className="section-badge">Career Journey</div>
+          <h2 className="experience-title">{content.experience.title}</h2>
+          <p className="experience-subtitle">My professional growth and achievements</p>
+        </div>
+        
+        <div className="experience-container">
+          <div className="experience-timeline">
+            {content.experience.timeline.map((item, index) => (
+              <div key={index} className="experience-item" data-index={index}>
+                <div className="experience-timeline-line"></div>
+                <div className="experience-timeline-dot">
+                  <div className="dot-inner"></div>
+                  <div className="dot-pulse"></div>
+                </div>
+                
+                <div className="experience-card">
+                  <div className="experience-card-header">
+                    <div className="experience-icon">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                        <circle cx="12" cy="7" r="4"/>
+                      </svg>
+                    </div>
+                    <div className="experience-meta">
+                      <h3 className="experience-role">{item.title}</h3>
+                      <div className="experience-company-info">
+                        <span className="company-name">{item.company}</span>
+                        <span className="experience-period">{item.period}</span>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="experience-description">
+                    <p>{item.description}</p>
+                  </div>
+                  
+                  <div className="experience-skills">
+                    <div className="skill-tags">
+                      <span className="skill-tag">Web Development</span>
+                      <span className="skill-tag">Frontend</span>
+                      <span className="skill-tag">Backend</span>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
 
