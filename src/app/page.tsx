@@ -49,69 +49,198 @@ export default function Home() {
         setShowPasswordModal(false);
         
         if (accessType === 'cv') {
-          // Download the CV with iOS compatibility
+          // Enhanced iOS-compatible PDF download
           const downloadPDF = (url: string) => {
             const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
                          (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
             
+            // iOS version detection for specific workarounds
+            const getIOSVersion = () => {
+              const match = navigator.userAgent.match(/OS (\d+)_(\d+)_?(\d+)?/);
+              return match ? parseInt(match[1], 10) : null;
+            };
+            
+            const iosVersion = getIOSVersion();
+            
             if (isIOS) {
-              // iOS-specific download method
-              const link = document.createElement('a');
-              link.href = url;
-              link.target = '_blank';
-              link.rel = 'noopener noreferrer';
-              link.download = 'NEOH_WEI_JIAN_Resume.pdf';
-              
-              // Try multiple methods for iOS
-              try {
-                // Method 1: Direct download with proper iOS attributes
-                link.setAttribute('data-ios-pdf-download', 'true');
-                document.body.appendChild(link);
-                link.click();
-                
-                // Method 2: Fallback with iframe (iOS compatible)
-                setTimeout(() => {
-                  const iframe = document.createElement('iframe');
-                  iframe.style.display = 'none';
-                  iframe.style.position = 'absolute';
-                  iframe.style.left = '-9999px';
-                  iframe.src = url;
-                  iframe.setAttribute('sandbox', 'allow-same-origin allow-scripts allow-forms allow-downloads');
-                  document.body.appendChild(iframe);
+              // Enhanced iOS download with multiple fallback strategies
+              const attemptDownload = (methodIndex: number = 0) => {
+                const methods = [
+                  // Method 1: Direct download with enhanced iOS attributes
+                  () => {
+                    const link = document.createElement('a');
+                    link.href = url;
+                    link.target = '_blank';
+                    link.rel = 'noopener noreferrer';
+                    link.download = 'NEOH_WEI_JIAN_Resume.pdf';
+                    link.style.display = 'none';
+                    
+                    // iOS-specific attributes
+                    link.setAttribute('data-download', 'pdf');
+                    link.setAttribute('data-ios', 'true');
+                    
+                    document.body.appendChild(link);
+                    
+                    // Force user gesture simulation
+                    const event = new MouseEvent('click', {
+                      view: window,
+                      bubbles: true,
+                      cancelable: true,
+                      clientX: 0,
+                      clientY: 0
+                    });
+                    
+                    link.dispatchEvent(event);
+                    
+                    // Cleanup
+                    setTimeout(() => {
+                      if (link.parentNode) {
+                        document.body.removeChild(link);
+                      }
+                    }, 100);
+                  },
                   
-                  // Clean up iframe after load or timeout
-                  const cleanup = () => {
-                    if (iframe.parentNode) {
-                      document.body.removeChild(iframe);
+                  // Method 2: iOS Safari specific iframe method
+                  () => {
+                    const iframe = document.createElement('iframe');
+                    iframe.style.display = 'none';
+                    iframe.style.position = 'absolute';
+                    iframe.style.left = '-10000px';
+                    iframe.style.top = '-10000px';
+                    iframe.style.width = '1px';
+                    iframe.style.height = '1px';
+                    iframe.style.border = 'none';
+                    
+                    // Enhanced sandbox for iOS
+                    iframe.setAttribute('sandbox', 'allow-same-origin allow-scripts allow-forms allow-popups allow-downloads');
+                    iframe.src = url;
+                    
+                    document.body.appendChild(iframe);
+                    
+                    // iOS Safari specific load handling
+                    const handleLoad = () => {
+                      setTimeout(() => {
+                        if (iframe.parentNode) {
+                          document.body.removeChild(iframe);
+                        }
+                      }, 2000);
+                    };
+                    
+                    iframe.onload = handleLoad;
+                    setTimeout(handleLoad, 5000); // Fallback timeout
+                  },
+                  
+                  // Method 3: Form submission method (iOS compatible)
+                  () => {
+                    const form = document.createElement('form');
+                    form.method = 'GET';
+                    form.action = url;
+                    form.target = '_blank';
+                    form.style.display = 'none';
+                    
+                    document.body.appendChild(form);
+                    form.submit();
+                    
+                    setTimeout(() => {
+                      if (form.parentNode) {
+                        document.body.removeChild(form);
+                      }
+                    }, 100);
+                  },
+                  
+                  // Method 4: Window location with iOS optimization
+                  () => {
+                    // Create a temporary anchor for iOS
+                    const tempLink = document.createElement('a');
+                    tempLink.href = url;
+                    tempLink.style.display = 'none';
+                    document.body.appendChild(tempLink);
+                    
+                    // iOS Safari specific navigation
+                    if (iosVersion && iosVersion >= 13) {
+                      // iOS 13+ specific method
+                      tempLink.click();
+                    } else {
+                      // Older iOS fallback
+                      window.location.href = url;
                     }
-                  };
+                    
+                    setTimeout(() => {
+                      if (tempLink.parentNode) {
+                        document.body.removeChild(tempLink);
+                      }
+                    }, 100);
+                  },
                   
-                  iframe.onload = cleanup;
-                  setTimeout(cleanup, 3000); // 3 second timeout
-                }, 500);
-                
-                // Method 3: User gesture simulation for iOS
-                setTimeout(() => {
-                  const event = new MouseEvent('click', {
-                    bubbles: true,
-                    cancelable: true,
-                    view: window
-                  });
-                  link.dispatchEvent(event);
-                }, 800);
-                
-                // Method 4: Location redirect as final fallback
-                setTimeout(() => {
-                  if (!document.hidden) {
+                  // Method 5: Touch event simulation for iOS
+                  () => {
+                    const link = document.createElement('a');
+                    link.href = url;
+                    link.target = '_blank';
+                    link.style.display = 'none';
+                    document.body.appendChild(link);
+                    
+                    // iOS touch event simulation
+                    const touchEvent = new TouchEvent('touchstart', {
+                      bubbles: true,
+                      cancelable: true,
+                      view: window,
+                      touches: [new Touch({
+                        identifier: 1,
+                        target: link,
+                        clientX: 0,
+                        clientY: 0,
+                        pageX: 0,
+                        pageY: 0,
+                        screenX: 0,
+                        screenY: 0,
+                        radiusX: 0,
+                        radiusY: 0,
+                        rotationAngle: 0,
+                        force: 1
+                      })]
+                    });
+                    
+                    link.dispatchEvent(touchEvent);
+                    
+                    setTimeout(() => {
+                      link.dispatchEvent(new MouseEvent('click'));
+                    }, 50);
+                    
+                    setTimeout(() => {
+                      if (link.parentNode) {
+                        document.body.removeChild(link);
+                      }
+                    }, 200);
+                  },
+                  
+                  // Method 6: Final fallback - direct navigation
+                  () => {
                     window.open(url, '_blank', 'noopener,noreferrer');
                   }
-                }, 1500);
+                ];
                 
-              } catch (error) {
-                console.error('iOS PDF download error:', error);
-                // Final fallback - direct location change
-                window.location.href = url;
-              }
+                if (methodIndex < methods.length) {
+                  try {
+                    console.log(`iOS PDF Download: Trying method ${methodIndex + 1}`);
+                    methods[methodIndex]();
+                    
+                    // Try next method if current one doesn't work after delay
+                    if (methodIndex < methods.length - 1) {
+                      setTimeout(() => {
+                        attemptDownload(methodIndex + 1);
+                      }, 1000 + (methodIndex * 500));
+                    }
+                  } catch (error) {
+                    console.error(`iOS PDF Download Method ${methodIndex + 1} failed:`, error);
+                    attemptDownload(methodIndex + 1);
+                  }
+                }
+              };
+              
+              // Start attempting downloads
+              attemptDownload();
+              
             } else {
               // Desktop/Android method
               window.open(url, '_blank');
