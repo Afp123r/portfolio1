@@ -75,6 +75,36 @@ export default function Home() {
   };
 
   useEffect(() => {
+    // iOS设备检测和优化
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
+                 (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    
+    // iOS特定优化
+    if (isIOS) {
+      document.documentElement.classList.add('ios-scroll-fix');
+      document.body.classList.add('ios-scroll-fix');
+      
+      // 防止页面刷新闪烁
+      document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'visible') {
+          document.body.style.transform = 'translateZ(0)';
+        }
+      });
+      
+      // 修复iOS滚动性能
+      const sections = document.querySelectorAll('section') as NodeListOf<HTMLElement>;
+      sections.forEach(section => {
+        (section as HTMLElement).style.transform = 'translateZ(0)';
+        (section as HTMLElement).style.backfaceVisibility = 'hidden';
+      });
+      
+      // 防止iOS缩放
+      const inputs = document.querySelectorAll('input[type="text"], input[type="email"], input[type="password"], textarea') as NodeListOf<HTMLInputElement | HTMLTextAreaElement>;
+      inputs.forEach(input => {
+        (input as HTMLInputElement | HTMLTextAreaElement).style.fontSize = '16px';
+      });
+    }
+    
     // 处理滚动事件
     const handleScroll = () => {
       const header = document.querySelector('header');
