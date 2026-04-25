@@ -2389,15 +2389,22 @@ body.dark-mode .p1 {
   color: #8bb4ff;
 }
 
-/* Dark mode styles for text elements */
+/* Dark mode styles for About section text elements */
 body.dark-mode .text h2,
 body.dark-mode .about-container .text h2 {
-  color: #ffffff;
+  background: linear-gradient(135deg, #9f7aea 0%, #ed8936 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 body.dark-mode .text p,
 body.dark-mode .about-container .text p {
-  color: #cccccc;
+  color: #cbd5e0;
+}
+
+body.dark-mode .text .p1 {
+  color: #9f7aea;
 }
 
 
@@ -3145,22 +3152,35 @@ body.dark-mode header.header-scrolled {
 
 .text .p1{
   font-size: 1.2rem;
-  color: #3200ff;
+  font-weight: 600;
+  color: #667eea;
   margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
 .text .p2{
-  font-family: Patrick Hand, cursive;
-  margin-bottom: 16px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #4a5568;
+  margin-bottom: 20px;
+  font-weight: 400;
 }
 
 .text h2 {
-  font-family: Leckerli One, sans-serif;
-  margin-bottom: 16px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-weight: 800;
+  margin-bottom: 24px;
   text-align: left !important;
-  font-size: 20px;
-  color: black;
+  font-size: 3rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   position: static;
+  letter-spacing: -1px;
 }
 
 .text h2::after {
@@ -3174,8 +3194,9 @@ body.dark-mode header.header-scrolled {
   border: none;
   border-radius: 25px;
   cursor: pointer;
-  font-family: 'Patrick Hand', cursive;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   font-size: 1rem;
+  font-weight: 600;
   transition: all 0.4s ease;
   box-shadow: 0 4px 15px rgba(166, 145, 255, 0.4);
   animation: neon-pulse 2s ease-in-out infinite alternate;
