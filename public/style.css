@@ -4888,6 +4888,63 @@ body.dark-mode .password-input {
   box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
 }
 
+/* Ensure custom cursor remains visible in password modal */
+.password-modal,
+.password-modal-overlay,
+.password-modal *,
+.password-input {
+  cursor: none !important;
+}
+
+/* Force custom cursor visibility in password modal */
+.password-modal .cursor-dot,
+.password-modal .cursor-trail,
+.password-modal-overlay .cursor-dot,
+.password-modal-overlay .cursor-trail {
+  opacity: 1 !important;
+  pointer-events: none !important;
+}
+
+/* Global rule to ensure custom cursor is always visible */
+.cursor-dot,
+.cursor-trail {
+  opacity: 1 !important;
+  pointer-events: none !important;
+  z-index: 99999 !important;
+}
+
+/* Only show default cursor for input fields outside password modal */
+input:not(.password-input):not(.password-modal input),
+textarea:not(.password-modal textarea) {
+  cursor: auto !important;
+}
+
+/* Hide custom cursor for regular input fields (outside modal) */
+input:not(.password-input):not(.password-modal input):hover ~ .cursor-dot,
+input:not(.password-input):not(.password-modal input):hover ~ .cursor-trail,
+textarea:not(.password-modal textarea):hover ~ .cursor-dot,
+textarea:not(.password-modal textarea):hover ~ .cursor-trail {
+  opacity: 0 !important;
+}
+
+/* Pointer cursor for email links in password modal */
+.password-modal a[href^="mailto:"],
+.password-modal-overlay a[href^="mailto:"] {
+  cursor: pointer !important;
+}
+
+/* Custom cursor pointer style classes */
+.cursor-pointer {
+  transform: translate(-50%, -50%) scale(1.5) !important;
+  background: radial-gradient(circle, #6366f1 0%, #8b5cf6 100%) !important;
+  border: 2px solid #ffffff !important;
+}
+
+.cursor-pointer-trail {
+  transform: translate(-50%, -50%) scale(2) !important;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.3) 0%, rgba(139, 92, 246, 0.3) 100%) !important;
+}
+
 .password-error {
   color: #ef4444;
   font-size: 0.875rem;

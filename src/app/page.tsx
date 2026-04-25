@@ -272,10 +272,48 @@ export default function Home() {
         element.classList.add('magnetic-hover');
       });
 
-      // 隐藏默认光标
+      // 隐藏默认光标，但为输入字段添加例外
       document.body.style.cursor = 'none';
     };
 
+    // 处理光标显示 - 简化逻辑，确保自定义光标始终可见
+    const handleInputHover = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      const cursorDot = document.getElementById('cursorDot');
+      const cursorTrail = document.getElementById('cursorTrail');
+      
+      // 确保自定义光标元素存在
+      if (!cursorDot || !cursorTrail) return;
+      
+      // 检查是否是邮件链接
+      const isEmailLink = target.tagName === 'A' && target.getAttribute('href')?.startsWith('mailto:');
+      const isPasswordModal = target.closest('.password-modal') || target.closest('.password-modal-overlay');
+      
+      // 对邮件链接显示指针样式
+      if (isEmailLink) {
+        document.body.style.cursor = 'none';
+        cursorDot.style.opacity = '1';
+        cursorTrail.style.opacity = '1';
+        cursorDot.classList.add('cursor-pointer');
+        cursorTrail.classList.add('cursor-pointer-trail');
+      } 
+      // 只对非密码模态框的输入字段显示默认光标
+      else if ((target.tagName === 'INPUT' || target.tagName === 'TEXTAREA') && !isPasswordModal) {
+        document.body.style.cursor = 'auto';
+        cursorDot.style.opacity = '0';
+        cursorTrail.style.opacity = '0';
+        cursorDot.classList.remove('cursor-pointer');
+        cursorTrail.classList.remove('cursor-pointer-trail');
+      } 
+      else {
+        document.body.style.cursor = 'none';
+        cursorDot.style.opacity = '1';
+        cursorTrail.style.opacity = '1';
+        cursorDot.classList.remove('cursor-pointer');
+        cursorTrail.classList.remove('cursor-pointer-trail');
+      }
+    };
+    
     // 初始化磁性光标
     if (window.innerWidth > 768) { // 只在桌面端启用
       initMagneticCursor();
@@ -381,6 +419,7 @@ export default function Home() {
     document.querySelector('.menu-overlay')?.addEventListener('click', handleOverlayClick);
     document.querySelector('.menu')?.addEventListener('click', handleSmoothScroll);
     document.getElementById('themeToggle')?.addEventListener('click', handleThemeToggle);
+    document.addEventListener('mouseover', handleInputHover);
 
     // 清理函数
     return () => {
@@ -390,6 +429,7 @@ export default function Home() {
       document.querySelector('.menu-overlay')?.removeEventListener('click', handleOverlayClick);
       document.querySelector('.menu')?.removeEventListener('click', handleSmoothScroll);
       document.getElementById('themeToggle')?.removeEventListener('click', handleThemeToggle);
+      document.removeEventListener('mouseover', handleInputHover);
     };
   }, []);
 
