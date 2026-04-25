@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mobile Hash Test</title>
+</head>
+<body>
+    <h1>Mobile Hash Test for "cv123"</h1>
+    <div id="results"></div>
+    
+    <script>
+        // DJB2 hash function (same as in the app)
+        function simpleHash(str) {
+            let hash = 5381;
+            for (let i = 0; i < str.length; i++) {
+                const char = str.charCodeAt(i);
+                hash = ((hash << 5) + hash) + char;
+                hash = hash | 0;
+            }
+            const positiveHash = hash >>> 0;
+            return positiveHash.toString(16).padStart(8, '0');
+        }
+
+        // Character sum hash function (same as in the app)
+        function mobileCompatibleHash(str) {
+            let sum = 0;
+            for (let i = 0; i < str.length; i++) {
+                sum += str.charCodeAt(i);
+            }
+            return (sum % 1000000).toString(16).padStart(6, '0');
+        }
+
+        // Test hashes for "cv123"
+        const testString = "cv123";
+        const djb2Hash = simpleHash(testString);
+        const sumHash = mobileCompatibleHash(testString);
+        
+        // SHA-256 hash for "cv123"
+        async function getSHA256() {
+            const encoder = new TextEncoder();
+            const data = encoder.encode(testString);
+            const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        }
+
+        // Display results
+        getSHA256().then(sha256Hash => {
+            document.getElementById('results').innerHTML = `
+                <p><strong>Test string:</strong> "${testString}"</p>
+                <p><strong>SHA-256:</strong> ${sha256Hash}</p>
+                <p><strong>DJB2 Hash:</strong> ${djb2Hash}</p>
+                <p><strong>Character Sum Hash:</strong> ${sumHash}</p>
+                <p><strong>Old Fallback Hash:</strong> 59e2c8</p>
+                <br>
+                <h3>Copy these values to your app:</h3>
+                <textarea style="width: 100%; height: 200px;">
+const correctHashes = [
+    '${sha256Hash}', // SHA-256
+    '${djb2Hash}', // DJB2 hash
+    '${sumHash}', // Character sum hash
+    '59e2c8' // Old fallback hash
+];
+                </textarea>
+            `;
+        });
+    </script>
+</body>
+</html>
