@@ -398,10 +398,12 @@ export default function Home() {
       const savedTheme = localStorage.getItem('theme');
       const themeIcon = document.querySelector('.theme-icon');
       
-      if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      // Default to light theme, only use dark if explicitly saved
+      if (savedTheme === 'dark') {
         document.body.classList.add('dark-mode');
         if (themeIcon) themeIcon.textContent = '☀️'; // Show sun icon in dark mode
       } else {
+        // Default to light mode (no dark-mode class)
         if (themeIcon) themeIcon.textContent = '🌙'; // Show moon icon in light mode
       }
     };
