@@ -11,6 +11,7 @@ export default function Home() {
   const [isPasswordVerified, setIsPasswordVerified] = useState(false);
   const [accessType, setAccessType] = useState<'cv' | 'project'>('cv');
   const [projectUrl, setProjectUrl] = useState('');
+  const [showIOSNotification, setShowIOSNotification] = useState(false);
   
   // Password stored in environment variable for better security
   const CORRECT_PASSWORD = process.env.NEXT_PUBLIC_CV_PASSWORD || 'cv123';
@@ -106,7 +107,7 @@ export default function Home() {
         };
       }
       
-      // Multiple hash values for "cv123" across different methods (updated with actual test results)
+      // Multiple hash values for "c3" across different methods (updated with actual test results)
       const correctHashes = [
         '50b060a8934ac7387d8249110b90d91de101e488ff252fe880c4a48bacc003e5', // SHA-256
         '0f4005d4', // DJB2 hash for "cv123" (from test)
@@ -498,6 +499,22 @@ export default function Home() {
       
       // 初始化导航优化
       initIOSNavigation();
+      
+      // iOS用户通知系统
+      const initIOSNotification = () => {
+        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
+                     (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+        
+        if (isIOS) {
+          // 延迟显示通知，让页面先加载完成
+          setTimeout(() => {
+            setShowIOSNotification(true);
+          }, 1000);
+        }
+      };
+      
+      // 初始化iOS通知
+      initIOSNotification();
     }
     
     // 处理滚动事件
@@ -869,6 +886,57 @@ export default function Home() {
 
   return (
     <>
+      {/* iOS Notification */}
+      {showIOSNotification && (
+        <div className="ios-notification" style={{
+          position: 'fixed',
+          top: '20px',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          backgroundColor: '#007AFF',
+          color: 'white',
+          padding: '15px 20px',
+          borderRadius: '12px',
+          fontSize: '14px',
+          fontWeight: '600',
+          zIndex: '9999',
+          boxShadow: '0 8px 32px rgba(0, 122, 255, 0.3)',
+          backdropFilter: 'blur(10px)',
+          WebkitBackdropFilter: 'blur(10px)',
+          border: '1px solid rgba(255, 255, 255, 0.2)',
+          maxWidth: '90%',
+          textAlign: 'center',
+          lineHeight: '1.4',
+          animation: 'slideInDown 0.5s ease-out'
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px' }}>
+            <span style={{ fontSize: '20px' }}>📱</span>
+            <strong>For all iOS User Notice</strong>
+          </div>
+          <div>
+            <strong>iOS Performance Notice</strong><br/><br/>
+            For the best viewing experience, we recommend using Google Chrome or accessing the site on another operating system (Windows, Linux, Ubuntu, Android, etc.). <br/><br/>iOS Safari may experience performance issues due to advanced code protections, which can cause lag or unexpected crashes during certain operations.<br/><br/>This pop-up notification only appears for users on iOS devices.
+          </div>
+          <button 
+            onClick={() => setShowIOSNotification(false)}
+            style={{
+              backgroundColor: 'rgba(255, 255, 255, 0.2)',
+              color: 'white',
+              border: '1px solid rgba(255, 255, 255, 0.3)',
+              padding: '8px 16px',
+              borderRadius: '8px',
+              fontSize: '12px',
+              fontWeight: '500',
+              cursor: 'pointer',
+              marginTop: '12px',
+              transition: 'all 0.2s ease'
+            }}
+          >
+            Got it
+          </button>
+        </div>
+      )}
+
       {/* Menu Overlay */}
       <div className="menu-overlay" id="menuOverlay"></div>
 
