@@ -49,8 +49,76 @@ export default function Home() {
         setShowPasswordModal(false);
         
         if (accessType === 'cv') {
-          // Download the CV
-          window.open(content.hero.resume, '_blank');
+          // Download the CV with iOS compatibility
+          const downloadPDF = (url: string) => {
+            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
+                         (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+            
+            if (isIOS) {
+              // iOS-specific download method
+              const link = document.createElement('a');
+              link.href = url;
+              link.target = '_blank';
+              link.rel = 'noopener noreferrer';
+              link.download = 'NEOH_WEI_JIAN_Resume.pdf';
+              
+              // Try multiple methods for iOS
+              try {
+                // Method 1: Direct download with proper iOS attributes
+                link.setAttribute('data-ios-pdf-download', 'true');
+                document.body.appendChild(link);
+                link.click();
+                
+                // Method 2: Fallback with iframe (iOS compatible)
+                setTimeout(() => {
+                  const iframe = document.createElement('iframe');
+                  iframe.style.display = 'none';
+                  iframe.style.position = 'absolute';
+                  iframe.style.left = '-9999px';
+                  iframe.src = url;
+                  iframe.setAttribute('sandbox', 'allow-same-origin allow-scripts allow-forms allow-downloads');
+                  document.body.appendChild(iframe);
+                  
+                  // Clean up iframe after load or timeout
+                  const cleanup = () => {
+                    if (iframe.parentNode) {
+                      document.body.removeChild(iframe);
+                    }
+                  };
+                  
+                  iframe.onload = cleanup;
+                  setTimeout(cleanup, 3000); // 3 second timeout
+                }, 500);
+                
+                // Method 3: User gesture simulation for iOS
+                setTimeout(() => {
+                  const event = new MouseEvent('click', {
+                    bubbles: true,
+                    cancelable: true,
+                    view: window
+                  });
+                  link.dispatchEvent(event);
+                }, 800);
+                
+                // Method 4: Location redirect as final fallback
+                setTimeout(() => {
+                  if (!document.hidden) {
+                    window.open(url, '_blank', 'noopener,noreferrer');
+                  }
+                }, 1500);
+                
+              } catch (error) {
+                console.error('iOS PDF download error:', error);
+                // Final fallback - direct location change
+                window.location.href = url;
+              }
+            } else {
+              // Desktop/Android method
+              window.open(url, '_blank');
+            }
+          };
+          
+          downloadPDF(content.hero.resume);
         } else if (accessType === 'project') {
           // Open the project
           window.open(projectUrl, '_blank');
