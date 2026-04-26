@@ -525,6 +525,153 @@ export default function Home() {
       
       // 初始化iOS通知
       initIOSNotification();
+      
+      // Windows & Android 性能优化
+      const initWindowsAndroidOptimizations = () => {
+        const isWindows = /Win/.test(navigator.userAgent);
+        const isAndroid = /Android/.test(navigator.userAgent);
+        const isDesktop = !/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        
+        if (isWindows || isAndroid) {
+          // 硬件加速优化
+          const performanceElements = document.querySelectorAll('.project-showcase-card, .info-card, .skill-card, .frontSkill, .backSkill, .datasciSkill, .toolsSkill');
+          performanceElements.forEach(element => {
+            (element as HTMLElement).style.willChange = 'transform, opacity';
+            (element as HTMLElement).style.transform = 'translateZ(0)';
+            (element as HTMLElement).style.backfaceVisibility = 'hidden';
+          });
+          
+          // 平滑滚动优化
+          document.documentElement.style.scrollBehavior = 'smooth';
+          document.body.style.scrollBehavior = 'smooth';
+          
+          // 减少重绘和重排
+          const images = document.querySelectorAll('img');
+          images.forEach(img => {
+            (img as HTMLImageElement).loading = 'lazy';
+            (img as HTMLElement).style.willChange = 'transform';
+            (img as HTMLElement).style.transform = 'translateZ(0)';
+          });
+          
+          // 优化动画性能
+          const animatedElements = document.querySelectorAll('.fade-in-up, .scale-in, .slide-in-left, .slide-in-right');
+          animatedElements.forEach(element => {
+            (element as HTMLElement).style.willChange = 'transform, opacity';
+            (element as HTMLElement).style.transform = 'translateZ(0)';
+          });
+          
+          // Windows 特定优化
+          if (isWindows) {
+            // 优化鼠标交互
+            const interactiveElements = document.querySelectorAll('button, a, .action-btn, .theme-toggle');
+            interactiveElements.forEach(element => {
+              (element as HTMLElement).style.willChange = 'transform, box-shadow';
+              (element as HTMLElement).style.transform = 'translateZ(0)';
+            });
+            
+            // 优化滚动性能
+            let ticking = false;
+            const updateScrollPerformance = () => {
+              if (!ticking) {
+                requestAnimationFrame(() => {
+                  // 滚动相关的性能优化
+                  ticking = false;
+                });
+                ticking = true;
+              }
+            };
+            
+            window.addEventListener('scroll', updateScrollPerformance, { passive: true });
+          }
+          
+          // Android 特定优化
+          if (isAndroid) {
+            // 触摸优化
+            const touchElements = document.querySelectorAll('.project-showcase-card, .info-card, .action-btn') as NodeListOf<HTMLElement>;
+            touchElements.forEach(element => {
+              (element.style as any).webkitTapHighlightColor = 'transparent';
+              (element.style as any).webkitUserSelect = 'none';
+              element.style.userSelect = 'none';
+            });
+            
+            // 减少动画复杂度
+            const reducedMotionElements = document.querySelectorAll('.project-showcase-card, .info-card');
+            reducedMotionElements.forEach(element => {
+              (element as HTMLElement).style.transition = 'transform 0.2s ease';
+            });
+            
+            // 优化触摸滚动
+            (document.documentElement.style as any).webkitOverflowScrolling = 'touch';
+            (document.body.style as any).webkitOverflowScrolling = 'touch';
+          }
+          
+          // 桌面特定优化
+          if (isDesktop && (isWindows)) {
+            // 增强视觉效果
+            const enhancedElements = document.querySelectorAll('.hero-container, .projects-showcase, .contact-modern');
+            enhancedElements.forEach(element => {
+              (element as HTMLElement).style.willChange = 'transform';
+              (element as HTMLElement).style.transform = 'translateZ(0)';
+            });
+            
+            // 优化光标性能
+            const cursorElements = document.querySelectorAll('.cursor-dot, .cursor-trail');
+            cursorElements.forEach(element => {
+              (element as HTMLElement).style.willChange = 'transform';
+              (element as HTMLElement).style.transform = 'translateZ(0)';
+            });
+          }
+          
+          // 通用性能优化
+          // 防抖函数用于优化事件处理
+          const debounce = (func: Function, wait: number) => {
+            let timeout: NodeJS.Timeout;
+            return function executedFunction(...args: any[]) {
+              const later = () => {
+                clearTimeout(timeout);
+                func(...args);
+              };
+              clearTimeout(timeout);
+              timeout = setTimeout(later, wait);
+            };
+          };
+          
+          // 优化窗口大小调整事件
+          const optimizedResize = debounce(() => {
+            // 窗口大小调整时的优化
+            const performanceElements = document.querySelectorAll('.project-showcase-card, .info-card');
+            performanceElements.forEach(element => {
+              (element as HTMLElement).style.willChange = 'auto';
+              setTimeout(() => {
+                (element as HTMLElement).style.willChange = 'transform, opacity';
+              }, 100);
+            });
+          }, 250);
+          
+          window.addEventListener('resize', optimizedResize, { passive: true });
+          
+          // 性能监控
+          if ('performance' in window && 'measure' in window.performance) {
+            // 测量关键性能指标
+            const measurePerformance = () => {
+              const perfData = window.performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming;
+              const loadTime = perfData.loadEventEnd - perfData.loadEventStart;
+              const domTime = perfData.domContentLoadedEventEnd - perfData.domContentLoadedEventStart;
+              
+              console.log('Performance Metrics:', {
+                loadTime: `${loadTime}ms`,
+                domTime: `${domTime}ms`,
+                platform: isWindows ? 'Windows' : isAndroid ? 'Android' : 'Other'
+              });
+            };
+            
+            window.addEventListener('load', measurePerformance);
+          }
+        }
+      };
+      
+      // 初始化Windows & Android优化
+      initWindowsAndroidOptimizations();
     }
     
     // 处理滚动事件
