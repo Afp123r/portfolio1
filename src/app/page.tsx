@@ -23,12 +23,21 @@ export default function Home() {
     setPassword('');
   };
 
-  const handleProjectAccess = (projectUrl: string) => {
-    setAccessType('project');
-    setProjectUrl(projectUrl);
-    setShowPasswordModal(true);
-    setPasswordError('');
-    setPassword('');
+  const handleProjectAccess = (projectUrl: string, projectTitle?: string) => {
+    // Check if it's the first project (Barcode Filing Management System)
+    const isFirstProject = projectTitle === "Barcode Filing Management System";
+    
+    if (isFirstProject) {
+      // Direct access without password for first project
+      window.open(projectUrl, '_blank', 'noopener,noreferrer');
+    } else {
+      // Require password for other projects
+      setAccessType('project');
+      setProjectUrl(projectUrl);
+      setShowPasswordModal(true);
+      setPasswordError('');
+      setPassword('');
+    }
   };
 
   const closeModal = () => {
@@ -1148,7 +1157,7 @@ export default function Home() {
                         </svg>
                         Code
                       </a>
-                      <button onClick={() => handleProjectAccess(project.site)} className="action-btn secondary">
+                      <button onClick={() => handleProjectAccess(project.site, project.title)} className="action-btn secondary">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                           <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
                           <polyline points="15,3 21,3 21,9"/>
