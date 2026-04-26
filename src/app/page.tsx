@@ -24,11 +24,12 @@ export default function Home() {
   };
 
   const handleProjectAccess = (projectUrl: string, projectTitle?: string) => {
-    // Check if it's the first project (Barcode Filing Management System)
+    // Check if it's first or second project
     const isFirstProject = projectTitle === "Barcode Filing Management System";
+    const isSecondProject = projectTitle === "Camera Photo Booth with Filters & Animations";
     
-    if (isFirstProject) {
-      // Direct access without password for first project
+    if (isFirstProject || isSecondProject) {
+      // Direct access without password for first and second projects
       window.open(projectUrl, '_blank', 'noopener,noreferrer');
     } else {
       // Require password for other projects
