@@ -377,19 +377,19 @@ export default function Home() {
         if (document.visibilityState === 'visible') {
           document.body.style.transform = 'translateZ(0)';
           // 重新初始化iOS特定功能
-          setTimeout(initIOSOptimizations, 100);
+          setTimeout(initIOSBasicOptimizations, 100);
         }
       });
       
       // iOS优化初始化函数
-      const initIOSOptimizations = () => {
+      const initIOSBasicOptimizations = () => {
         // 修复iOS滚动性能
         const sections = document.querySelectorAll('section') as NodeListOf<HTMLElement>;
         sections.forEach(section => {
           (section as HTMLElement).style.transform = 'translateZ(0)';
           (section as HTMLElement).style.backfaceVisibility = 'hidden';
-          (section as HTMLElement).style.webkitTransform = 'translateZ(0)';
-          (section as HTMLElement).style.webkitBackfaceVisibility = 'hidden';
+          ((section as HTMLElement).style as any).webkitTransform = 'translateZ(0)';
+          ((section as HTMLElement).style as any).webkitBackfaceVisibility = 'hidden';
         });
         
         // 防止iOS缩放
@@ -428,7 +428,7 @@ export default function Home() {
       };
       
       // 初始化iOS优化
-      initIOSOptimizations();
+      initIOSBasicOptimizations();
       
       // iOS触摸事件优化
       const initIOSTouchOptimizations = () => {
@@ -672,6 +672,243 @@ export default function Home() {
       
       // 初始化Windows & Android优化
       initWindowsAndroidOptimizations();
+      
+      // iOS 性能优化
+      const initIOSOptimizations = () => {
+        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
+                     (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+        
+        if (isIOS) {
+          // iOS版本检测
+          const getIOSVersion = () => {
+            const match = navigator.userAgent.match(/OS (\d+)_(\d+)_?(\d+)?/);
+            return match ? parseInt(match[1], 10) : null;
+          };
+          
+          const iosVersion = getIOSVersion();
+          const isIPad = /iPad/.test(navigator.userAgent);
+          const isIPhone = /iPhone/.test(navigator.userAgent);
+          
+          // iOS硬件加速优化
+          const performanceElements = document.querySelectorAll('.project-showcase-card, .info-card, .skill-card, .frontSkill, .backSkill, .datasciSkill, .toolsSkill, .hero-container, .navBar, .menu, .action-btn, .theme-toggle');
+          performanceElements.forEach(element => {
+            const htmlElement = element as HTMLElement;
+            htmlElement.style.willChange = 'transform, opacity';
+            htmlElement.style.transform = 'translateZ(0)';
+            htmlElement.style.backfaceVisibility = 'hidden';
+            (htmlElement.style as any).webkitBackfaceVisibility = 'hidden';
+            (htmlElement.style as any).webkitTransform = 'translateZ(0)';
+          });
+          
+          // iOS触摸优化
+          const touchElements = document.querySelectorAll('button, a, .project-showcase-card, .info-card, .action-btn, .theme-toggle, .menu-toggle') as NodeListOf<HTMLElement>;
+          touchElements.forEach(element => {
+            (element.style as any).webkitTapHighlightColor = 'transparent';
+            (element.style as any).webkitTouchCallout = 'none';
+            (element.style as any).webkitUserSelect = 'none';
+            element.style.userSelect = 'none';
+          });
+          
+          // iOS滚动优化
+          (document.documentElement.style as any).webkitOverflowScrolling = 'touch';
+          (document.body.style as any).webkitOverflowScrolling = 'touch';
+          
+          // iOS特定滚动容器优化
+          const scrollContainers = document.querySelectorAll('.experience-container, .projects-showcase, .skills-container, .contact-modern, .menu') as NodeListOf<HTMLElement>;
+          scrollContainers.forEach(container => {
+            (container.style as any).webkitOverflowScrolling = 'touch';
+            (container.style as any).overflowScrolling = 'touch';
+            container.style.willChange = 'transform';
+            container.style.transform = 'translateZ(0)';
+          });
+          
+          // iOS图片优化
+          const images = document.querySelectorAll('img') as NodeListOf<HTMLImageElement>;
+          images.forEach(img => {
+            img.loading = 'lazy';
+            img.style.willChange = 'transform';
+            img.style.transform = 'translateZ(0)';
+            img.style.backfaceVisibility = 'hidden';
+            (img.style as any).webkitBackfaceVisibility = 'hidden';
+            (img.style as any).webkitUserDrag = 'none';
+            (img.style as any).userDrag = 'none';
+          });
+          
+          // iOS动画优化
+          const animatedElements = document.querySelectorAll('.fade-in-up, .scale-in, .slide-in-left, .slide-in-right, .text-reveal') as NodeListOf<HTMLElement>;
+          animatedElements.forEach(element => {
+            element.style.willChange = 'transform, opacity';
+            element.style.transform = 'translateZ(0)';
+            element.style.backfaceVisibility = 'hidden';
+            (element.style as any).webkitBackfaceVisibility = 'hidden';
+          });
+          
+          // iOS表单优化
+          const formInputs = document.querySelectorAll('input, textarea') as NodeListOf<HTMLInputElement | HTMLTextAreaElement>;
+          formInputs.forEach(input => {
+            input.style.fontSize = '16px'; // 防止iOS缩放
+            (input.style as any).webkitAppearance = 'none';
+            (input.style as any).webkitTapHighlightColor = 'transparent';
+            (input.style as any).webkitTouchCallout = 'none';
+            input.style.borderRadius = '12px';
+          });
+          
+          // iOS特定版本优化
+          if (iosVersion && iosVersion >= 13) {
+            // iOS 13+ 特定优化
+            const modernElements = document.querySelectorAll('.project-showcase-card, .info-card') as NodeListOf<HTMLElement>;
+            modernElements.forEach(element => {
+              element.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+            });
+          }
+          
+          // iPad特定优化
+          if (isIPad) {
+            const iPadElements = document.querySelectorAll('.hero-container, .projects-showcase, .contact-modern') as NodeListOf<HTMLElement>;
+            iPadElements.forEach(element => {
+              element.style.willChange = 'transform';
+              element.style.transform = 'translateZ(0)';
+            });
+          }
+          
+          // iPhone特定优化
+          if (isIPhone) {
+            // 减少动画复杂度以提高性能
+            const mobileElements = document.querySelectorAll('.project-showcase-card, .info-card') as NodeListOf<HTMLElement>;
+            mobileElements.forEach(element => {
+              element.style.transition = 'transform 0.2s ease';
+            });
+          }
+          
+          // iOS触摸事件优化
+          let touchStartY = 0;
+          let touchEndY = 0;
+          
+          const handleTouchStart = (e: TouchEvent) => {
+            touchStartY = e.touches[0].clientY;
+          };
+          
+          const handleTouchEnd = (e: TouchEvent) => {
+            touchEndY = e.changedTouches[0].clientY;
+            const touchDifference = touchStartY - touchEndY;
+            
+            // 触摸滑动优化
+            if (Math.abs(touchDifference) > 50) {
+              // 优化滑动性能
+              requestAnimationFrame(() => {
+                // 滑动相关的性能优化
+              });
+            }
+          };
+          
+          document.addEventListener('touchstart', handleTouchStart, { passive: true });
+          document.addEventListener('touchend', handleTouchEnd, { passive: true });
+          
+          // iOS滚动性能优化
+          let ticking = false;
+          const updateIOSScrollPerformance = () => {
+            if (!ticking) {
+              requestAnimationFrame(() => {
+                // iOS滚动相关的性能优化
+                ticking = false;
+              });
+              ticking = true;
+            }
+          };
+          
+          window.addEventListener('scroll', updateIOSScrollPerformance, { passive: true });
+          
+          // iOS内存管理优化
+          const debounce = (func: Function, wait: number) => {
+            let timeout: NodeJS.Timeout;
+            return function executedFunction(...args: any[]) {
+              const later = () => {
+                clearTimeout(timeout);
+                func(...args);
+              };
+              clearTimeout(timeout);
+              timeout = setTimeout(later, wait);
+            };
+          };
+          
+          // 优化窗口大小调整事件
+          const optimizedIOSResize = debounce(() => {
+            const performanceElements = document.querySelectorAll('.project-showcase-card, .info-card, .skill-card') as NodeListOf<HTMLElement>;
+            performanceElements.forEach(element => {
+              element.style.willChange = 'auto';
+              setTimeout(() => {
+                element.style.willChange = 'transform, opacity';
+              }, 100);
+            });
+          }, 250);
+          
+          window.addEventListener('resize', optimizedIOSResize, { passive: true });
+          
+          // iOS特定手势优化
+          const handleGestureStart = (e: Event) => {
+            e.preventDefault();
+          };
+          
+          const handleGestureChange = (e: Event) => {
+            e.preventDefault();
+          };
+          
+          // 防止iOS缩放手势干扰
+          document.addEventListener('gesturestart', handleGestureStart);
+          document.addEventListener('gesturechange', handleGestureChange);
+          
+          // iOS性能监控
+          if ('performance' in window && 'measure' in window.performance) {
+            const measureIOSPerformance = () => {
+              const perfData = window.performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming;
+              const loadTime = perfData.loadEventEnd - perfData.loadEventStart;
+              const domTime = perfData.domContentLoadedEventEnd - perfData.domContentLoadedEventStart;
+              
+              console.log('iOS Performance Metrics:', {
+                loadTime: `${loadTime}ms`,
+                domTime: `${domTime}ms`,
+                iosVersion: iosVersion,
+                device: isIPad ? 'iPad' : isIPhone ? 'iPhone' : 'iOS Device'
+              });
+            };
+            
+            window.addEventListener('load', measureIOSPerformance);
+          }
+          
+          // iOS特定视觉优化
+          const enhanceIOSVisuals = () => {
+            // 优化iOS视觉反馈
+            const interactiveElements = document.querySelectorAll('.action-btn, .theme-toggle, .menu-toggle') as NodeListOf<HTMLElement>;
+            interactiveElements.forEach(element => {
+              element.addEventListener('touchstart', () => {
+                element.style.transform = 'scale(0.95)';
+              }, { passive: true });
+              
+              element.addEventListener('touchend', () => {
+                element.style.transform = 'scale(1)';
+              }, { passive: true });
+            });
+          };
+          
+          enhanceIOSVisuals();
+          
+          // iOS特定滚动优化
+          const optimizeIOSScrolling = () => {
+            // 优化滚动容器
+            const scrollableElements = document.querySelectorAll('.experience-container, .projects-showcase, .skills-container') as NodeListOf<HTMLElement>;
+            scrollableElements.forEach(element => {
+              (element.style as any).webkitOverflowScrolling = 'touch';
+              (element.style as any).overflowScrolling = 'touch';
+              element.style.scrollBehavior = 'smooth';
+            });
+          };
+          
+          optimizeIOSScrolling();
+        }
+      };
+      
+      // 初始化iOS优化
+      initIOSOptimizations();
     }
     
     // 处理滚动事件
@@ -697,7 +934,7 @@ export default function Home() {
         // iOS特定优化
         if (isIOS) {
           scrollProgress.style.transform = 'translateZ(0)';
-          scrollProgress.style.webkitTransform = 'translateZ(0)';
+          (scrollProgress.style as any).webkitTransform = 'translateZ(0)';
         }
       }
     };
