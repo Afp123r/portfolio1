@@ -182,7 +182,7 @@
         "description": "The Barcode Filing Management System is a digital solution designed to streamline the organization and retrieval of physical documents using barcode technology. It enables users to generate, assign, and scan barcodes for individual files, significantly improving tracking efficiency and minimizing human error. The system includes features such as user authentication, file indexing, and real-time search functionality. Built with Cloudflare, SQlite, Html, Css and JavaScript, it provides a user-friendly web interface for administrators and staff.",
         "technologies": ["Cloudflare", "SQlite", "JavaScript", "HTML", "CSS", "Barcode Scanner Integration"],
         "github": "https://github.com/HenryNeoh",
-        "site": "https://fyp1.dpdns.org",
+        "site": "https://fyp1.qzz.io",
         "image": "https://i.ibb.co/5xGcxHvc/Generated-Image-June-23-2025-11-19-PM.jpg"
       },
       {
