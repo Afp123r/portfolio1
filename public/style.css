@@ -5356,6 +5356,14 @@ body.dark-mode .cancel-btn:hover {
   max-width: 400px;
 }
 
+@media (max-width: 768px) {
+  .linkedin-badge-container .badge-base {
+    max-width: 100%;
+    transform: scale(0.85);
+    transform-origin: center;
+  }
+}
+
 .company-name {
   font-size: 1.125rem;
   font-weight: 600;
