@@ -120,8 +120,7 @@ export default function Home() {
       // Multiple hash values for "cv321" across different methods (updated with actual test results)
       const correctHashes = [
         '638e246e7e682b72add9dc16ab3cfa7e6675bbb00e596dc97064955405fba025', // SHA-256
-        '0f400e54', // DJB2 hash for "cv321" (from test)
-        '00016f' // Character sum hash for "cv321" (from test)
+        '0f400e54' // DJB2 hash for "cv321" (from test)
       ];
       
       // Check if any of the generated hashes match any correct hash
