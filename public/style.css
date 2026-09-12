@@ -5502,8 +5502,8 @@ body.dark-mode .skill-tag:hover {
   }
 
   .company-logo-icon {
-    width: 40px;
-    height: 40px;
+    width: 100px;
+    height: 100px;
   }
 
   .default-icon-svg {
@@ -5544,8 +5544,8 @@ body.dark-mode .skill-tag:hover {
   }
   
   .experience-icon {
-    width: 35px;
-    height: 35px;
+    width: 100px;
+    height: 30px;
   }
   
   .experience-role {
