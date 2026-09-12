@@ -40,7 +40,7 @@
     "title": "About Me",
     "description": [
         "I am a fresh graduate with a Diploma in Computer Engineering from Universiti Malaysia Perlis. I have a strong passion for technology and software development and enjoy learning new tools and technologies to improve my skills as a developer.",
-        "I also completed a 4-month internship as a Software Engineering Intern at a technology company, where I assisted in developing and maintaining web applications and collaborated with senior developers to implement new features.",
+        "I also completed a 4-month internship as a Software Engineering Intern at a Technology Company, where I assisted in developing and maintaining web applications and collaborated with senior developers to implement new features.",
         "I recently worked as a Technician, Calibration at **Venture Corporation Limited** from May 2026 to September 2026, where I gained hands-on experience in technical operations and precision calibration processes.",
         "I am currently pursuing a Bachelor's degree in Data Science, further expanding my knowledge in analytics, machine learning, and data-driven decision making.",
         "I am a motivated individual who enjoys solving technical challenges and building useful digital solutions. I am eager to continue learning and grow as a software developer."
@@ -182,12 +182,12 @@
         "company": "Venture Corporation Limited",
         "logo": "https://www.venture.com.sg/wp-content/uploads/2022/06/logo-venture.png",
         "website": "https://www.venture.com.sg/",
-        "period": "May 2026 - September 2026",
+        "period": "May 2026 - September 2026 (5 months)",
         "description": "Gained hands-on experience in technical operations and precision calibration processes. Worked with Vision AI and automated visual inspection systems, developing skills in technical troubleshooting and quality control. Developed a growing interest in Data Science and Artificial Intelligence applications in industrial settings."
       },
       {
         "title": "Software Engineering Intern",
-        "company": "ECTrons Sdn Bhd",
+        "company": "At a Technology Company",
         "logo": "",
         "website": "",
         "period": "4 months",
