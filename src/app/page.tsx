@@ -1405,7 +1405,9 @@ export default function Home() {
             <p className="p1">Who Am I?</p>
             <h2>{content.about.title}</h2>
             {content.about.description.map((para, index) => (
-              <p key={index} className="p2">{para}</p>
+              <p key={index} className="p2" dangerouslySetInnerHTML={{
+                __html: para.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+              }}></p>
             ))}
             {content.about.workExperience && content.about.workExperience.length > 0 && (
               <div className="work-experience">
