@@ -173,6 +173,7 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Leckerli+One&family=Lilita+One&family=Patrick+Hand&family=Shadows+Into+Light&display=swap" rel="stylesheet" />
         <link href="/style.css" rel="stylesheet" />
+        <script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
         <style dangerouslySetInnerHTML={{
           __html: `
             body {

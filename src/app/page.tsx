@@ -1650,6 +1650,11 @@ export default function Home() {
                   </a>
                 ))}
               </div>
+              <div className="linkedin-badge-container">
+                <div className="badge-base LI-profile-badge" data-locale="en_US" data-size="large" data-theme="light" data-type="HORIZONTAL" data-vanity="neoh-wei-jian" data-version="v1">
+                  <a className="badge-base__link LI-simple-link" href="https://my.linkedin.com/in/neoh-wei-jian?trk=profile-badge"></a>
+                </div>
+              </div>
             </div>
           </div>
           

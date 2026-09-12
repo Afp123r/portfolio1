@@ -5281,7 +5281,7 @@ body.dark-mode .cancel-btn:hover {
   margin-bottom: 20px;
 }
 
-.experience-icon {
+.experience-icon { /*for PC*/
   width: 100px;
   height: 100px;
   background: transparent;
@@ -5332,7 +5332,7 @@ body.dark-mode .cancel-btn:hover {
   border-radius: 4px;
 }
 
-.company-logo-icon {
+.company-logo-icon { /*for PC*/
   width: 100px;
   height: 100px;
   object-fit: contain;
@@ -5342,6 +5342,18 @@ body.dark-mode .cancel-btn:hover {
 
 .company-logo-icon:hover {
   transform: scale(1.1);
+}
+
+.linkedin-badge-container {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.linkedin-badge-container .badge-base {
+  width: 100%;
+  max-width: 400px;
 }
 
 .company-name {
@@ -5501,7 +5513,7 @@ body.dark-mode .skill-tag:hover {
     height: 40px;
   }
 
-  .company-logo-icon {
+  .company-logo-icon { /*for mobile*/
     width: 100px;
     height: 100px;
   }
@@ -5543,7 +5555,7 @@ body.dark-mode .skill-tag:hover {
     padding: 15px;
   }
   
-  .experience-icon {
+  .experience-icon { /* for mobile*/
     width: 100px;
     height: 30px;
   }

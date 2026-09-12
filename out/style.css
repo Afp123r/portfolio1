@@ -3226,6 +3226,41 @@ body.dark-mode header.header-scrolled {
   box-shadow: 0 8px 25px rgba(255, 116, 223, 0.5);
 }
 
+.work-experience {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.work-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.work-item:last-child {
+  margin-bottom: 0;
+}
+
+.company-link {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.company-link:hover {
+  transform: scale(1.1);
+}
+
+.company-logo {
+  width: 120px;
+  height: auto;
+  object-fit: contain;
+  border-radius: 5px;
+}
+
 .imgeffect img{
   width: 350px;
   height: 360px;
@@ -5246,17 +5281,16 @@ body.dark-mode .cancel-btn:hover {
   margin-bottom: 20px;
 }
 
-.experience-icon {
-  width: 50px;
-  height: 50px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+.experience-icon { /*for PC*/
+  width: 100px;
+  height: 100px;
+  background: transparent;
   border-radius: 15px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
+  color: #4a5568;
   flex-shrink: 0;
-  box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
 }
 
 .experience-meta {
@@ -5278,6 +5312,36 @@ body.dark-mode .cancel-btn:hover {
   display: flex;
   flex-direction: column;
   gap: 4px;
+  align-items: flex-start;
+}
+
+.experience-company-logo {
+  display: inline-block;
+  margin-bottom: 8px;
+  transition: transform 0.3s ease;
+}
+
+.experience-company-logo:hover {
+  transform: scale(1.05);
+}
+
+.experience-company-logo img {
+  width: 100px;
+  height: auto;
+  object-fit: contain;
+  border-radius: 4px;
+}
+
+.company-logo-icon { /*for PC*/
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+.company-logo-icon:hover {
+  transform: scale(1.1);
 }
 
 .company-name {
@@ -5436,6 +5500,16 @@ body.dark-mode .skill-tag:hover {
     width: 40px;
     height: 40px;
   }
+
+  .company-logo-icon { /*for mobile*/
+    width: 100px;
+    height: 100px;
+  }
+
+  .default-icon-svg {
+    width: 32px;
+    height: 32px;
+  }
   
   .experience-role {
     font-size: 1.25rem;
@@ -5469,9 +5543,9 @@ body.dark-mode .skill-tag:hover {
     padding: 15px;
   }
   
-  .experience-icon {
-    width: 35px;
-    height: 35px;
+  .experience-icon { /* for mobile*/
+    width: 100px;
+    height: 30px;
   }
   
   .experience-role {
