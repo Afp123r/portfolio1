@@ -5,7 +5,7 @@ export async function POST(request: NextRequest) {
     const { password } = await request.json();
     
     // Store password in server-side environment variable (more secure)
-    const CORRECT_PASSWORD = process.env.CV_PASSWORD || 'cv123';
+    const CORRECT_PASSWORD = process.env.CV_PASSWORD || 'cv321';
     
     if (password === CORRECT_PASSWORD) {
       return NextResponse.json({ 

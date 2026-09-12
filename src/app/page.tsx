@@ -14,7 +14,7 @@ export default function Home() {
   const [showIOSNotification, setShowIOSNotification] = useState(false);
   
   // Password stored in environment variable for better security
-  const CORRECT_PASSWORD = process.env.NEXT_PUBLIC_CV_PASSWORD || 'cv123';
+  const CORRECT_PASSWORD = process.env.NEXT_PUBLIC_CV_PASSWORD || 'cv321';
 
   const handleCVDownload = () => {
     setAccessType('cv');
@@ -117,11 +117,11 @@ export default function Home() {
         };
       }
       
-      // Multiple hash values for "c3" across different methods (updated with actual test results)
+      // Multiple hash values for "cv321" across different methods (updated with actual test results)
       const correctHashes = [
-        '50b060a8934ac7387d8249110b90d91de101e488ff252fe880c4a48bacc003e5', // SHA-256
-        '0f4005d4', // DJB2 hash for "cv123" (from test)
-        '00016f', // Character sum hash for "cv123" (from test)
+        '638e246e7e682b72add9dc16ab3cfa7e6675bbb00e596dc97064955405fba025', // SHA-256
+        '0f400e54', // DJB2 hash for "cv321" (from test)
+        '00016f', // Character sum hash for "cv321" (from test)
         '59e2c8' // Old fallback hash (for backward compatibility)
       ];
       
