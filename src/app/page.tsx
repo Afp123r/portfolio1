@@ -1655,6 +1655,24 @@ export default function Home() {
                   <a className="badge-base__link LI-simple-link" href="https://my.linkedin.com/in/neoh-wei-jian?trk=profile-badge"></a>
                 </div>
               </div>
+              <div className="jobstreet-profile-badge">
+                <a
+                  className="jobstreet-badge-link"
+                  href="https://my.jobstreet.com/profiles/neoh-weijian-mLqfF3hHG2"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="View my JobStreet profile"
+                >
+                  <div className="jobstreet-badge-content">
+                    <div className="jobstreet-logo">J</div>
+                    <div className="jobstreet-text">
+                      <span className="jobstreet-title">JobStreet<br/>NEOH WEI JIAN</span>
+                      <span className="jobstreet-subtitle">Former Technician, Calibration at Venture Corporation Limited</span>
+                      <span className="jobstreet-subtitle">Venture Corporation Limited | Universiti Malaysia Perlis</span>
+                    </div>
+                  </div>
+                </a>
+              </div>
             </div>
           </div>
           
