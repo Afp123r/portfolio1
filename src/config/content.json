@@ -44,7 +44,16 @@
         "I recently worked as a Technician, Calibration at Venture Corporation Limited from May 2026 to September 2026, where I gained hands-on experience in technical operations and precision calibration processes.",
         "I am currently pursuing a Bachelor's degree in Data Science, further expanding my knowledge in analytics, machine learning, and data-driven decision making.",
         "I am a motivated individual who enjoys solving technical challenges and building useful digital solutions. I am eager to continue learning and grow as a software developer."
-      ],    
+      ],
+    "workExperience": [
+      {
+        "company": "Venture Corporation Limited",
+        "logo": "https://www.venture.com.sg/wp-content/uploads/2022/06/logo-venture.png",
+        "website": "https://www.venture.com.sg/",
+        "position": "Technician, Calibration",
+        "period": "May 2026 - September 2026"
+      }
+    ],
     "button": "Download CV",
     "image": "/images/githubprofile.png"
   },

@@ -3226,6 +3226,41 @@ body.dark-mode header.header-scrolled {
   box-shadow: 0 8px 25px rgba(255, 116, 223, 0.5);
 }
 
+.work-experience {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.work-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.work-item:last-child {
+  margin-bottom: 0;
+}
+
+.company-link {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.company-link:hover {
+  transform: scale(1.1);
+}
+
+.company-logo {
+  width: 120px;
+  height: auto;
+  object-fit: contain;
+  border-radius: 5px;
+}
+
 .imgeffect img{
   width: 350px;
   height: 360px;

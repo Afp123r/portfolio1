@@ -1407,6 +1407,20 @@ export default function Home() {
             {content.about.description.map((para, index) => (
               <p key={index} className="p2">{para}</p>
             ))}
+            {content.about.workExperience && content.about.workExperience.length > 0 && (
+              <div className="work-experience">
+                {content.about.workExperience.map((exp, index) => (
+                  <div key={index} className="work-item">
+                    <a href={exp.website} target="_blank" rel="noopener noreferrer" className="company-link">
+                      <img src={exp.logo} alt={`${exp.company} Logo`} className="company-logo" />
+                    </a>
+                    <p className="p2">
+                      <strong>{exp.company}</strong> - {exp.position} ({exp.period})
+                    </p>
+                  </div>
+                ))}
+              </div>
+            )}
             <button onClick={handleCVDownload}>{content.about.button}</button>
           </div>
         </div>
