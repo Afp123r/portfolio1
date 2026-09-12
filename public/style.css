@@ -5282,8 +5282,8 @@ body.dark-mode .cancel-btn:hover {
 }
 
 .experience-icon {
-  width: 50px;
-  height: 50px;
+  width: 100px;
+  height: 100px;
   background: transparent;
   border-radius: 15px;
   display: flex;
@@ -5333,8 +5333,8 @@ body.dark-mode .cancel-btn:hover {
 }
 
 .company-logo-icon {
-  width: 48px;
-  height: 48px;
+  width: 100px;
+  height: 100px;
   object-fit: contain;
   border-radius: 8px;
   transition: transform 0.3s ease;
