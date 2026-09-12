@@ -178,8 +178,18 @@
     "title": "Experience",
     "timeline": [
       {
+        "title": "Technician, Calibration",
+        "company": "Venture Corporation Limited",
+        "logo": "https://www.venture.com.sg/wp-content/uploads/2022/06/logo-venture.png",
+        "website": "https://www.venture.com.sg/",
+        "period": "May 2026 - September 2026",
+        "description": "Gained hands-on experience in technical operations and precision calibration processes. Worked with Vision AI and automated visual inspection systems, developing skills in technical troubleshooting and quality control. Developed a growing interest in Data Science and Artificial Intelligence applications in industrial settings."
+      },
+      {
         "title": "Software Engineering Intern",
         "company": "ECTrons Sdn Bhd",
+        "logo": "",
+        "website": "",
         "period": "4 months",
         "description": "Assisted in developing and maintaining web applications, collaborated with senior developers to implement new features, fixed bugs, and improved system performance. Participated in code reviews, testing, and documentation while gaining hands-on experience with software development workflows and version control."
       }
