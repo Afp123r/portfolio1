@@ -697,6 +697,9 @@ body.dark-mode .henry-text:hover {
   font-weight: 700;
   color: #1a1a1a;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
   transition: all 0.3s ease;
 }
 
@@ -5342,6 +5345,97 @@ body.dark-mode .cancel-btn:hover {
 
 .company-logo-icon:hover {
   transform: scale(1.1);
+}
+
+.linkedin-badge-container {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.linkedin-badge-container .badge-base {
+  width: 100%;
+  max-width: 400px;
+}
+
+@media (max-width: 768px) {
+  .linkedin-badge-container .badge-base {
+    max-width: 100%;
+    transform: scale(0.85);
+    transform-origin: center;
+  }
+}
+
+/* JobStreet Badge */
+.jobstreet-profile-badge {
+  display: inline-block;
+  width: 350px;
+  max-width: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-top: 15px;
+}
+
+.jobstreet-badge-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.jobstreet-badge-content {
+  display: flex;
+  align-items: center;
+  padding: 18px 20px;
+  background: #ffffff;
+  border: 1px solid #d9d9d9;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+  transition: all 0.2s ease;
+}
+
+.jobstreet-badge-content:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+.jobstreet-logo {
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: #2563eb;
+  color: #ffffff;
+  border-radius: 8px;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.jobstreet-text {
+  display: flex;
+  flex-direction: column;
+  margin-left: 15px;
+}
+
+.jobstreet-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #222222;
+}
+
+.jobstreet-subtitle {
+  margin-top: 4px;
+  font-size: 14px;
+  color: #666666;
+}
+
+@media (max-width: 768px) {
+  .jobstreet-profile-badge {
+    width: 100%;
+    transform: scale(0.9);
+    transform-origin: center;
+  }
 }
 
 .company-name {
