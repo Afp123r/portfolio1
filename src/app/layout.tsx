@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import ViewCounter from "./ViewCounter";
 
 export const metadata: Metadata = {
-  title: 'Portfolio',
+  title: 'Portfolio - Neoh Wei Jian',
   description: 'Deep Learning Engineer & Data Scientist Portfolio',
   icons: {
     icon: [
@@ -12,30 +12,6 @@ export const metadata: Metadata = {
       { url: '/images/logo.png', sizes: '512x512', type: 'image/png' },
     ],
     apple: '/images/logo.png',
-  },
-  openGraph: {
-    title: 'Portfolio - Neoh Wei Jian',
-    description: 'Deep Learning Engineer & Data Scientist Portfolio. I build exceptional and accessible digital experiences for the web.',
-    url: 'https://portfolio1.edgeone.app/',
-    siteName: 'Portfolio',
-    images: [
-      {
-        url: 'https://portfolio1.edgeone.app/images/social/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'Portfolio Preview',
-        secureUrl: 'https://portfolio1.edgeone.app/images/social/og-image.png',
-        type: 'image/png',
-      },
-    ],
-    locale: 'en_US',
-    type: 'website',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Portfolio - Neoh Wei Jian',
-    description: 'Deep Learning Engineer & Data Scientist Portfolio. I build exceptional and accessible digital experiences for the web.',
-    images: ['https://portfolio1.edgeone.app/images/social/og-image.png'],
   },
 };
 
