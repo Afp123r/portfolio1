@@ -24,6 +24,8 @@ export const metadata: Metadata = {
         width: 1200,
         height: 630,
         alt: 'Portfolio Preview',
+        secureUrl: 'https://portfolio1.edgeone.app/images/social/og-image.png',
+        type: 'image/png',
       },
     ],
     locale: 'en_US',
@@ -45,20 +47,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <meta property="og:title" content="Portfolio - Neoh Wei Jian" />
-        <meta property="og:description" content="Deep Learning Engineer & Data Scientist Portfolio. I build exceptional and accessible digital experiences for the web." />
-        <meta property="og:url" content="https://portfolio1.edgeone.app/" />
-        <meta property="og:site_name" content="Portfolio" />
-        <meta property="og:image" content="https://portfolio1.edgeone.app/images/social/og-image.png" />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
-        <meta property="og:image:alt" content="Portfolio Preview" />
-        <meta property="og:locale" content="en_US" />
-        <meta property="og:type" content="website" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Portfolio - Neoh Wei Jian" />
-        <meta name="twitter:description" content="Deep Learning Engineer & Data Scientist Portfolio. I build exceptional and accessible digital experiences for the web." />
-        <meta name="twitter:image" content="https://portfolio1.edgeone.app/images/social/og-image.png" />
         <script dangerouslySetInnerHTML={{
           __html: `
             (function() {
