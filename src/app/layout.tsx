@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     siteName: 'Portfolio',
     images: [
       {
-        url: 'https://portfolio1.edgeone.app/images/og-image.png',
+        url: 'https://portfolio1.edgeone.app/images/social/og-image.png',
         width: 1200,
         height: 630,
         alt: 'Portfolio Preview',
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Portfolio - Neoh Wei Jian',
     description: 'Deep Learning Engineer & Data Scientist Portfolio. I build exceptional and accessible digital experiences for the web.',
-    images: ['https://portfolio1.edgeone.app/images/og-image.png'],
+    images: ['https://portfolio1.edgeone.app/images/social/og-image.png'],
   },
 };
 
