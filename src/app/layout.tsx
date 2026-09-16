@@ -5,6 +5,10 @@ import ViewCounter from "./ViewCounter";
 export const metadata: Metadata = {
   title: 'Portfolio',
   description: 'Deep Learning Engineer & Data Scientist Portfolio',
+  icons: {
+    icon: '/images/logo.png',
+    apple: '/images/logo.png',
+  },
 };
 
 export default function RootLayout({

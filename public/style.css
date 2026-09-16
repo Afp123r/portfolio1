@@ -697,6 +697,9 @@ body.dark-mode .henry-text:hover {
   font-weight: 700;
   color: #1a1a1a;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
   transition: all 0.3s ease;
 }
 
