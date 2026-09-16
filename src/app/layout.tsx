@@ -6,7 +6,11 @@ export const metadata: Metadata = {
   title: 'Portfolio',
   description: 'Deep Learning Engineer & Data Scientist Portfolio',
   icons: {
-    icon: '/images/logo.png',
+    icon: [
+      { url: '/images/logo.png', sizes: '32x32', type: 'image/png' },
+      { url: '/images/logo.png', sizes: '192x192', type: 'image/png' },
+      { url: '/images/logo.png', sizes: '512x512', type: 'image/png' },
+    ],
     apple: '/images/logo.png',
   },
   openGraph: {
