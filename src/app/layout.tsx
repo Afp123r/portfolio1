@@ -25,18 +25,18 @@ export default function RootLayout({
       <head>
         <meta property="og:title" content="Portfolio - Neoh Wei Jian" />
         <meta property="og:description" content="Deep Learning Engineer & Data Scientist Portfolio. I build exceptional and accessible digital experiences for the web." />
-        <meta property="og:image" content="https://portfolio1.edgeone.app/images/social/og-image.png" />
-        <meta property="og:image:secure_url" content="https://portfolio1.edgeone.app/images/social/og-image.png" />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
-        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image" content="https://portfolio1.edgeone.app/images/social/og-image-telegram.jpg" />
+        <meta property="og:image:secure_url" content="https://portfolio1.edgeone.app/images/social/og-image-telegram.jpg" />
+        <meta property="og:image:width" content="800" />
+        <meta property="og:image:height" content="600" />
+        <meta property="og:image:type" content="image/jpeg" />
         <meta property="og:url" content="https://portfolio1.edgeone.app/" />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="Portfolio" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Portfolio - Neoh Wei Jian" />
         <meta name="twitter:description" content="Deep Learning Engineer & Data Scientist Portfolio. I build exceptional and accessible digital experiences for the web." />
-        <meta name="twitter:image" content="https://portfolio1.edgeone.app/images/social/og-image.png" />
+        <meta name="twitter:image" content="https://portfolio1.edgeone.app/images/social/og-image-telegram.jpg" />
         <script dangerouslySetInnerHTML={{
           __html: `
             (function() {
