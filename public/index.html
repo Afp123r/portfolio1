@@ -8,138 +8,8 @@
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style-clean.css">
     
-    <script>
-        // Enhanced browser detection and protection
-        (function() {
-          // Detect common browsers and developer tools
-          var devtools = {
-            open: false,
-            orientation: null
-          };
-          
-          // Check for devtools
-          setInterval(function() {
-            if (window.outerHeight - window.innerHeight > 200 || window.outerWidth - window.innerWidth > 200) {
-              if (!devtools.open) {
-                devtools.open = true;
-                window.close();
-                window.location = "about:blank";
-              }
-            } else {
-              devtools.open = false;
-            }
-          }, 500);
-          
-          // Detect Arc browser and other advanced browsers
-          var userAgent = navigator.userAgent.toLowerCase();
-          var isArc = userAgent.includes('arc/') || userAgent.includes('arcbrowser');
-          var isChrome = userAgent.includes('chrome') && !userAgent.includes('edg');
-          var isFirefox = userAgent.includes('firefox');
-          var isSafari = userAgent.includes('safari') && !userAgent.includes('chrome');
-          
-          // Additional protection for advanced browsers
-          if (isArc || isChrome) {
-            // Disable console access
-            (function() {
-              var _log = console.log;
-              var _warn = console.warn;
-              var _error = console.error;
-              
-              console.log = function() {
-                window.close();
-                return _log.apply(console, arguments);
-              };
-              
-              console.warn = function() {
-                window.close();
-                return _warn.apply(console, arguments);
-              };
-              
-              console.error = function() {
-                window.close();
-                return _error.apply(console, arguments);
-              };
-            })();
-            
-            // Detect devtools via debugger
-            setInterval(function() {
-              var before = new Date();
-              debugger;
-              var after = new Date();
-              if (after - before > 100) {
-                window.close();
-                window.location = "about:blank";
-              }
-            }, 1000);
-          }
-          
-          // Block common devtools methods
-          document.addEventListener('keydown', function(e) {
-            if (e.key === 'F12' || 
-                (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) || 
-                (e.ctrlKey && e.key === 'u') ||
-                (e.ctrlKey && e.key === 'U') ||
-                (e.ctrlKey && e.key === 's') ||
-                (e.ctrlKey && e.key === 'S') ||
-                (e.metaKey && e.altKey && e.key === 'i') ||
-                (e.metaKey && e.altKey && e.key === 'j') ||
-                (e.metaKey && e.altKey && e.key === 'c')) {
-              e.preventDefault();
-              e.stopPropagation();
-              return false;
-            }
-          }, true);
-          
-          // Block right click and context menu with enhanced prevention
-          document.addEventListener('contextmenu', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            e.stopImmediatePropagation();
-            return false;
-          }, true);
-          
-          // Block text selection but allow highlighting
-          document.addEventListener('selectstart', function(e) {
-            if (window.getSelection().toString().length > 50) {
-              e.preventDefault();
-              return false;
-            }
-          });
-          
-          // Block copy with enhanced prevention
-          document.addEventListener('copy', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            e.stopImmediatePropagation();
-            return false;
-          }, true);
-          
-          // Block cut and paste
-          document.addEventListener('cut', function(e) {
-            e.preventDefault();
-            return false;
-          });
-          
-          document.addEventListener('paste', function(e) {
-            e.preventDefault();
-            return false;
-          });
-          
-          // Block drag operations
-          document.addEventListener('dragstart', function(e) {
-            e.preventDefault();
-            return false;
-          });
-          
-          // Detect if page is in iframe (common for devtools)
-          if (window.self !== window.top) {
-            window.top.location = window.location;
-          }
-          
-          })();
-    </script>
     
     <style>
         body {
@@ -198,10 +68,10 @@
         <h2>I'm into <span class="auto-type"></span></h2>
 
         <div class="botton">
-            <a href="https://www.linkedin.com/in/YOUR-LINKEDIN-ID" target="_blank">
+            <a href="https://www.linkedin.com/in/neoh-wei-jian/" target="_blank">
                 <img src="images/linkedin.svg" alt="LinkedIn">
             </a>
-            <a href="https://github.com/YOUR-GITHUB-USERNAME" target="_blank">
+            <a href="https://github.com/HenryNeoh" target="_blank">
                 <img src="images/github.svg" alt="GitHub">
             </a>
             <!--
@@ -235,7 +105,7 @@
                 <p class="p2">I am a fresh graduate with a Diploma in Computer Engineering based in Georgetown, Penang, Malaysia. I have a strong passion for technology and software development and enjoy learning new tools and technologies to improve my skills as a developer.</p>
                 <p class="p2">I also completed a 4-month internship as a Software Engineering Intern at ECTrons Sdn Bhd, where I assisted in developing and maintaining web applications and collaborated with senior developers to implement new features.</p>
                 <p class="p2">I am a motivated individual who enjoys solving technical challenges and building useful digital solutions. I am eager to continue learning and grow as a software developer.</p>
-                <a href="images/My_Resume.pdf" target="_blank"><button>Download CV</button></a>
+                <a href="images/Resume(2)_NEOH_WEI_JIAN.pdf" target="_blank"><button>Download CV</button></a>
             </div>
         </div>
     </section>
@@ -543,14 +413,12 @@
         <div class="contact-container">
             <div class="contact-info">
                 <h1 class="text-reveal">Connect With Me</h1>
-                <p>Phone No.:<br> +60 12-345-6789</p>
-                <p>Email:<br> architagrawal063@gmail.com</p>
+                <p>Phone No.:<br> +60173014638</p>
+                <p>Email:<br> henryneoh22@gmail.com</p>
                 <p>Social Links:</p>
                 <div class="social-links">
-                    <a href="https://www.linkedin.com/in/archit-agrawal-860105293/" target="_blank"><img src="images/linkedin.svg" alt="LinkedIn"></a>
-                    <a href="https://github.com/ArchitAgrawal25" target="_blank"><img src="images/github.svg" alt="GitHub"></a>
-                    <a href="https://www.instagram.com/archit_agrawal_25/" target="_blank"><img src="images/instagram.svg" alt="Instagram"></a>
-                    <a href="https://medium.com/@architagrawal063" target="_blank"><img src="images/medium.svg" alt="Medium"></a>
+                    <a href="https://www.linkedin.com/in/neoh-wei-jian/" target="_blank"><img src="images/linkedin.svg" alt="LinkedIn"></a>
+                    <a href="https://github.com/HenryNeoh" target="_blank"><img src="images/github.svg" alt="GitHub"></a>
                 </div>
             </div>
         </div>

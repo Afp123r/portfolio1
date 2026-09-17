@@ -1,6 +1,6 @@
 # Minimalist Portfolio
 
-A clean and minimalist portfolio website template built with Next.js.
+A clean and minimalist portfolio website for Neoh Wei Jian, built with Next.js 14.
 
 ## Quick Deploy
 
@@ -10,10 +10,40 @@ Click the button below to deploy to Tencent Cloud EdgeOne with one click:
 
 ## Features
 
-- Responsive design
-- Configurable content
-- Modern UI/UX
-- Easy to customize
+- Responsive design with mobile optimizations (iOS, Android, Windows)
+- Configurable content via JSON
+- Modern UI/UX with animations
+- Password-protected CV and project downloads
+- EmailJS contact form integration
+- Dark mode support
+- View counter component
+- Multiple deployment configurations (production/staging)
+
+## Project Structure
+
+```
+minimalist-portfolio/
+├── src/
+│   ├── app/
+│   │   ├── page.tsx          # Main React portfolio page
+│   │   ├── layout.tsx        # Root layout with metadata
+│   │   └── api/              # API routes
+│   ├── config/
+│   │   └── content.json      # All portfolio content
+│   └── utils/                # Utility functions
+├── public/
+│   ├── images/               # Static images and resume files
+│   ├── css/                  # External CSS libraries
+│   ├── index.html            # Static HTML version
+│   ├── style.css             # Original CSS (124KB - legacy)
+│   └── style-clean.css       # Optimized CSS (13KB - in use)
+├── turbid/                   # Alternative portfolio version
+├── obfuscated/               # Minified/obfuscated versions
+├── deployment/              # Server configurations
+│   ├── production/
+│   └── staging/
+└── out/                      # Build output directory
+```
 
 ## Quick Start
 
