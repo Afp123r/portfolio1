@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import ViewCounter from "./ViewCounter";
 
 export const metadata: Metadata = {
-  title: 'Neoh Wei Jian - Full Stack Developer | Portfolio',
+  title: 'Portfolio - Neoh Wei Jian - Full Stack Developer | Portfolio',
   description: 'Full Stack Developer specializing in React, Next.js, Python, and Data Science. Building exceptional and accessible digital experiences for the web.',
   keywords: ['Full Stack Developer', 'React', 'Next.js', 'Python', 'Data Science', 'Machine Learning', 'Web Development', 'Portfolio'],
   authors: [{ name: 'Neoh Wei Jian' }],
@@ -16,10 +16,10 @@ export const metadata: Metadata = {
   },
   metadataBase: new URL('https://portfolio1.edgeone.app'),
   openGraph: {
-    title: 'Neoh Wei Jian - Full Stack Developer',
+    title: 'Portfolio - Neoh Wei Jian - Full Stack Developer',
     description: 'Full Stack Developer specializing in React, Next.js, Python, and Data Science. Building exceptional and accessible digital experiences.',
     url: 'https://portfolio1.edgeone.app/',
-    siteName: 'Neoh Wei Jian Portfolio',
+    siteName: 'Portfolio - Neoh Wei Jian',
     images: [
       {
         url: '/images/avatar.png',
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Neoh Wei Jian - Full Stack Developer',
+    title: 'Portfolio - Neoh Wei Jian - Full Stack Developer',
     description: 'Full Stack Developer specializing in React, Next.js, Python, and Data Science.',
     images: ['/images/avatar.png'],
     creator: '@HenryNeoh',
