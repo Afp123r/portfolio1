@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Henry | Portfolio</title>
+    <title>Neoh Wei Jian - Full Stack Developer Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Leckerli+One&family=Lilita+One&family=Patrick+Hand&family=Shadows+Into+Light&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -31,26 +31,26 @@
 <body>
     <!-- Navbar Html Code  -->
     <header>
-        <nav id="navBar" class="navBar">
+        <nav id="navBar" class="navBar" role="navigation" aria-label="Main navigation">
             <div class="name">
                 <h1 class="henry-text">Henry</h1>
             </div>
-            <div class="menu-toggle" id="menu-toggle">
+            <button class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
                 <div class="hamburger">
                     <span></span>
                     <span></span>
                     <span></span>
                 </div>
             </div>
-            <div class="menu" id="menu">
+            <div class="menu" id="menu" role="menu" aria-hidden="true">
                 <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#skills">Skills</a></li>
-                    <li><a href="#experience">Experience</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#blog">Blogs</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#home" aria-label="Navigate to Home section">Home</a></li>
+                    <li><a href="#about" aria-label="Navigate to About section">About</a></li>
+                    <li><a href="#skills" aria-label="Navigate to Skills section">Skills</a></li>
+                    <li><a href="#experience" aria-label="Navigate to Experience section">Experience</a></li>
+                    <li><a href="#projects" aria-label="Navigate to Projects section">Projects</a></li>
+                    <li><a href="#blog" aria-label="Navigate to Blogs section">Blogs</a></li>
+                    <li><a href="#contact" aria-label="Navigate to Contact section">Contact</a></li>
                 </ul>
             </div>
         </nav>
@@ -58,20 +58,20 @@
     <!-- Navbar Html Code  -->
 
     <!-- Hero Section Html Code -->
-<section class="hero" id="home" data-aos="fade-up">
-    <div class="over"></div>
-    <div class="hero-container">
-        <h1 class="intro">
-            <span class="up">HI!</span><br>
-            <span class="down">I am <strong>Neoh Wei Jian</strong></span>
-        </h1>
-        <h2>I'm into <span class="auto-type"></span></h2>
+    <section class="hero" id="home" data-aos="fade-up" aria-labelledby="hero-heading">
+        <div class="over"></div>
+        <div class="hero-container">
+            <h1 class="intro" id="hero-heading">
+                <span class="up">HI!</span><br>
+                <span class="down">I am <strong>Neoh Wei Jian</strong></span>
+            </h1>
+            <h2>I'm into <span class="auto-type"></span></h2>
 
         <div class="botton">
-            <a href="https://www.linkedin.com/in/neoh-wei-jian/" target="_blank">
+            <a href="https://www.linkedin.com/in/neoh-wei-jian/" target="_blank" rel="noopener noreferrer" aria-label="Visit LinkedIn profile">
                 <img src="images/linkedin.svg" alt="LinkedIn">
             </a>
-            <a href="https://github.com/HenryNeoh" target="_blank">
+            <a href="https://github.com/HenryNeoh" target="_blank" rel="noopener noreferrer" aria-label="Visit GitHub profile">
                 <img src="images/github.svg" alt="GitHub">
             </a>
             <!--
@@ -87,35 +87,35 @@
 <!-- Hero Section Html Code -->
 
     <!-- About Section Html Code -->
-    <section class="about" id="about" data-aos="fade-up">
+    <section class="about" id="about" data-aos="fade-up" aria-labelledby="about-heading">
         <div class="about-container">
             <div class="imgeffect">
                 <div class="flipper">
                     <div class="front">
-                        <img src="images/githubprofile.png" alt="">
+                        <img src="images/githubprofile.png" alt="Neoh Wei Jian GitHub profile picture">
                     </div>
                     <div class="back">
-                        <img src="images/profile2.png" alt=""> 
+                        <img src="images/profile2.png" alt="Neoh Wei Jian profile picture"> 
                     </div>
                 </div>
             </div>
             <div class="text">
                 <p class="p1">Who Am I?</p>
-                <h2>About Me</h2>
+                <h2 id="about-heading">About Me</h2>
                 <p class="p2">I am a fresh graduate with a Diploma in Computer Engineering based in Georgetown, Penang, Malaysia. I have a strong passion for technology and software development and enjoy learning new tools and technologies to improve my skills as a developer.</p>
                 <p class="p2">I also completed a 4-month internship as a Software Engineering Intern at ECTrons Sdn Bhd, where I assisted in developing and maintaining web applications and collaborated with senior developers to implement new features.</p>
                 <p class="p2">I am a motivated individual who enjoys solving technical challenges and building useful digital solutions. I am eager to continue learning and grow as a software developer.</p>
-                <a href="images/Resume(2)_NEOH_WEI_JIAN.pdf" target="_blank"><button>Download CV</button></a>
+                <a href="images/Resume(2)_NEOH_WEI_JIAN.pdf" target="_blank" rel="noopener noreferrer" aria-label="Download Neoh Wei Jian's CV as PDF"><button>Download CV</button></a>
             </div>
         </div>
     </section>
     <!-- About Section Html Code -->
 
     <!-- Skills Section Html Code -->
-    <section class="Skills" id="skills" data-aos="fade-up">
+    <section class="Skills" id="skills" data-aos="fade-up" aria-labelledby="skills-heading">
         <div class="container">
             <div class="heading">
-                <h1 class="skillh1 text-reveal">My Skills</h1>
+                <h1 class="skillh1 text-reveal" id="skills-heading">My Skills</h1>
             </div>
             <div class="mainSkill">
                 <div class="front">
@@ -280,8 +280,8 @@
     <!-- Skills Section Html Code -->
 
     <!-- Experience Section Html Code -->
-    <section class="Experience" id="experience" data-aos="fade-up">
-        <h1>Experience</h1>
+    <section class="Experience" id="experience" data-aos="fade-up" aria-labelledby="experience-heading">
+        <h1 id="experience-heading">Experience</h1>
         <div class="container-ex">
            <div class="timeline-block timeline-block-right">
               <div class="marker"></div>
@@ -314,29 +314,29 @@
     <!-- Experience Section Html Code -->
 
     <!-- Project Section Html Code -->
-    <section class="project" id="projects" data-aos="fade-up">
+    <section class="project" id="projects" data-aos="fade-up" aria-labelledby="projects-heading">
         <div class="main">
-            <h1>Projects</h1>
+            <h1 id="projects-heading">Projects</h1>
             <div class="container">
                 <div class="card" data-aos="fade-up" data-aos-delay="0">
                     <div class="card-inner" style="--clr:#fff;">
                         <div class="box">
                             <div class="imgBox">
-                                <img src="images/codeblog.png" alt="Trust & Co.">
+                                <img src="https://i.ibb.co/5xGcxHvc/Generated-Image-June-23-2025-11-19-PM.jpg" alt="Barcode Filing Management System">
                             </div>
                             <div class="icon">
-                                <a href="https://github.com/ArchitAgrawal25/Code-Blog" class="iconBox" target="_blank"> <span class="material-symbols-outlined">
+                                <a href="https://github.com/HenryNeoh" class="iconBox" target="_blank" rel="noopener noreferrer"> <span class="material-symbols-outlined">
                                     arrow_outward
                                 </span></a>
                             </div>
                         </div>
                     </div>
                     <div class="content">
-                        <h3>CodeBlog</h3>
-                        <p>A platform for coders and programmers to share blogs on coding and software development.</p>
+                        <h3>Barcode Filing Management System</h3>
+                        <p>The Barcode Filing Management System is a digital solution designed to streamline the organization and retrieval of physical documents using barcode technology.</p>
                         <ul>
-                            <a href="https://kdgehlot2003.github.io/Code-Blog/" target="_blank"><li class="site">visit site</li></a>
-                            <a href="https://github.com/ArchitAgrawal25/Code-Blog" target="_blank"><li class="github">github</li></a>
+                            <a href="https://fyp1.qzz.io" target="_blank" rel="noopener noreferrer"><li class="site">visit site</li></a>
+                            <a href="https://github.com/HenryNeoh" target="_blank" rel="noopener noreferrer"><li class="github">github</li></a>
                         </ul>
                     </div>
                 </div>
@@ -345,21 +345,20 @@
                     <div class="card-inner" style="--clr:#fff;">
                         <div class="box">
                             <div class="imgBox">
-                                <img src="images/visinory.png" alt="Tonic">
+                                <img src="https://i.ibb.co/yFsDGMNm/Generated-Image-June-23-2025-11-08-PM.jpg" alt="Camera Photo Booth with Filters & Animations">
                             </div>
                             <div class="icon">
-                                <a href="https://github.com/ArchitAgrawal25/Visionary" class="iconBox" target="_blank"> <span class="material-symbols-outlined">
+                                <a href="https://github.com/HenryNeoh" class="iconBox" target="_blank" rel="noopener noreferrer"> <span class="material-symbols-outlined">
                                     arrow_outward
                                 </span></a>
                             </div>
                         </div>
                     </div>
                     <div class="content">
-                        <h3>Visionary</h3>
-                        <p>A website that predicts crop diseases and identifies soil types to support smarter farming.</p>
+                        <h3>Camera Photo Booth with Filters & Animations</h3>
+                        <p>The Camera Photo Booth is a fun and interactive web application that allows users to take photos using their device's camera and apply real-time filters and animations.</p>
                         <ul>
-                            <a href="https://visinory.netlify.app/" target="_blank"><li class="site">Visit Site</li></a>
-                            <a href="https://github.com/ArchitAgrawal25/Visionary" target="_blank"><li class="github">Github</li></a>
+                            <a href="https://github.com/HenryNeoh" target="_blank" rel="noopener noreferrer"><li class="github">github</li></a>
                         </ul>
                     </div>
                 </div>
@@ -368,21 +367,21 @@
                     <div class="card-inner" style="--clr:#fff;">
                         <div class="box">
                             <div class="imgBox">
-                                <img src="images/tbvision.png" alt="Shower Gel">
+                                <img src="https://i.ibb.co/rKTYHbKK/Generated-Image-June-23-2025-11-13-PM.jpg" alt="Face Recognition Web App">
                             </div>
                             <div class="icon">
-                                <a href="https://github.com/ArchitAgrawal25/Tuberculosis-Detector-TBVIISION" class="iconBox" target="_blank"> <span class="material-symbols-outlined">
+                                <a href="https://github.com/HenryNeoh" class="iconBox" target="_blank" rel="noopener noreferrer"> <span class="material-symbols-outlined">
                                     arrow_outward
                                 </span></a>
                             </div>
                         </div>
                     </div>
                     <div class="content">
-                        <h3>TBVision</h3>
-                        <p>A platform that predicts tuberculosis (TB) from chest X-rays for early and accurate diagnosis.</p>
+                        <h3>Face Recognition Web App</h3>
+                        <p>This Face Recognition Web App uses real-time camera input to detect and recognize faces through a web interface and sends notifications via Telegram Bot API.</p>
                         <ul>
-                            <a href="https://tbvision.netlify.app/" target="_blank"><li class="site">visit site</li></a>
-                            <a href="https://github.com/ArchitAgrawal25/Tuberculosis-Detector-TBVIISION" target="_blank"><li class="github">github</li></a>
+                            <a href="https://webf.meho.dpdns.org" target="_blank" rel="noopener noreferrer"><li class="site">visit site</li></a>
+                            <a href="https://github.com/HenryNeoh" target="_blank" rel="noopener noreferrer"><li class="github">github</li></a>
                         </ul>
                     </div>
                 </div>
@@ -392,9 +391,9 @@
     <!-- Project Section Html Code -->
 
     <!-- Blog Section Html Code -->
-    <section class="blogs" id="blog" data-aos="fade-up">
+    <section class="blogs" id="blog" data-aos="fade-up" aria-labelledby="blog-heading">
         <div class="tit">
-            <h1>Blogs</h1>
+            <h1 id="blog-heading">Blogs</h1>
         </div>
         <div class="con">
             <div class="article-card">
@@ -409,16 +408,16 @@
     <!-- Blog Section Html Code -->
 
     <!-- Contact Section Html Code  -->
-    <section class="contact" id="contact" data-aos="fade-up">
+    <section class="contact" id="contact" data-aos="fade-up" aria-labelledby="contact-heading">
         <div class="contact-container">
             <div class="contact-info">
-                <h1 class="text-reveal">Connect With Me</h1>
+                <h1 class="text-reveal" id="contact-heading">Connect With Me</h1>
                 <p>Phone No.:<br> +60173014638</p>
                 <p>Email:<br> henryneoh22@gmail.com</p>
                 <p>Social Links:</p>
                 <div class="social-links">
-                    <a href="https://www.linkedin.com/in/neoh-wei-jian/" target="_blank"><img src="images/linkedin.svg" alt="LinkedIn"></a>
-                    <a href="https://github.com/HenryNeoh" target="_blank"><img src="images/github.svg" alt="GitHub"></a>
+                    <a href="https://www.linkedin.com/in/neoh-wei-jian/" target="_blank" rel="noopener noreferrer" aria-label="Visit LinkedIn profile"><img src="images/linkedin.svg" alt="LinkedIn"></a>
+                    <a href="https://github.com/HenryNeoh" target="_blank" rel="noopener noreferrer" aria-label="Visit GitHub profile"><img src="images/github.svg" alt="GitHub"></a>
                 </div>
             </div>
         </div>
