@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { useEffect, useState } from 'react';
 import ViewCounter from "./ViewCounter";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = {/*website name change here*/
   title: 'Portfolio - Neoh Wei Jian - Full Stack Developer | Portfolio',
   description: 'Full Stack Developer specializing in React, Next.js, Python, and Data Science. Building exceptional and accessible digital experiences for the web.',
   keywords: ['Full Stack Developer', 'React', 'Next.js', 'Python', 'Data Science', 'Machine Learning', 'Web Development', 'Portfolio'],
@@ -103,7 +103,6 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Leckerli+One&family=Lilita+One&family=Patrick+Hand&family=Shadows+Into+Light&display=swap" rel="stylesheet" />
         <link href="/style.css" rel="stylesheet" />
-        <script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
         <style dangerouslySetInnerHTML={{
           __html: `
             body {

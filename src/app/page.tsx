@@ -5,6 +5,7 @@ import content from '../config/content.json';
 import ViewCounter from "./ViewCounter";
 
 export default function Home() {
+  const [linkedinScriptLoaded, setLinkedinScriptLoaded] = useState(false);
   const [showPasswordModal, setShowPasswordModal] = useState(false);
   const [password, setPassword] = useState('');
   const [passwordError, setPasswordError] = useState('');
@@ -183,6 +184,17 @@ export default function Home() {
   };
 
   useEffect(() => {
+    // Load LinkedIn badge script dynamically
+    if (!linkedinScriptLoaded) {
+      const script = document.createElement('script');
+      script.src = 'https://platform.linkedin.com/badges/js/profile.js';
+      script.async = true;
+      script.defer = true;
+      script.type = 'text/javascript';
+      script.onload = () => setLinkedinScriptLoaded(true);
+      document.head.appendChild(script);
+    }
+
     // Enhanced iOS设备检测和优化
     const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
                  (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
@@ -1485,7 +1497,7 @@ export default function Home() {
               </div>
               <div className="linkedin-badge-container">
                 <div className="badge-base LI-profile-badge" data-locale="en_US" data-size="large" data-theme="light" data-type="HORIZONTAL" data-vanity="neoh-wei-jian" data-version="v1">
-                  <a className="badge-base__link LI-simple-link" href="https://my.linkedin.com/in/neoh-wei-jian?trk=profile-badge"></a>
+                  <a className="badge-base__link LI-simple-link" href="https://www.linkedin.com/in/neoh-wei-jian?trk=profile-badge" target="_blank" rel="noopener noreferrer"></a>
                 </div>
               </div>
               <div className="jobstreet-profile-badge">
