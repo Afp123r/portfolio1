@@ -125,6 +125,7 @@ body.dark-mode {
   .menu.active {
     display: flex;
     transform: translateX(0);
+    padding: 55px 18px;
   }
 
   .menu ul {
@@ -166,10 +167,10 @@ body.dark-mode {
     transform: translateX(4px);
   }
 
-  .menu ul li a:hover::after {
+ /* .menu ul li a:hover::after {
     opacity: 1;
     transform: translateX(0);
-  }
+  }*/
 
   .menu ul li button.theme-toggle {
     width: 100%;
@@ -608,6 +609,8 @@ header.header-scrolled {
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: transparent;
+    border: none;
   }
 }
 
@@ -3022,7 +3025,7 @@ body.dark-mode header.header-scrolled {
 
 
 .menu ul li a:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgb(134 146 255);
   transform: translateY(-2px);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
 }
