@@ -14,6 +14,7 @@ export default function Home() {
   const [projectUrl, setProjectUrl] = useState('');
   const [showIOSNotification, setShowIOSNotification] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [showQRCode, setShowQRCode] = useState(false);
   
   // Password stored in environment variable for better security
   const CORRECT_PASSWORD = process.env.NEXT_PUBLIC_CV_PASSWORD || 'cv321';
@@ -209,6 +210,52 @@ export default function Home() {
     const iosVersion = getIOSVersion();
     const isIOS13Plus = iosVersion && iosVersion >= 13;
     
+    // iOS优化初始化函数
+    const initIOSBasicOptimizations = () => {
+      // 修复iOS滚动性能
+      const sections = document.querySelectorAll('section') as NodeListOf<HTMLElement>;
+      sections.forEach(section => {
+        (section as HTMLElement).style.transform = 'translateZ(0)';
+        (section as HTMLElement).style.backfaceVisibility = 'hidden';
+        ((section as HTMLElement).style as any).webkitTransform = 'translateZ(0)';
+        ((section as HTMLElement).style as any).webkitBackfaceVisibility = 'hidden';
+      });
+      
+      // 防止iOS缩放
+      const inputs = document.querySelectorAll('input[type="text"], input[type="email"], input[type="password"], textarea') as NodeListOf<HTMLInputElement | HTMLTextAreaElement>;
+      inputs.forEach(input => {
+        const element = input as HTMLInputElement | HTMLTextAreaElement;
+        element.style.fontSize = '16px';
+        (element.style as any).webkitAppearance = 'none';
+        (element.style as any).webkitTapHighlightColor = 'transparent';
+      });
+      
+      // iOS按钮优化
+      const buttons = document.querySelectorAll('button') as NodeListOf<HTMLButtonElement>;
+      buttons.forEach(button => {
+        const element = button as HTMLButtonElement;
+        (element.style as any).webkitTapHighlightColor = 'transparent';
+        (element.style as any).webkitTouchCallout = 'none';
+        (element.style as any).webkitUserSelect = 'none';
+      });
+      
+      // iOS链接优化
+      const links = document.querySelectorAll('a') as NodeListOf<HTMLAnchorElement>;
+      links.forEach(link => {
+        const element = link as HTMLAnchorElement;
+        (element.style as any).webkitTapHighlightColor = 'transparent';
+        (element.style as any).webkitTouchCallout = 'none';
+      });
+      
+      // iOS滚动容器优化
+      const scrollContainers = document.querySelectorAll('.experience-container, .projects-showcase, .skills-container') as NodeListOf<HTMLElement>;
+      scrollContainers.forEach(container => {
+        const element = container as HTMLElement;
+        (element.style as any).webkitOverflowScrolling = 'touch';
+        (element.style as any).webkitTransform = 'translateZ(0)';
+      });
+    };
+
     // iOS特定优化
     if (isIOS) {
       document.documentElement.classList.add('ios-scroll-fix');
@@ -224,52 +271,6 @@ export default function Home() {
           setTimeout(initIOSBasicOptimizations, 100);
         }
       });
-      
-      // iOS优化初始化函数
-      const initIOSBasicOptimizations = () => {
-        // 修复iOS滚动性能
-        const sections = document.querySelectorAll('section') as NodeListOf<HTMLElement>;
-        sections.forEach(section => {
-          (section as HTMLElement).style.transform = 'translateZ(0)';
-          (section as HTMLElement).style.backfaceVisibility = 'hidden';
-          ((section as HTMLElement).style as any).webkitTransform = 'translateZ(0)';
-          ((section as HTMLElement).style as any).webkitBackfaceVisibility = 'hidden';
-        });
-        
-        // 防止iOS缩放
-        const inputs = document.querySelectorAll('input[type="text"], input[type="email"], input[type="password"], textarea') as NodeListOf<HTMLInputElement | HTMLTextAreaElement>;
-        inputs.forEach(input => {
-          const element = input as HTMLInputElement | HTMLTextAreaElement;
-          element.style.fontSize = '16px';
-          (element.style as any).webkitAppearance = 'none';
-          (element.style as any).webkitTapHighlightColor = 'transparent';
-        });
-        
-        // iOS按钮优化
-        const buttons = document.querySelectorAll('button') as NodeListOf<HTMLButtonElement>;
-        buttons.forEach(button => {
-          const element = button as HTMLButtonElement;
-          (element.style as any).webkitTapHighlightColor = 'transparent';
-          (element.style as any).webkitTouchCallout = 'none';
-          (element.style as any).webkitUserSelect = 'none';
-        });
-        
-        // iOS链接优化
-        const links = document.querySelectorAll('a') as NodeListOf<HTMLAnchorElement>;
-        links.forEach(link => {
-          const element = link as HTMLAnchorElement;
-          (element.style as any).webkitTapHighlightColor = 'transparent';
-          (element.style as any).webkitTouchCallout = 'none';
-        });
-        
-        // iOS滚动容器优化
-        const scrollContainers = document.querySelectorAll('.experience-container, .projects-showcase, .skills-container') as NodeListOf<HTMLElement>;
-        scrollContainers.forEach(container => {
-          const element = container as HTMLElement;
-          (element.style as any).webkitOverflowScrolling = 'touch';
-          (element.style as any).overflowScrolling = 'touch';
-        });
-      };
       
       // 初始化iOS优化
       initIOSBasicOptimizations();
@@ -1252,6 +1253,11 @@ export default function Home() {
                   <span className="theme-icon">🌙</span>
                 </button>
               </li>
+              <li>
+                <button className="qr-toggle" onClick={() => setShowQRCode(!showQRCode)} aria-label="Share portfolio">
+                  <span className="qr-icon">📱</span>
+                </button>
+              </li>
             </ul>
           </div>
           <button className="nav-arrow nav-arrow-right" id="navArrowRight" aria-label="Scroll right">
@@ -1711,6 +1717,29 @@ export default function Home() {
       </section>
 
       <ViewCounter />
+      
+      {/* QR Code Modal */}
+      {showQRCode && (
+        <div className={`qr-modal-overlay ${showQRCode ? 'active' : ''}`} onClick={() => setShowQRCode(false)}>
+          <div className="qr-modal" onClick={(e) => e.stopPropagation()}>
+            <div className="qr-modal-header">
+              <h3>Share Portfolio</h3>
+              <button className="close-modal" onClick={() => setShowQRCode(false)}>&times;</button>
+            </div>
+            <div className="qr-modal-body">
+              <div className="qr-code-container">
+                <img 
+                  src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://portfolio1.edgeone.app" 
+                  alt="Portfolio QR Code"
+                  width="200"
+                  height="200"
+                />
+              </div>
+              <p className="qr-instruction">Scan to share this portfolio</p>
+            </div>
+          </div>
+        </div>
+      )}
       
       {/* Password Modal */}
       {showPasswordModal && (

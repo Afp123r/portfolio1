@@ -36,20 +36,21 @@ body.dark-mode {
   color: #e0e0e0;
 }
 
-/* Modern Hamburger Menu Toggle */
+/* Hamburger Menu Toggle - Fresh Implementation */
 .menu-toggle {
   display: none;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
   background: rgba(102, 126, 234, 0.1);
   border: 2px solid rgba(102, 126, 234, 0.2);
   border-radius: 12px;
   padding: 10px;
   z-index: 1002;
-  position: relative;
   width: 44px;
   height: 44px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.3s ease;
 }
 
 .menu-toggle:hover {
@@ -58,18 +59,9 @@ body.dark-mode {
   transform: scale(1.05);
 }
 
-.menu-toggle:active {
-  transform: scale(0.95);
-}
-
 .hamburger {
-  position: relative;
-  width: 100%;
-  height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   gap: 5px;
 }
 
@@ -78,7 +70,7 @@ body.dark-mode {
   height: 3px;
   background: #333;
   border-radius: 3px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.3s ease;
 }
 
 .menu-toggle.active .hamburger span:nth-child(1) {
@@ -96,7 +88,7 @@ body.dark-mode {
   background: #667eea;
 }
 
-/* Modern Mobile Menu Styles */
+/* Mobile Menu Panel - Fresh Implementation */
 @media (max-width: 768px) {
   .menu-toggle {
     display: flex;
@@ -105,9 +97,6 @@ body.dark-mode {
   .navBar {
     height: 70px;
     padding: 0 1.5rem;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
   }
 
   .navBar .name h1 {
@@ -120,14 +109,13 @@ body.dark-mode {
     position: fixed;
     top: 0;
     right: 0;
-    width: 40%;
-    max-width: 400px;
+    width: 50%;
     height: 100vh;
     background: rgba(255, 255, 255, 0.85);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     box-shadow: -8px 0 32px rgba(0, 0, 0, 0.15);
-    padding: 100px 32px 32px;
+    padding: 100px 40px 40px;
     transform: translateX(100%);
     transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 1001;
@@ -139,17 +127,6 @@ body.dark-mode {
     transform: translateX(0);
   }
 
-  .menu::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 80px;
-    background: linear-gradient(135deg, rgba(102, 126, 234, 0.05), rgba(118, 75, 162, 0.05));
-    pointer-events: none;
-  }
-
   .menu ul {
     flex-direction: column;
     gap: 4px;
@@ -158,29 +135,6 @@ body.dark-mode {
 
   .menu ul li {
     width: 100%;
-    opacity: 0;
-    transform: translateX(30px);
-    animation: slideIn 0.4s ease forwards;
-  }
-
-  .menu ul li:nth-child(1) { animation-delay: 0.05s; }
-  .menu ul li:nth-child(2) { animation-delay: 0.1s; }
-  .menu ul li:nth-child(3) { animation-delay: 0.15s; }
-  .menu ul li:nth-child(4) { animation-delay: 0.2s; }
-  .menu ul li:nth-child(5) { animation-delay: 0.25s; }
-  .menu ul li:nth-child(6) { animation-delay: 0.3s; }
-  .menu ul li:nth-child(7) { animation-delay: 0.35s; }
-  .menu ul li:nth-child(8) { animation-delay: 0.4s; }
-  .menu ul li:nth-child(9) { animation-delay: 0.45s; }
-  .menu ul li:nth-child(10) { animation-delay: 0.5s; }
-  .menu ul li:nth-child(11) { animation-delay: 0.55s; }
-  .menu ul li:nth-child(12) { animation-delay: 0.6s; }
-
-  @keyframes slideIn {
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
   }
 
   .menu ul li a {
@@ -243,6 +197,33 @@ body.dark-mode {
     border-color: rgba(102, 126, 234, 0.3);
     transform: translateX(4px);
   }
+
+  .menu ul li button.qr-toggle {
+    width: 100%;
+    padding: 16px 20px;
+    background: rgba(102, 126, 234, 0.05);
+    border: 1px solid rgba(102, 126, 234, 0.2);
+    color: #667eea;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 12px;
+    margin-top: 12px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .menu ul li button.qr-toggle::after {
+    content: '📱';
+    font-size: 1.2rem;
+  }
+
+  .menu ul li button.qr-toggle:hover {
+    background: rgba(102, 126, 234, 0.1);
+    border-color: rgba(102, 126, 234, 0.3);
+    transform: translateX(4px);
+  }
 }
 
 @media (max-width: 480px) {
@@ -254,20 +235,20 @@ body.dark-mode {
     font-size: 1.3rem;
   }
 
-  .menu {
-    width: 50%;
-    max-width: 280px;
-    padding: 90px 24px 24px;
+  .menu {/*hamburger menu panel for mobile device*/
+    width: 45%;
+    padding: 90px 32px 32px;
+    background-color: rgb(201, 183, 247);
   }
 
   .menu ul li a {
-    padding: 14px 16px;
-    font-size: 0.95rem;
+    padding: 16px 18px;
+    font-size: 1rem;
   }
 
   .menu ul li button.theme-toggle {
-    padding: 14px 16px;
-    font-size: 0.95rem;
+    padding: 16px 18px;
+    font-size: 1rem;
   }
 
   .menu-toggle {
@@ -279,6 +260,61 @@ body.dark-mode {
   .hamburger span {
     width: 22px;
     height: 2.5px;
+  }
+}
+
+/* Dark Mode for Mobile Menu - Fresh Implementation */
+@media (max-width: 768px) {
+  body.dark-mode .menu {
+    background: rgba(15, 15, 26, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+
+  body.dark-mode .menu ul li a {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    color: #e0e0e0;
+  }
+
+  body.dark-mode .menu ul li a::after {
+    color: #a78bfa;
+  }
+
+  body.dark-mode .menu ul li a:hover {
+    background: rgba(167, 139, 250, 0.05);
+    border-color: rgba(167, 139, 250, 0.2);
+    color: #a78bfa;
+  }
+
+  body.dark-mode .menu ul li button.theme-toggle {
+    background: rgba(167, 139, 250, 0.05);
+    border: 1px solid rgba(167, 139, 250, 0.2);
+    color: #a78bfa;
+  }
+
+  body.dark-mode .menu ul li button.theme-toggle:hover {
+    background: rgba(167, 139, 250, 0.1);
+    border-color: rgba(167, 139, 250, 0.3);
+  }
+
+  body.dark-mode .menu-toggle {
+    background: rgba(167, 139, 250, 0.1);
+    border: 2px solid rgba(167, 139, 250, 0.2);
+  }
+
+  body.dark-mode .menu-toggle:hover {
+    background: rgba(167, 139, 250, 0.2);
+    border-color: rgba(167, 139, 250, 0.3);
+  }
+
+  body.dark-mode .hamburger span {
+    background: #e0e0e0;
+  }
+
+  body.dark-mode .menu-toggle.active .hamburger span:nth-child(1),
+  body.dark-mode .menu-toggle.active .hamburger span:nth-child(3) {
+    background: #a78bfa;
   }
 }
 
@@ -303,101 +339,119 @@ body.dark-mode {
   opacity: 1;
 }
 
-/* Enhanced Dark Mode Hamburger Menu */
-body.dark-mode .menu-toggle {
-  background: var(--dark-glass-bg);
-  border: 1px solid var(--dark-border);
-  box-shadow: var(--dark-shadow-sm);
+/* QR Code Modal Styles */
+.qr-modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  z-index: 9999;
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
-body.dark-mode .menu-toggle:hover {
-  background: var(--dark-surface-elevated);
-  border-color: var(--dark-border-hover);
-  box-shadow: var(--dark-shadow-md);
+.qr-modal-overlay.active {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
 }
 
-body.dark-mode .hamburger span {
-  background: var(--dark-gradient-1);
-  box-shadow: 0 2px 8px rgba(139, 92, 246, 0.6);
+.qr-modal {
+  background: white;
+  border-radius: 16px;
+  padding: 32px;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  transform: scale(0.9);
+  transition: transform 0.3s ease;
 }
 
-body.dark-mode .menu {
-  background: var(--dark-glass-bg);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border-left: 1px solid var(--dark-glass-border);
-  box-shadow: 
-    -20px 0 60px rgba(0, 0, 0, 0.4),
-    inset 1px 0 0 var(--dark-glass-border);
+.qr-modal-overlay.active .qr-modal {
+  transform: scale(1);
 }
 
-body.dark-mode .menu::before {
-  background: linear-gradient(90deg, 
-    transparent 0%, 
-    var(--dark-primary) 20%, 
-    var(--dark-secondary) 50%, 
-    var(--dark-accent) 80%, 
-    transparent 100%);
+.qr-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
 }
 
-body.dark-mode .menu::after {
-  background: linear-gradient(135deg, 
-    var(--dark-primary) 0%, 
-    transparent 50%, 
-    var(--dark-secondary) 100%);
+.qr-modal-header h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333;
 }
 
-body.dark-mode .menu ul li a {
-  background: var(--dark-surface);
-  border: 1px solid var(--dark-border);
-  color: var(--dark-text-secondary);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  box-shadow: var(--dark-shadow-sm);
+.qr-modal-header .close-modal {
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #666;
+  transition: color 0.3s ease;
 }
 
-body.dark-mode .menu ul li a:hover {
-  background: var(--dark-gradient-1);
-  color: var(--dark-text-primary);
-  box-shadow: var(--dark-shadow-md);
-  transform: translateX(-5px) scale(1.02);
-  border-color: var(--dark-border-hover);
+.qr-modal-header .close-modal:hover {
+  color: #333;
 }
 
-body.dark-mode .menu ul li a::after {
-  color: var(--dark-text-muted);
+.qr-modal-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-body.dark-mode .menu ul li a:hover::after {
-  color: var(--dark-text-primary);
+.qr-code-container {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  border: 2px solid #e0e0e0;
+  margin-bottom: 16px;
 }
 
-body.dark-mode .menu ul li button.theme-toggle {
-  background: var(--dark-surface);
-  border: 1px solid var(--dark-border);
-  color: var(--dark-text-secondary);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  box-shadow: var(--dark-shadow-sm);
+.qr-instruction {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #666;
+  text-align: center;
 }
 
-body.dark-mode .menu ul li button.theme-toggle:hover {
-  background: var(--dark-gradient-1);
-  color: var(--dark-text-primary);
-  box-shadow: var(--dark-shadow-md);
-  border-color: var(--dark-border-hover);
+/* Dark mode for QR modal */
+body.dark-mode .qr-modal {
+  background: rgba(30, 30, 46, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-@media (max-width: 768px) {
-  body.dark-mode .menu {
-    background: rgba(30, 30, 46, 0.72);
-    border-left: 1px solid rgba(255, 255, 255, 0.15);
-  }
-
-  body.dark-mode .menu-overlay {
-    background: rgba(0, 0, 0, 0.6);
-  }
+body.dark-mode .qr-modal-header h3 {
+  color: #e0e0e0;
 }
+
+body.dark-mode .qr-modal-header .close-modal {
+  color: #a0a0a0;
+}
+
+body.dark-mode .qr-modal-header .close-modal:hover {
+  color: #e0e0e0;
+}
+
+body.dark-mode .qr-code-container {
+  background: rgba(255, 255, 255, 0.95);
+}
+
+body.dark-mode .qr-instruction {
+  color: #b0b0b0;
+}
+
+
 
 /* Clean Professional Menu */
 header {
@@ -449,43 +503,67 @@ header.header-scrolled {
 }
 
 /* Modern menu for PC */
-.menu {
-  display: flex;
-  align-items: center;
-  max-width: calc(100% - 280px);
-  overflow-x: auto;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+@media (min-width: 769px) {
+  .menu {
+    display: flex;
+    align-items: center;
+    max-width: calc(100% - 280px);
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
 }
 
 .menu::-webkit-scrollbar {
   display: none;
 }
 
-.menu ul {
-  display: flex;
-  align-items: center;
-  gap: 2px;
-  white-space: nowrap;
-}
+@media (min-width: 769px) {
+  .menu ul {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    white-space: nowrap;
+  }
 
-.menu ul li {
-  list-style: none;
-}
+  .menu ul li {
+    list-style: none;
+  }
 
-.menu ul li a {
-  text-decoration: none;
-  color: #555;
-  padding: 6px 12px;
-  border-radius: 4px;
-  transition: all 0.2s ease;
-  font-size: 0.85rem;
-  font-weight: 500;
-}
+  .menu ul li a {
+    text-decoration: none;
+    color: #555;
+    padding: 6px 12px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    font-size: 0.85rem;
+    font-weight: 500;
+  }
 
-.menu ul li a:hover {
-  background: #f5f5f5;
-  color: #667eea;
+  .menu ul li a:hover {
+    background: #f5f5f5;
+    color: #667eea;
+  }
+
+  /* Theme toggle button */
+  .menu ul li button.theme-toggle {
+    background: transparent;
+    border: none;
+    color: #555;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-left: 4px;
+    white-space: nowrap;
+  }
+
+  .menu ul li button.theme-toggle:hover {
+    background: #f5f5f5;
+    color: #667eea;
+  }
 }
 
 /* Navigation arrow buttons */
@@ -543,26 +621,6 @@ body.dark-mode .nav-arrow {
 body.dark-mode .nav-arrow:hover {
   background: #a78bfa;
   color: white;
-}
-
-/* Theme toggle button */
-.menu ul li button.theme-toggle {
-  background: transparent;
-  border: none;
-  color: #555;
-  padding: 6px 12px;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  font-size: 0.85rem;
-  font-weight: 500;
-  margin-left: 4px;
-  white-space: nowrap;
-}
-
-.menu ul li button.theme-toggle:hover {
-  background: #f5f5f5;
-  color: #667eea;
 }
 
 /* Dark mode for PC navigation */
@@ -628,30 +686,6 @@ body.dark-mode .menu ul li a:hover {
   color: #a78bfa;
 }
 
-body.dark-mode .menu ul li button.theme-toggle {
-  background: rgba(167, 139, 250, 0.05);
-  border: 1px solid rgba(167, 139, 250, 0.2);
-  color: #a78bfa;
-}
-
-body.dark-mode .menu ul li button.theme-toggle:hover {
-  background: rgba(167, 139, 250, 0.1);
-  border-color: rgba(167, 139, 250, 0.3);
-}
-
-body.dark-mode .menu-toggle {
-  background: rgba(167, 139, 250, 0.1);
-  border: 2px solid rgba(167, 139, 250, 0.2);
-}
-
-body.dark-mode .menu-toggle:hover {
-  background: rgba(167, 139, 250, 0.2);
-  border-color: rgba(167, 139, 250, 0.3);
-}
-
-body.dark-mode .hamburger span {
-  background: #e0e0e0;
-}
 
 /* Dark mode for hero section */
 body.dark-mode .hero {
@@ -1040,33 +1074,6 @@ body.dark-mode .theme-toggle::before {
 }
 
 
-/* Dark Mode Mobile Menu */
-@media (max-width: 768px) {
-  body.dark-mode .menu {
-    background: linear-gradient(135deg, 
-      rgba(15, 23, 42, 0.98) 0%, 
-      rgba(30, 41, 59, 0.92) 50%, 
-      rgba(15, 23, 42, 0.95) 100%);
-    border-left: 1px solid rgba(96, 165, 250, 0.2);
-  }
-
-  body.dark-mode .menu ul li a {
-    background: linear-gradient(135deg, 
-      rgba(96, 165, 250, 0.1) 0%, 
-      rgba(96, 165, 250, 0.05) 100%);
-    border: 2px solid rgba(96, 165, 250, 0.2);
-    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  }
-
-  body.dark-mode .menu ul li a:hover {
-    background: linear-gradient(135deg, 
-      rgba(96, 165, 250, 0.2) 0%, 
-      rgba(139, 92, 246, 0.1) 100%);
-    border: 2px solid rgba(96, 165, 250, 0.4);
-    box-shadow: 0 15px 40px rgba(96, 165, 250, 0.4);
-    text-shadow: 0 6px 25px rgba(96, 165, 250, 0.6);
-  }
-}
 
 :root {
   --primary: #6366f1;
