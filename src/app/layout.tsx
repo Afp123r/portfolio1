@@ -22,7 +22,7 @@ export const metadata: Metadata = {/*website name change here*/
     siteName: 'Portfolio - Neoh Wei Jian',
     images: [
       {
-        url: '/images/avatar.png',
+        url: '/images/logo.png',
         width: 1200,
         height: 630,
         alt: 'Neoh Wei Jian Portfolio',
@@ -35,7 +35,7 @@ export const metadata: Metadata = {/*website name change here*/
     card: 'summary_large_image',
     title: 'Portfolio - Neoh Wei Jian - Full Stack Developer',
     description: 'Full Stack Developer specializing in React, Next.js, Python, and Data Science.',
-    images: ['/images/avatar.png'],
+    images: ['/images/logo.png'],
     creator: '@HenryNeoh',
   },
   robots: {
@@ -50,9 +50,9 @@ export const metadata: Metadata = {/*website name change here*/
     },
   },
   icons: {
-    icon: '/icon.png',
-    shortcut: '/icon.png',
-    apple: '/apple-icon.png',
+    icon: '/logo.png',
+    shortcut: '/logo.png',
+    apple: '/logo.png',
   },
   manifest: '/manifest.json',
 };
