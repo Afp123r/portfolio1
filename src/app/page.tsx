@@ -13,6 +13,7 @@ export default function Home() {
   const [accessType, setAccessType] = useState<'cv' | 'project'>('cv');
   const [projectUrl, setProjectUrl] = useState('');
   const [showIOSNotification, setShowIOSNotification] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   
   // Password stored in environment variable for better security
   const CORRECT_PASSWORD = process.env.NEXT_PUBLIC_CV_PASSWORD || 'cv321';
@@ -1097,6 +1098,11 @@ export default function Home() {
     // 初始化主题
     initTheme();
 
+    // Loading screen
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1500);
+
     // 添加事件监听器
     window.addEventListener('scroll', () => {
       handleScroll();
@@ -1109,6 +1115,26 @@ export default function Home() {
     document.getElementById('themeToggle')?.addEventListener('click', handleThemeToggle);
     document.addEventListener('mouseover', handleInputHover);
 
+    // Navigation arrow scroll functionality
+    const menu = document.getElementById('menu');
+    const navArrowLeft = document.getElementById('navArrowLeft');
+    const navArrowRight = document.getElementById('navArrowRight');
+
+    const handleNavScrollLeft = () => {
+      if (menu) {
+        menu.scrollBy({ left: -200, behavior: 'smooth' });
+      }
+    };
+
+    const handleNavScrollRight = () => {
+      if (menu) {
+        menu.scrollBy({ left: 200, behavior: 'smooth' });
+      }
+    };
+
+    navArrowLeft?.addEventListener('click', handleNavScrollLeft);
+    navArrowRight?.addEventListener('click', handleNavScrollRight);
+
     // 清理函数
     return () => {
       window.removeEventListener('scroll', handleScroll);
@@ -1118,11 +1144,23 @@ export default function Home() {
       document.querySelector('.menu')?.removeEventListener('click', handleSmoothScroll);
       document.getElementById('themeToggle')?.removeEventListener('click', handleThemeToggle);
       document.removeEventListener('mouseover', handleInputHover);
+      navArrowLeft?.removeEventListener('click', handleNavScrollLeft);
+      navArrowRight?.removeEventListener('click', handleNavScrollRight);
     };
   }, []);
 
   return (
     <>
+      {/* Loading Screen */}
+      {isLoading && (
+        <div className="loading-screen">
+          <div className="loading-spinner"></div>
+        </div>
+      )}
+
+      {/* Skip Link for Accessibility */}
+      <a href="#main-content" className="skip-link">Skip to main content</a>
+
       {/* iOS Notification */}
       {showIOSNotification && (
         <div className="ios-notification" style={{
@@ -1201,6 +1239,9 @@ export default function Home() {
               <span></span>
             </div>
           </div>
+          <button className="nav-arrow nav-arrow-left" id="navArrowLeft" aria-label="Scroll left">
+            ‹
+          </button>
           <div className="menu" id="menu">
             <ul>
               {content.nav.menu.map((item, index) => (
@@ -1213,9 +1254,13 @@ export default function Home() {
               </li>
             </ul>
           </div>
+          <button className="nav-arrow nav-arrow-right" id="navArrowRight" aria-label="Scroll right">
+            ›
+          </button>
         </nav>
       </header>
 
+      <main id="main-content">
       <section className="hero" id="home">
         <div className="over"></div>
         <div className="hero-container">
@@ -1438,6 +1483,147 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="blog-section" id="blog">
+        <div className="blog-header">
+          <div className="section-badge">Insights</div>
+          <h2>{content.blog.title}</h2>
+          <p>{content.blog.description}</p>
+        </div>
+        
+        <div className="blog-grid">
+          {content.blog.posts.map((post, index) => (
+            <article key={index} className="blog-card">
+              <div className="blog-image">
+                <img src={post.image} alt={post.title} />
+              </div>
+              <div className="blog-content">
+                <div className="blog-meta">
+                  <span className="blog-date">{post.date}</span>
+                  <span className="blog-read-time">{post.readTime}</span>
+                </div>
+                <h3 className="blog-title">{post.title}</h3>
+                <p className="blog-excerpt">{post.excerpt}</p>
+                <div className="blog-tags">
+                  {post.tags.map((tag, tagIndex) => (
+                    <span key={tagIndex} className="blog-tag">{tag}</span>
+                  ))}
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="testimonials-section" id="testimonials">
+        <div className="testimonials-header">
+          <div className="section-badge">Recommendations</div>
+          <h2>{content.testimonials.title}</h2>
+          <p>{content.testimonials.description}</p>
+        </div>
+        
+        <div className="testimonials-grid">
+          {content.testimonials.items.map((testimonial, index) => (
+            <div key={index} className="testimonial-card">
+              <div className="testimonial-quote">
+                <svg className="quote-icon" width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M14.017 21L14.017 18C14.017 16.896 14.321 15.928 14.929 15.096C15.537 14.264 16.313 13.648 17.257 13.248L17.257 11.232C16.721 11.424 16.225 11.688 15.769 12.024C15.313 12.36 14.941 12.736 14.653 13.152L14.653 6L12.073 6L12.073 21L14.017 21ZM5.777 21L5.777 18C5.777 16.896 6.081 15.928 6.689 15.096C7.297 14.264 8.073 13.648 9.017 13.248L9.017 11.232C8.481 11.424 7.985 11.688 7.529 12.024C7.073 12.36 6.701 12.736 6.413 13.152L6.413 6L3.833 6L3.833 21L5.777 21Z"/>
+                </svg>
+                <p>{testimonial.quote}</p>
+              </div>
+              <div className="testimonial-author">
+                <img src={testimonial.avatar} alt={testimonial.name} className="author-avatar" />
+                <div className="author-info">
+                  <h4>{testimonial.name}</h4>
+                  <p>{testimonial.position} at {testimonial.company}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="certifications-section" id="certifications">
+        <div className="certifications-header">
+          <div className="section-badge">Credentials</div>
+          <h2>{content.certifications.title}</h2>
+          <p>{content.certifications.description}</p>
+        </div>
+        
+        <div className="certifications-grid">
+          {content.certifications.items.map((cert, index) => (
+            <div key={index} className="certification-card">
+              <div className="cert-image">
+                <img src={cert.image} alt={cert.name} />
+              </div>
+              <div className="cert-content">
+                <h3>{cert.name}</h3>
+                <p className="cert-issuer">{cert.issuer}</p>
+                <p className="cert-date">{cert.date}</p>
+                <a href={cert.url} target="_blank" rel="noopener noreferrer" className="cert-link">
+                  View Credential
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="awards-section" id="awards">
+        <div className="awards-header">
+          <div className="section-badge">Achievements</div>
+          <h2>{content.awards.title}</h2>
+          <p>{content.awards.description}</p>
+        </div>
+        
+        <div className="awards-grid">
+          {content.awards.items.map((award, index) => (
+            <div key={index} className="award-card">
+              <div className="award-icon">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <circle cx="12" cy="8" r="7"/>
+                  <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/>
+                </svg>
+              </div>
+              <div className="award-content">
+                <h3>{award.title}</h3>
+                <p className="award-organization">{award.organization}</p>
+                <p className="award-date">{award.date}</p>
+                <p className="award-description">{award.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="publications-section" id="publications">
+        <div className="publications-header">
+          <div className="section-badge">Research</div>
+          <h2>{content.publications.title}</h2>
+          <p>{content.publications.description}</p>
+        </div>
+        
+        <div className="publications-list">
+          {content.publications.items.map((pub, index) => (
+            <div key={index} className="publication-item">
+              <div className="publication-content">
+                <h3>{pub.title}</h3>
+                <p className="publication-journal">{pub.journal}</p>
+                <p className="publication-authors">{pub.authors.join(', ')}</p>
+                <p className="publication-date">{pub.date}</p>
+                <div className="publication-links">
+                  <a href={pub.url} target="_blank" rel="noopener noreferrer" className="pub-link">
+                    Read Paper
+                  </a>
+                  {pub.doi && (
+                    <span className="pub-doi">DOI: {pub.doi}</span>
+                  )}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
       <section className="contact-modern" id="contact">
         <div className="contact-header">
           <div className="section-badge">Get In Touch</div>
@@ -1562,6 +1748,7 @@ export default function Home() {
           </div>
         </div>
       )}
+      </main>
     </>
   );
 }

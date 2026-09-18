@@ -23,6 +23,26 @@
         "link": "#projects"
       },
       {
+        "text": "Blog",
+        "link": "#blog"
+      },
+      {
+        "text": "Testimonials",
+        "link": "#testimonials"
+      },
+      {
+        "text": "Certifications",
+        "link": "#certifications"
+      },
+      {
+        "text": "Awards",
+        "link": "#awards"
+      },
+      {
+        "text": "Publications",
+        "link": "#publications"
+      },
+      {
         "text": "Contact",
         "link": "#contact"
       }
@@ -268,6 +288,142 @@
       "email": "Email",
       "message": "Message",
       "submit": "Send Message"
+    }
+  },
+  "blog": {
+    "title": "Blog & Articles",
+    "description": "Thoughts, tutorials, and insights from my journey",
+    "posts": [
+      {
+        "title": "Getting Started with Next.js 14",
+        "excerpt": "A comprehensive guide to building modern web applications with Next.js 14 and App Router.",
+        "date": "2024-01-15",
+        "tags": ["Next.js", "React", "Web Development"],
+        "readTime": "5 min read",
+        "image": "/images/blog/nextjs.jpg"
+      },
+      {
+        "title": "Python for Data Science: A Beginner's Guide",
+        "excerpt": "Learn the fundamentals of Python and how it's used in data science and machine learning.",
+        "date": "2024-02-20",
+        "tags": ["Python", "Data Science", "Machine Learning"],
+        "readTime": "8 min read",
+        "image": "/images/blog/python.jpg"
+      }
+    ]
+  },
+  "testimonials": {
+    "title": "Testimonials",
+    "description": "What people say about working with me",
+    "items": [
+      {
+        "name": "John Doe",
+        "position": "Senior Developer",
+        "company": "Tech Company",
+        "quote": "Neoh is an exceptional developer who consistently delivers high-quality work. His attention to detail and problem-solving skills are impressive.",
+        "avatar": "/images/testimonials/john.jpg"
+      },
+      {
+        "name": "Jane Smith",
+        "position": "Project Manager",
+        "company": "Digital Agency",
+        "quote": "Working with Neoh was a great experience. He's proactive, communicative, and always meets deadlines.",
+        "avatar": "/images/testimonials/jane.jpg"
+      }
+    ]
+  },
+  "certifications": {
+    "title": "Certifications",
+    "description": "Professional certifications and courses completed",
+    "items": [
+      {
+        "name": "AWS Certified Developer",
+        "issuer": "Amazon Web Services",
+        "date": "2023",
+        "credentialId": "AWS-123456",
+        "url": "https://aws.amazon.com/certification/",
+        "image": "/images/certifications/aws.png"
+      },
+      {
+        "name": "Meta Front-End Developer",
+        "issuer": "Meta",
+        "date": "2023",
+        "credentialId": "META-789012",
+        "url": "https://www.coursera.org/professional-certificates/meta-front-end-developer",
+        "image": "/images/certifications/meta.png"
+      }
+    ]
+  },
+  "awards": {
+    "title": "Awards & Recognition",
+    "description": "Achievements and honors",
+    "items": [
+      {
+        "title": "Best Project Award",
+        "organization": "Universiti Malaysia Perlis",
+        "date": "2023",
+        "description": "Awarded for excellence in final year project - Barcode Filing Management System",
+        "image": "/images/wards/best-project.jpg"
+      },
+      {
+        "title": "Dean's List",
+        "organization": "Universiti Malaysia Perlis",
+        "date": "2022",
+        "description": "Achieved academic excellence with GPA above 3.5",
+        "image": "/images/wards/deans-list.jpg"
+      }
+    ]
+  },
+  "publications": {
+    "title": "Publications",
+    "description": "Research papers and articles published",
+    "items": [
+      {
+        "title": "Implementation of Barcode Technology in Document Management Systems",
+        "journal": "International Journal of Computer Applications",
+        "date": "2023",
+        "authors": ["Neoh Wei Jian", "Co-author Name"],
+        "url": "https://example.com/paper1",
+        "doi": "10.1234/example.doi"
+      }
+    ]
+  },
+  "languages": {
+    "en": {
+      "nav": {
+        "home": "Home",
+        "about": "About",
+        "skills": "Skills",
+        "experience": "Experience",
+        "projects": "Projects",
+        "contact": "Contact",
+        "blog": "Blog",
+        "testimonials": "Testimonials",
+        "certifications": "Certifications"
+      },
+      "hero": {
+        "greeting": "Hi",
+        "iam": "I am",
+        "downloadCV": "Download CV"
+      }
+    },
+    "ms": {
+      "nav": {
+        "home": "Utama",
+        "about": "Tentang",
+        "skills": "Kemahiran",
+        "experience": "Pengalaman",
+        "projects": "Projek",
+        "contact": "Hubungi",
+        "blog": "Blog",
+        "testimonials": "Testimoni",
+        "certifications": "Sijil"
+      },
+      "hero": {
+        "greeting": "Hai",
+        "iam": "Saya",
+        "downloadCV": "Muat Turun CV"
+      }
     }
   }
 }
