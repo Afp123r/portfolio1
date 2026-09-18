@@ -320,14 +320,14 @@
         "name": "John Doe",
         "position": "Senior Developer",
         "company": "Tech Company",
-        "quote": "Neoh is an exceptional developer who consistently delivers high-quality work. His attention to detail and problem-solving skills are impressive.",
+        "quote": "Neoh Wei Jian is an exceptional developer who consistently delivers high-quality work. His attention to detail and problem-solving skills are impressive.",
         "avatar": "/images/testimonials/john.jpg"
       },
       {
         "name": "Jane Smith",
         "position": "Project Manager",
         "company": "Digital Agency",
-        "quote": "Working with Neoh was a great experience. He's proactive, communicative, and always meets deadlines.",
+        "quote": "Working with Neoh Wei Jian was a great experience. He's proactive, communicative, and always meets deadlines.",
         "avatar": "/images/testimonials/jane.jpg"
       }
     ]
@@ -359,18 +359,18 @@
     "description": "Achievements and honors",
     "items": [
       {
-        "title": "Best Project Award",
-        "organization": "Universiti Malaysia Perlis",
-        "date": "2023",
-        "description": "Awarded for excellence in final year project - Barcode Filing Management System",
-        "image": "/images/wards/best-project.jpg"
-      },
-      {
         "title": "Dean's List",
-        "organization": "Universiti Malaysia Perlis",
-        "date": "2022",
+        "organization": "Universiti Malaysia Perlis (UniMAP)",
+        "date": "2023 | 2024 | 2025",
         "description": "Achieved academic excellence with GPA above 3.5",
         "image": "/images/wards/deans-list.jpg"
+      },
+      {
+        "title": "Best Project Award",
+        "organization": "Universiti Malaysia Perlis (UniMAP)",
+        "date": "2025",
+        "description": "Completed in final year project - Barcode Filing Management System",
+        "image": "/images/wards/best-project.jpg"
       }
     ]
   },
@@ -380,10 +380,10 @@
     "items": [
       {
         "title": "Implementation of Barcode Technology in Document Management Systems",
-        "journal": "International Journal of Computer Applications",
-        "date": "2023",
-        "authors": ["Neoh Wei Jian", "Co-author Name"],
-        "url": "https://example.com/paper1",
+        "journal": "Barcode Filing Management System (BFMS)",
+        "date": "2025",
+        "authors": ["Neoh Wei Jian"],
+        "url": "https://fyp1.qzz.io/about",
         "doi": "10.1234/example.doi"
       }
     ]
