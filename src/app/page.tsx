@@ -1329,7 +1329,7 @@ export default function Home() {
           <div className="imgeffect">
             <div className="flipper">
               <div className="front">
-                <img src="/images/githubprofile.png" alt="" loading="lazy" />
+                <img src="/images/githubprofile3.png" alt="" loading="lazy" />
               </div>
               <div className="back">
                 <img src="/images/profile2.png" alt="" loading="lazy" />
