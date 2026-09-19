@@ -2172,7 +2172,7 @@ body.dark-mode .social-link-modern {
 }
 
 body.dark-mode .social-link-modern:hover {
-  background: rgba(255, 255, 255, 0.05);
+  background: linear-gradient(135deg, #667eea, #764ba2);
 }
 
 body.dark-mode .contact-form-modern {
@@ -2717,7 +2717,7 @@ body.dark-mode .form-group-modern textarea:not(:placeholder-shown) + label {
 }
 
 .social-link-modern:hover {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.05));
+  background: linear-gradient(135deg, #667eea, #764ba2), rgba(255, 255, 255, 0.05);
   transform: translateY(-3px) scale(1.02);
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
   border-color: rgba(255, 255, 255, 0.2);
