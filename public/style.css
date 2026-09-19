@@ -845,8 +845,8 @@ body.dark-mode .share-toggle-btn:hover {
 }
 
 body.dark-mode .share-menu {
-  background: rgba(30, 30, 46, 0.95);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgb(84 80 155 / 97%);
+  border: 1px solid rgb(224 90 255);
 }
 
 body.dark-mode .share-menu-header {
@@ -899,6 +899,7 @@ body.dark-mode .share-menu-header {
 
 body.dark-mode .share-option-btn {
   border-color: rgba(255, 255, 255, 0.1);
+  background: #7a75e4;
 }
 
 body.dark-mode .share-option-name {
@@ -1123,7 +1124,7 @@ body.dark-mode .menu-toggle.active .hamburger span:nth-child(3) {
 }
 
 body.dark-mode .menu {
-  background: rgba(15, 15, 26, 0.85);
+  background: rgb(60 60 118 / 51%);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
 }
@@ -1168,7 +1169,7 @@ body.dark-mode .auto-type {
 
 /* Dark mode for about section */
 body.dark-mode .about {
-  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  background: linear-gradient(135deg, #2d2d51 0%, #16213e 100%);
 }
 
 body.dark-mode .text .p1 {
@@ -1358,8 +1359,8 @@ body.dark-mode .awards-section {
 }
 
 body.dark-mode .award-card {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgb(210 187 237 / 80%);
+  border: 2px solid rgb(181 0 241);
 }
 
 body.dark-mode .award-content h3 {
@@ -1371,8 +1372,8 @@ body.dark-mode .publications-section {
 }
 
 body.dark-mode .publication-item {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgb(37 32 76);
+  border: 2px solid rgb(83 83 254 / 72%);
 }
 
 body.dark-mode .publication-content h3 {
@@ -1783,7 +1784,7 @@ body.dark-mode {
 }
 
 body.dark-mode .navBar {
-  background: rgba(15, 15, 30, 0.8);
+  background: rgb(26 26 65 / 74%);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
 }
@@ -1795,11 +1796,13 @@ body.dark-mode header.header-scrolled {
 
 body.dark-mode .menu ul li a {
   color: #ffffff;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgb(107 138 230 / 9%);
+  border-radius: 30px;
 }
 
 body.dark-mode .menu ul li a:hover {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgb(149 104 234 / 22%);
+  border-radius: 30px;
 }
 
 body.dark-mode .theme-toggle {
@@ -1820,10 +1823,10 @@ body.dark-mode .Skills .container,
 body.dark-mode .experience .container-ex,
 body.dark-mode .project .container,
 body.dark-mode .contact-container {
-  background: rgba(255, 255, 255, 0.05);
+  /*background: rgba(255, 255, 255, 0.05);*/
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  /*border: 1px solid rgba(255, 255, 255, 0.1);*/
 }
 
 body.dark-mode .card-inner .box {
@@ -1917,7 +1920,7 @@ body.dark-mode .hero-container .botton img {
 
 /* Dark mode styles for skills section */
 body.dark-mode .Skills {
-background: var(--dark-bg-secondary);
+background: #23234e;
 }
 
 body.dark-mode .Skills::before {
@@ -3524,12 +3527,12 @@ body.dark-mode header.header-scrolled {
 
 .header-scrolled .name,
 .header-scrolled #menu li a {
-  color: #695aa6;
+  color: #ffffff;
 }
 
 .header-scrolled .name:hover,
 .header-scrolled #menu li a:hover {
-  color: #543d8d;
+  color: #ffffff;
 }
 
 /* Navbar CSS ends here  */
@@ -3662,6 +3665,7 @@ body.dark-mode header.header-scrolled {
   transform: translateY(-5px) scale(1.05);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
   border-color: rgba(255, 255, 255, 0.4);
+  background: linear-gradient(135deg, #667eea, #764ba2), rgb(190 192 236);
 }
 
 @keyframes fadeInUp {
@@ -6225,8 +6229,8 @@ body.dark-mode .experience-modern {
 }
 
 body.dark-mode .experience-card {
-  background: rgba(45, 55, 72, 0.95);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgb(88 66 180 / 87%);
+  border: 5px solid rgb(169 72 255 / 57%);
 }
 
 body.dark-mode .experience-role {
