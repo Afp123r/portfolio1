@@ -1294,7 +1294,7 @@ export default function Home() {
               </li>
               <li>
                 <button className="qr-toggle" onClick={() => setShowQRCode(!showQRCode)} aria-label="Share portfolio">
-                  <span className="qr-icon">📱</span>
+                  <span className="qr-icon">🌐</span>
                 </button>
               </li>
             </ul>

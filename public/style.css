@@ -814,8 +814,8 @@ body.dark-mode .share-toggle-btn:hover {
 .share-menu {
   position: absolute;
   top: calc(100% + 10px);
-  right: 0;
-  background: white;
+  right: -45px;
+  background: #f1eef6;
   border-radius: 12px;
   padding: 16px;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
@@ -7003,7 +7003,6 @@ body.dark-mode ::-webkit-scrollbar-thumb {
 
 /* QR Code Container */
 .qr-code-container {
-  position: fixed;
   bottom: 20px;
   right: 20px;
   background: white;
@@ -7171,9 +7170,9 @@ body.dark-mode ::-webkit-scrollbar-thumb {
     max-width: 100%;
   }
 
-  .qr-code-container {
+  /*.qr-code-container {
     display: none;
-  }
+  }*/
 
   .language-toggle {
     top: auto;

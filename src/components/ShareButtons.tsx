@@ -37,7 +37,7 @@ export default function ShareButtons({
     },
     {
       name: 'WhatsApp',
-      icon: '📱',
+      icon: '✆',
       color: '#25D366',
       shareUrl: `https://wa.me/?text=${encodeURIComponent(`${title} ${shareUrl}`)}`,
     },
