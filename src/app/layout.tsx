@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import { useEffect, useState } from 'react';
 import ViewCounter from "./ViewCounter";
 
 export const metadata: Metadata = {/*website name change here*/

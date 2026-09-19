@@ -15,6 +15,16 @@ export default function Home() {
   const [showIOSNotification, setShowIOSNotification] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [showQRCode, setShowQRCode] = useState(false);
+  const [showScrollTop, setShowScrollTop] = useState(false);
+  const [toasts, setToasts] = useState<Array<{ id: number; message: string; type: 'success' | 'error' | 'info' }>>(([]));
+  
+  const showToast = (message: string, type: 'success' | 'error' | 'info' = 'info') => {
+    const id = Date.now();
+    setToasts(prev => [...prev, { id, message, type }]);
+    setTimeout(() => {
+      setToasts(prev => prev.filter(toast => toast.id !== id));
+    }, 3000);
+  };
   
   // Password stored in environment variable for better security
   const CORRECT_PASSWORD = process.env.NEXT_PUBLIC_CV_PASSWORD || 'cv321';
@@ -208,7 +218,7 @@ export default function Home() {
     };
     
     const iosVersion = getIOSVersion();
-    const isIOS13Plus = iosVersion && iosVersion >= 13;
+    const isIOS13Plus = iosVersion !== null && iosVersion >= 13;
     
     // iOS优化初始化函数
     const initIOSBasicOptimizations = () => {
@@ -370,6 +380,18 @@ export default function Home() {
       
       // 初始化iOS通知
       initIOSNotification();
+      
+      // Scroll to top button visibility
+      const handleScroll = () => {
+        if (window.scrollY > 300) {
+          setShowScrollTop(true);
+        } else {
+          setShowScrollTop(false);
+        }
+      };
+      
+      window.addEventListener('scroll', handleScroll, { passive: true });
+      handleScroll(); // Initial check
       
       // Windows & Android 性能优化
       const initWindowsAndroidOptimizations = () => {
@@ -599,7 +621,7 @@ export default function Home() {
           });
           
           // iOS特定版本优化
-          if (iosVersion && iosVersion >= 13) {
+          if (iosVersion !== null && iosVersion >= 13) {
             // iOS 13+ 特定优化
             const modernElements = document.querySelectorAll('.project-showcase-card, .info-card') as NodeListOf<HTMLElement>;
             modernElements.forEach(element => {
@@ -1154,8 +1176,9 @@ export default function Home() {
     <>
       {/* Loading Screen */}
       {isLoading && (
-        <div className="loading-screen">
-          <div className="loading-spinner"></div>
+        <div className={`loading-overlay ${!isLoading ? 'hidden' : ''}`}>
+          <div className="spinner"></div>
+          <div className="loading-text">LOADING</div>
         </div>
       )}
 
@@ -1278,7 +1301,7 @@ export default function Home() {
           <div className="botton">
             {content.contact.social.map((social, index) => (
               <a key={index} href={social.link} target="_blank">
-                <img src={`/images/${social.icon}.svg`} alt={social.name} />
+                <img src={`/images/${social.icon}.svg`} alt={social.name} loading="lazy" />
               </a>
             ))}
           </div>
@@ -1290,10 +1313,10 @@ export default function Home() {
           <div className="imgeffect">
             <div className="flipper">
               <div className="front">
-                <img src="/images/githubprofile.png" alt="" />
+                <img src="/images/githubprofile.png" alt="" loading="lazy" />
               </div>
               <div className="back">
-                <img src="/images/profile2.png" alt="" />
+                <img src="/images/profile2.png" alt="" loading="lazy" />
               </div>
             </div>
           </div>
@@ -1310,7 +1333,7 @@ export default function Home() {
                 {content.about.workExperience.map((exp, index) => (
                   <div key={index} className="work-item">
                     <a href={exp.website} target="_blank" rel="noopener noreferrer" className="company-link">
-                      <img src={exp.logo} alt={`${exp.company} Logo`} className="company-logo" />
+                      <img src={exp.logo} alt={`${exp.company} Logo`} className="company-logo" loading="lazy" />
                     </a>
                     <p className="p2">
                       <strong>{exp.company}</strong> - {exp.position} ({exp.period})
@@ -1335,7 +1358,7 @@ export default function Home() {
               <div className="box">
                 {content.skills.categories[0].skills.map((skill, index) => (
                   <div key={index} className="frontSkill">
-                    <img src={skill.image} alt="" />
+                    <img src={skill.image} alt="" loading="lazy" />
                     {skill.name}
                   </div>
                 ))}
@@ -1346,7 +1369,7 @@ export default function Home() {
               <div className="box">
                 {content.skills.categories[1].skills.map((skill, index) => (
                   <div key={index} className="backSkill">
-                    <img src={skill.image} alt="" />
+                    <img src={skill.image} alt="" loading="lazy" />
                     {skill.name}
                   </div>
                 ))}
@@ -1357,7 +1380,7 @@ export default function Home() {
               <div className="box">
                 {content.skills.categories[2].skills.map((skill, index) => (
                   <div key={index} className="datasciSkill">
-                    <img src={skill.image} alt="" />
+                    <img src={skill.image} alt="" loading="lazy" />
                     {skill.name}
                   </div>
                 ))}
@@ -1368,7 +1391,7 @@ export default function Home() {
               <div className="box">
                 {content.skills.categories[3].skills.map((skill, index) => (
                   <div key={index} className="toolsSkill">
-                    <img src={skill.image} alt="" />
+                    <img src={skill.image} alt="" loading="lazy" />
                     {skill.name}
                   </div>
                 ))}
@@ -1400,7 +1423,7 @@ export default function Home() {
                     <div className="experience-icon">
                       {item.logo && item.website ? (
                         <a href={item.website} target="_blank" rel="noopener noreferrer">
-                          <img src={item.logo} alt={`${item.company} Logo`} className="company-logo-icon" />
+                          <img src={item.logo} alt={`${item.company} Logo`} className="company-logo-icon" loading="lazy" />
                         </a>
                       ) : (
                         <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="default-icon-svg">
@@ -1448,13 +1471,13 @@ export default function Home() {
             <article key={index} className="project-showcase-card">
               <div className="project-visual">
                 <div className="project-image-wrapper">
-                  <img src={project.image} alt={project.title} className="project-image" />
+                  <img src={project.image} alt={project.title} className="project-image" loading="lazy" />
                   <div className="project-overlay">
                     <div className="project-number">0{index + 1}</div>
                     <div className="project-actions">
                       <a href={project.github} target="_blank" rel="noopener noreferrer" className="action-btn primary">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                          <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
                         </svg>
                         Code
                       </a>
@@ -1500,7 +1523,7 @@ export default function Home() {
           {content.blog.posts.map((post, index) => (
             <article key={index} className="blog-card">
               <div className="blog-image">
-                <img src={post.image} alt={post.title} />
+                <img src={post.image} alt={post.title} loading="lazy" />
               </div>
               <div className="blog-content">
                 <div className="blog-meta">
@@ -1537,7 +1560,7 @@ export default function Home() {
                 <p>{testimonial.quote}</p>
               </div>
               <div className="testimonial-author">
-                <img src={testimonial.avatar} alt={testimonial.name} className="author-avatar" />
+                <img src={testimonial.avatar} alt={testimonial.name} className="author-avatar" loading="lazy" />
                 <div className="author-info">
                   <h4>{testimonial.name}</h4>
                   <p>{testimonial.position} at {testimonial.company}</p>
@@ -1559,7 +1582,7 @@ export default function Home() {
           {content.certifications.items.map((cert, index) => (
             <div key={index} className="certification-card">
               <div className="cert-image">
-                <img src={cert.image} alt={cert.name} />
+                <img src={cert.image} alt={cert.name} loading="lazy" />
               </div>
               <div className="cert-content">
                 <h3>{cert.name}</h3>
@@ -1682,7 +1705,7 @@ export default function Home() {
               <div className="social-grid">
                 {content.contact.social.map((social, index) => (
                   <a key={index} href={social.link} target="_blank" rel="noopener noreferrer" className="social-link-modern">
-                    <img src={`/images/${social.icon}.svg`} alt={social.name} />
+                    <img src={`/images/${social.icon}.svg`} alt={social.name} loading="lazy" />
                     <span>{social.name}</span>
                   </a>
                 ))}
@@ -1712,11 +1735,38 @@ export default function Home() {
               </div>
             </div>
           </div>
-          
-                  </div>
+        </div>
       </section>
 
       <ViewCounter />
+      
+      {/* Scroll to Top Button */}
+      <button
+        className={`scroll-to-top ${showScrollTop ? 'visible' : ''}`}
+        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+        aria-label="Scroll to top"
+      >
+        ↑
+      </button>
+      
+      {/* Toast Notifications */}
+      <div className="toast-container">
+        {toasts.map(toast => (
+          <div key={toast.id} className={`toast ${toast.type} show`}>
+            <span className="toast-icon">
+              {toast.type === 'success' ? '✓' : toast.type === 'error' ? '✕' : 'ℹ'}
+            </span>
+            <span className="toast-message">{toast.message}</span>
+            <button
+              className="toast-close"
+              onClick={() => setToasts(prev => prev.filter(t => t.id !== toast.id))}
+              aria-label="Close toast"
+            >
+              ×
+            </button>
+          </div>
+        ))}
+      </div>
       
       {/* QR Code Modal */}
       {showQRCode && (
