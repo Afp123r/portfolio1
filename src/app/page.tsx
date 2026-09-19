@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 import content from '../config/content.json';
 import ViewCounter from "./ViewCounter";
 import ShareButtons from "../components/ShareButtons";
-import ContactForm from "../components/ContactForm";
 
 export default function Home() {
   const [linkedinScriptLoaded, setLinkedinScriptLoaded] = useState(false);
@@ -1756,16 +1755,6 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
-
-      {/* Contact Form Section */}
-      <section className="contact-form-section" id="contact-form">
-        <div className="contact-form-header">
-          <div className="section-badge">Get In Touch</div>
-          <h2>Send Me a Message</h2>
-          <p>Have a question or want to work together? Drop me a message!</p>
-        </div>
-        <ContactForm />
       </section>
 
       <ViewCounter />
