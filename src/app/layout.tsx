@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import ViewCounter from "./ViewCounter";
+import GoogleAnalytics from "../components/GoogleAnalytics";
+import WebVitals from "../components/WebVitals";
 
 export const metadata: Metadata = {/*website name change here*/
   title: 'Portfolio - Neoh Wei Jian - Full Stack Developer | Portfolio',
@@ -124,6 +126,8 @@ export default function RootLayout({
         }} />
       </head>
       <body>
+        <GoogleAnalytics />
+        <WebVitals />
         {children}
       </body>
     </html>

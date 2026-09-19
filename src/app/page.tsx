@@ -3,6 +3,8 @@
 import { useEffect, useState } from 'react';
 import content from '../config/content.json';
 import ViewCounter from "./ViewCounter";
+import ShareButtons from "../components/ShareButtons";
+import ContactForm from "../components/ContactForm";
 
 export default function Home() {
   const [linkedinScriptLoaded, setLinkedinScriptLoaded] = useState(false);
@@ -1121,6 +1123,17 @@ export default function Home() {
     // 初始化主题
     initTheme();
 
+    // Reading progress bar
+    const updateReadingProgress = () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = (scrollTop / docHeight) * 100;
+      const progressBar = document.getElementById('readingProgressBar');
+      if (progressBar) {
+        progressBar.style.width = `${scrollPercent}%`;
+      }
+    };
+
     // Loading screen
     setTimeout(() => {
       setIsLoading(false);
@@ -1130,6 +1143,7 @@ export default function Home() {
     window.addEventListener('scroll', () => {
       handleScroll();
       updateScrollProgress();
+      updateReadingProgress();
     });
     document.querySelector('.menu-toggle')?.addEventListener('click', handleMenuClick);
     document.addEventListener('click', handleClickOutside);
@@ -1182,8 +1196,11 @@ export default function Home() {
         </div>
       )}
 
-      {/* Skip Link for Accessibility */}
-      <a href="#main-content" className="skip-link">Skip to main content</a>
+      {/* Reading Progress Bar */}
+      <div className="reading-progress-bar" id="readingProgressBar"></div>
+
+      {/* Skip Link for Accessibility  <a href="#main-content" className="skip-link">Skip to main content</a> */}
+
 
       {/* iOS Notification */}
       {showIOSNotification && (
@@ -1710,6 +1727,9 @@ export default function Home() {
                   </a>
                 ))}
               </div>
+              <div className="share-buttons-wrapper">
+                <ShareButtons />
+              </div>
               <div className="linkedin-badge-container">
                 <div className="badge-base LI-profile-badge" data-locale="en_US" data-size="large" data-theme="light" data-type="HORIZONTAL" data-vanity="neoh-wei-jian" data-version="v1">
                   <a className="badge-base__link LI-simple-link" href="https://www.linkedin.com/in/neoh-wei-jian?trk=profile-badge" target="_blank" rel="noopener noreferrer"></a>
@@ -1736,6 +1756,16 @@ export default function Home() {
             </div>
           </div>
         </div>
+      </section>
+
+      {/* Contact Form Section */}
+      <section className="contact-form-section" id="contact-form">
+        <div className="contact-form-header">
+          <div className="section-badge">Get In Touch</div>
+          <h2>Send Me a Message</h2>
+          <p>Have a question or want to work together? Drop me a message!</p>
+        </div>
+        <ContactForm />
       </section>
 
       <ViewCounter />
