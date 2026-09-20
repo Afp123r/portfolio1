@@ -240,6 +240,7 @@ body.dark-mode {
     width: 45%;
     padding: 90px 32px 32px;
     background-color: rgb(226 240 255 / 89%);
+    border-radius: 30px;
   }
 
   .menu ul li a {
@@ -403,7 +404,7 @@ body.dark-mode {
 }
 
 .qr-modal-header .close-modal:hover {
-  color: #333;
+  color: #ff0000;
 }
 
 .qr-modal-body {
@@ -434,7 +435,7 @@ body.dark-mode .qr-modal {
 }
 
 body.dark-mode .qr-modal-header h3 {
-  color: #e0e0e0;
+  color: #000000;
 }
 
 body.dark-mode .qr-modal-header .close-modal {
@@ -442,7 +443,8 @@ body.dark-mode .qr-modal-header .close-modal {
 }
 
 body.dark-mode .qr-modal-header .close-modal:hover {
-  color: #e0e0e0;
+  color: #ff0000;
+  background-color: #ffcbcb;
 }
 
 body.dark-mode .qr-code-container {
@@ -450,7 +452,7 @@ body.dark-mode .qr-code-container {
 }
 
 body.dark-mode .qr-instruction {
-  color: #b0b0b0;
+  color: #1e54c9;
 }
 
 /* Scroll to Top Button */
@@ -1077,8 +1079,8 @@ header.header-scrolled {
 
 /* Dark mode for navigation arrows */
 body.dark-mode .nav-arrow {
-  background: rgba(30, 30, 46, 0.9);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  /*background: rgba(30, 30, 46, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.1);*/
   color: #a78bfa;
 }
 
@@ -1803,7 +1805,8 @@ body.dark-mode .menu ul li a {
 }
 
 body.dark-mode .menu ul li a:hover {
-  background: rgb(149 104 234 / 22%);
+  background: rgb(209 167 245);
+  color: #5e31ff;
   border-radius: 30px;
 }
 
