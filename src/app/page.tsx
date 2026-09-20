@@ -1764,23 +1764,20 @@ export default function Home() {
             <h2>Share Your Feedback</h2>
             <p>Your thoughts help me improve and create better experiences</p>
           </div>
-          <div className="feedback-iframe-container">
-            <iframe
-              src="https://forms.gle/rG3WSNQpHVJ77Ecp7"
-              className="feedback-iframe"
-              title="Feedback Form"
-              loading="lazy"
-            />
+          <div className="feedback-card">
+            <div className="feedback-card-icon">💬</div>
+            <h3>Give Feedback</h3>
+            <p>I'd love to hear your thoughts about my portfolio, projects, or any suggestions for improvement.</p>
+            <a
+              href="https://forms.gle/rG3WSNQpHVJ77Ecp7"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="feedback-link-btn"
+            >
+              <span>📝</span>
+              <span>Open Feedback Form</span>
+            </a>
           </div>
-          <a
-            href="https://forms.gle/rG3WSNQpHVJ77Ecp7"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="feedback-link-btn"
-          >
-            <span>📝</span>
-            <span>Open Form in New Tab</span>
-          </a>
         </div>
       </section>
 
