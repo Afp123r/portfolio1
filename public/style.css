@@ -1127,6 +1127,7 @@ body.dark-mode .menu {
   background: rgb(60 60 118 / 51%);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
+  border-radius: 30px;
 }
 
 body.dark-mode .menu::before {
@@ -3460,6 +3461,7 @@ body.dark-mode header.header-scrolled {
   gap: 0.5rem;
   font-size: 0.95rem;
   font-weight: 500;
+  border-radius: 30px;
 }
 
 .menu ul li {
@@ -3527,7 +3529,7 @@ body.dark-mode header.header-scrolled {
 
 .header-scrolled .name,
 .header-scrolled #menu li a {
-  color: #ffffff;
+  color: #dd77f4;
 }
 
 .header-scrolled .name:hover,
