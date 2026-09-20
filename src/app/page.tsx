@@ -1757,6 +1757,33 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Feedback Section */}
+      <section className="feedback-section" id="feedback">
+        <div className="feedback-container">
+          <div className="feedback-header">
+            <h2>Share Your Feedback</h2>
+            <p>Your thoughts help me improve and create better experiences</p>
+          </div>
+          <div className="feedback-iframe-container">
+            <iframe
+              src="https://forms.gle/rG3WSNQpHVJ77Ecp7"
+              className="feedback-iframe"
+              title="Feedback Form"
+              loading="lazy"
+            />
+          </div>
+          <a
+            href="https://forms.gle/rG3WSNQpHVJ77Ecp7"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="feedback-link-btn"
+          >
+            <span>📝</span>
+            <span>Open Form in New Tab</span>
+          </a>
+        </div>
+      </section>
+
       <ViewCounter />
       
       {/* Scroll to Top Button */}
